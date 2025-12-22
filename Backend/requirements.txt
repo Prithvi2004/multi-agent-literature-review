@@ -1,0 +1,20 @@
+# crewai
+# langchain
+# langchain-community
+# langchain-core
+# faiss-cpu
+
+crewai
+langchain
+langchain-community
+langchain-core
+faiss-cpu
+pypdf
+semantic-scholar
+arxiv
+pubmed-py
+beautifulsoup
+requests
+tqdm
+unstructured[local-inference]
+sentence-transformers
