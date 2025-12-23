@@ -691,9 +691,11 @@ st.markdown("""
     }
 
     /* === HIDE STREAMLIT BRANDING === */
-    #MainMenu, footer, header {
-        visibility: hidden;
-    }
+    /* Keep the top menu/header visible so Streamlit's Deploy and other
+       top controls remain accessible. Only hide the footer. */
+    #MainMenu { visibility: visible !important; }
+    header { visibility: visible !important; }
+    footer { visibility: hidden !important; }
 
     /* === RESPONSIVE === */
     @media (max-width: 768px) {
