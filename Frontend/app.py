@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import time
 import io
 import json
@@ -8,8 +9,8 @@ from datetime import datetime
 # PAGE CONFIG
 # ----------------------------
 st.set_page_config(
-    page_title="ResearchNovel 🧠",
-    page_icon="🔬",
+    page_title="ResearchNovel",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -124,36 +125,36 @@ Confidence: 92\\%
 
 **Generated on:** {timestamp}
 
-## 📝 Research Idea
+## Research Idea
 {research_idea}
 
-## 🎯 Selected Research Fields
+## Selected Research Fields
 {chr(10).join(f"- {field}" for field in selected_fields)}
 
-## 📊 Analysis Results
+## Analysis Results
 - **Novelty Score**: 87/100 (High novelty)
 - **Related Papers Analyzed**: 23
 - **Key Research Gaps**: 5
 - **Analysis Confidence**: 92%
 
-## 🔑 Key Findings
+## Key Findings
 
-### ✨ Novel Aspects
+### Novel Aspects
 - Integration of neuro-symbolic reasoning with multimodal transformers
 - Explicit knowledge graph incorporation for explainability
 - Novel attention mechanism for symbolic reasoning alignment
 
-### 📚 Related Prior Work
+### Related Prior Work
 1. **Chen et al. (2024)** - *Multimodal Diagnosis with Vision-Language Models*
 2. **Gupta & Lee (2023)** - *Neuro-Symbolic AI for Medical Imaging*
 3. **Rodriguez et al. (2024)** - *Explainable Medical AI: A Survey*
 
-### 🎯 Research Gaps Identified
+### Research Gaps Identified
 1. No existing work combines multimodal transformers with knowledge graphs
 2. Limited research on interpretable attention mechanisms in medical AI
 3. Lack of unified frameworks for symbolic-neural hybrid architectures
 
-## 💡 Recommendations
+## Recommendations
 - Emphasize your hybrid architecture as the primary differentiator
 - Highlight explainability improvements over pure deep learning
 - Consider adding ablation studies to demonstrate symbolic component impact
@@ -175,11 +176,11 @@ def run_analysis():
 
     # Simulate analysis with optimized timing
     stages = [
-        ("🔍 Retrieving relevant literature...", 20),
-        ("📊 Analyzing paper abstracts...", 40),
-        ("🧬 Extracting methodologies...", 60),
-        ("🔬 Computing novelty scores...", 80),
-        ("✨ Generating comprehensive report...", 100)
+        ("Retrieving relevant literature...", 20),
+        ("Analyzing paper abstracts...", 40),
+        ("Extracting methodologies...", 60),
+        ("Computing novelty scores...", 80),
+        ("Generating comprehensive report...", 100)
     ]
 
     progress_bar = st.progress(0)
@@ -190,12 +191,15 @@ def run_analysis():
         progress_bar.progress(progress)
         time.sleep(0.3)  # Reduced sleep time for smoother experience
 
-    status_text.markdown("**✅ Analysis Complete!**")
+    status_text.markdown("**Analysis Complete!**")
     time.sleep(0.5)
     progress_bar.empty()
     status_text.empty()
 
     st.session_state['analysis_complete'] = True
+    # Trigger automatic switch to results and show completion toast
+    st.session_state['switch_to_results'] = True
+    st.session_state['show_completion_toast'] = True
     st.rerun()
 # ----------------------------
 # ADVANCED CUSTOM CSS WITH ANIMATIONS
@@ -378,25 +382,24 @@ st.markdown("""
     }
     
     .hero-title {
-        font-size: 4rem;
-        font-weight: 900;
-        background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #6366f1);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: gradientFlow 12s ease infinite;
-        margin-bottom: 1rem;
-        letter-spacing: -0.03em;
-        text-shadow: 0 0 80px rgba(99, 102, 241, 0.5);
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #e6eef6;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.01em;
+        text-shadow: 0 6px 18px rgba(2,6,23,0.45);
     }
     
     .hero-subtitle {
-        font-size: 1.4rem;
-        color: #94a3b8;
+        font-size: 1.05rem;
+        color: #cbd5e1;
         font-weight: 400;
-        margin-bottom: 1rem;
-        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        margin-bottom: 0.8rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        animation: fadeInUp 0.6s ease-out 0.12s backwards;
     }
     
     .hero-badges {
@@ -409,21 +412,21 @@ st.markdown("""
     }
     
     .badge {
-        padding: 0.5rem 1.2rem;
-        background: rgba(99, 102, 241, 0.15);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 50px;
+        padding: 0.4rem 1rem;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(226,238,246,0.06);
+        border-radius: 8px;
         font-size: 0.85rem;
         font-weight: 600;
-        color: #a5b4fc;
+        color: #cfe7ff;
         transition: var(--transition);
-        animation: scaleIn 0.5s ease-out;
+        animation: none;
     }
     
     .badge:hover {
-        background: rgba(99, 102, 241, 0.25);
-        border-color: rgba(99, 102, 241, 0.5);
-        transform: scale(1.05);
+        background: rgba(255,255,255,0.045);
+        border-color: rgba(226,238,246,0.12);
+        transform: translateY(-2px);
     }
 
     /* === FORM ELEMENTS === */
@@ -690,6 +693,89 @@ st.markdown("""
         animation: slideDown 0.4s ease-out;
     }
 
+    /* === SAAS STYLE TOAST / POPUP === */
+    .saas-toast {
+        position: fixed;
+        top: 88px;
+        right: 28px;
+        width: 380px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+        border: 1px solid rgba(226,238,246,0.06);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 1rem 1rem;
+        box-shadow: 0 12px 40px rgba(2,6,23,0.5);
+        color: #e6eef6;
+        z-index: 10080 !important;
+        animation: fadeInUp 0.45s cubic-bezier(.2,.9,.2,1);
+        box-sizing: border-box;
+        transform: translateY(0);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .saas-toast .toast-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(139,92,246,0.12));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
+        flex: 0 0 46px;
+        box-shadow: 0 6px 18px rgba(99,102,241,0.12);
+    }
+
+    .saas-toast .toast-body {
+        flex: 1 1 auto;
+    }
+
+    .saas-toast .toast-title {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 0.15rem;
+        color: #f8fbff;
+    }
+
+    .saas-toast .toast-message {
+        font-size: 0.9rem;
+        color: #cfe7ff;
+        line-height: 1.35;
+        margin-bottom: 0.5rem;
+    }
+
+    .saas-toast .toast-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .saas-toast .btn {
+        padding: 0.45rem 0.8rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .saas-toast .btn-primary {
+        background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+        color: white;
+        box-shadow: 0 8px 20px rgba(79,70,229,0.18);
+    }
+
+    .saas-toast .btn-muted {
+        background: rgba(255,255,255,0.02);
+        color: #dbeafe;
+        border: 1px solid rgba(226,238,246,0.04);
+    }
+
     /* === HIDE STREAMLIT BRANDING === */
     /* Keep the top menu/header visible so Streamlit's Deploy and other
        top controls remain accessible. Only hide the footer. */
@@ -718,13 +804,13 @@ st.markdown("""
 # ----------------------------
 st.markdown("""
 <div class="hero-container">
-    <div class="hero-title">🧠 ResearchNovel</div>
-    <div class="hero-subtitle">AI-Powered Literature Review & Novelty Detection Engine</div>
+    <div class="hero-title">ResearchNovel — Literature Review & Novelty Assessment</div>
+    <div class="hero-subtitle">A research-focused tool that assists with literature synthesis, novelty evaluation, and actionable recommendations. Designed for clarity and rigorous academic workflows.</div>
     <div class="hero-badges">
-        <span class="badge">🤖 Multi-Agent AI</span>
-        <span class="badge">📚 RAG-Enhanced</span>
-        <span class="badge">🔬 Research-Grade</span>
-        <span class="badge">⚡ Real-time Analysis</span>
+        <span class="badge">Multi‑Agent Analysis</span>
+        <span class="badge">RAG‑Enhanced Retrieval</span>
+        <span class="badge">Research‑Grade Outputs</span>
+        <span class="badge">Real‑time Insights</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -733,7 +819,7 @@ st.markdown("""
 # SIDEBAR CONFIGURATION
 # ----------------------------
 with st.sidebar:
-    st.markdown("### 📚 Paper-Centric Mode")
+    st.markdown("### Paper-Centric Mode")
     st.markdown("Provide your paper content as the primary input. Research idea and domains are optional refinements.")
     st.markdown("---")
     st.markdown("""
@@ -751,7 +837,83 @@ with st.sidebar:
 # ----------------------------
 # MAIN CONTENT AREA WITH TABS
 # ----------------------------
-tab1, tab2, tab3 = st.tabs(["📝 Input & Configure", "📊 Results & Analysis", "📚 Paper Library"])
+tab1, tab2, tab3 = st.tabs(["Input & Configure", "Results & Analysis", "Paper Library"])
+
+# If analysis just completed, switch to the Results tab and prepare a toast
+if st.session_state.get('switch_to_results', False):
+    try:
+        tab2.select()
+    except Exception:
+        pass
+    st.session_state['switch_to_results'] = False
+    # Keep show flag so the toast can be rendered after switching
+    st.session_state['show_completion_toast'] = True
+
+# Render completion toast if requested
+if st.session_state.get('show_completion_toast', False):
+    # Use a zero-size component that injects the toast into the parent DOM
+    components.html(
+        """
+        <script>
+        (function(){
+            var doc = window.parent.document;
+
+            // Remove any existing toast
+            var existing = doc.getElementById('saasToast');
+            if (existing && existing.parentNode) {
+                existing.parentNode.removeChild(existing);
+            }
+
+            // Create toast container using existing CSS classes
+            var toast = doc.createElement('div');
+            toast.id = 'saasToast';
+            toast.className = 'saas-toast';
+
+            var html = ''
+              + '<div class="toast-icon">✓</div>'
+              + '<div class="toast-body">'
+              +   '<div class="toast-title">Analysis Complete</div>'
+              +   '<div class="toast-message">Your novelty assessment is ready. Open the Results & Analysis tab to view the full report and exports.</div>'
+              +   '<div class="toast-actions">'
+              +     '<button type="button" class="btn btn-primary">Close</button>'
+              +   '</div>'
+              + '</div>';
+
+            toast.innerHTML = html;
+            doc.body.appendChild(toast);
+
+            function dismissSaasToast(){
+                if (!toast) return;
+                toast.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-8px)';
+                setTimeout(function(){
+                    if (toast && toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 620);
+            }
+
+            // Close button handler
+            var btn = toast.querySelector('button');
+            if (btn) {
+                btn.addEventListener('click', function(ev){
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    dismissSaasToast();
+                });
+            }
+
+            // Auto-dismiss after 3 seconds
+            setTimeout(dismissSaasToast, 4500);
+        })();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+    # Clear the flag so the toast doesn't reappear on subsequent reruns
+    st.session_state['show_completion_toast'] = False
 
 # TAB 1: INPUT & CONFIGURE
 with tab1:
@@ -815,7 +977,7 @@ with tab1:
 
     # Paper Content Section (Primary)
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown("### 📄 Paper Content")
+    st.markdown("### Paper Content")
     st.markdown("*Add specific sections from your paper draft. This is the main input for the analysis.*")
 
     col1, col2 = st.columns([3, 1])
@@ -846,7 +1008,7 @@ with tab1:
 
     col_btn1, col_btn2 = st.columns([1, 3])
     with col_btn1:
-        if st.button("➕ Add Section", key="add_paper_field_btn"):
+        if st.button("Add Section", key="add_paper_field_btn"):
             handle_add_field()
             st.rerun()
 
@@ -855,12 +1017,12 @@ with tab1:
 
     # Display added paper sections
     if st.session_state['paper_fields_list']:
-        st.markdown("#### 📎 Added Paper Sections")
+        st.markdown("#### Added Paper Sections")
         for i, item in enumerate(st.session_state['paper_fields_list']):
-            with st.expander(f"📌 {item['field']}: {item['content'][:60]}{'...' if len(item['content'])>60 else ''}", expanded=False):
+            with st.expander(f"{item['field']}: {item['content'][:60]}{'...' if len(item['content'])>60 else ''}", expanded=False):
                 st.markdown(f"**{item['field']}**")
                 st.text(item['content'])
-                if st.button("🗑️ Remove", key=f"remove_field_{i}"):
+                if st.button("Remove", key=f"remove_field_{i}"):
                     handle_remove_field(i)
                     st.rerun()
 
@@ -868,7 +1030,7 @@ with tab1:
 
     # Optional Research Idea Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown("### 💡 Optional Research Idea")
+    st.markdown("### Optional Research Idea")
     st.markdown("*Optionally describe your hypothesis, methodology, or problem statement to further focus the analysis*")
 
     research_idea = st.text_area(
@@ -883,7 +1045,7 @@ with tab1:
 
     # Optional Research Fields Selection
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown("### 🎯 Optional Research Domains")
+    st.markdown("### Optional Research Domains")
     st.markdown("*Optionally select academic fields to steer the literature search and positioning*")
 
     col1, col2 = st.columns([2, 1])
@@ -916,8 +1078,8 @@ with tab1:
         """, unsafe_allow_html=True)
 
     if selected_fields:
-        st.markdown("#### ✅ Selected Research Domains")
-        tags_html = "".join([f'<span class="field-tag">🎯 {field}</span>' for field in selected_fields])
+        st.markdown("#### Selected Research Domains")
+        tags_html = "".join([f'<span class="field-tag">{field}</span>' for field in selected_fields])
         st.markdown(tags_html, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
@@ -926,7 +1088,7 @@ with tab1:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
 
     # JSON preview of current input (expand/hide) just above the launch button
-    with st.expander("🔍 Preview Analysis Input (JSON)", expanded=False):
+    with st.expander("Preview Analysis Input (JSON)", expanded=False):
         paper_data = {
             "paper_sections": st.session_state.get('paper_fields_list', []),
             "uploaded_papers": [
@@ -979,10 +1141,10 @@ with tab1:
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.button("🚀 Launch Comprehensive Analysis", key="run_analysis_btn", use_container_width=True):
+    if st.button("Launch Comprehensive Analysis", key="run_analysis_btn", use_container_width=True):
         has_paper_content_for_run = bool(st.session_state.get('paper_fields_list')) or bool(st.session_state.get('uploaded_files'))
         if not has_paper_content_for_run:
-            st.error("⚠️ Please add paper content (upload papers in the Paper Library tab or add sections above) before running the analysis.")
+            st.error("Please add paper content (upload papers in the Paper Library tab or add sections above) before running the analysis.")
         else:
             run_analysis()
     st.markdown('</div>', unsafe_allow_html=True)
@@ -990,7 +1152,7 @@ with tab1:
 # TAB 2: RESULTS & ANALYSIS
 with tab2:
     if st.session_state.get('analysis_complete', False):
-        st.success("🎉 Novelty assessment completed successfully!")
+        st.success("Novelty assessment completed successfully!")
 
         # Metrics Row
         col1, col2, col3, col4 = st.columns(4)
@@ -1029,24 +1191,24 @@ with tab2:
 
         # Main Results Card
         st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("### 🎯 Novelty Assessment Summary")
+        st.markdown("### Novelty Assessment Summary")
 
         research_idea = st.session_state.get('research_idea', '')
         selected_fields = st.session_state.get('selected_fields', [])
 
         st.markdown(f"""
-        #### 📈 Overall Assessment
+        #### Overall Assessment
         Your research demonstrates **high novelty** with significant potential for contribution.
         The proposed hybrid architecture addresses a critical gap in interpretable medical AI.
 
-        #### 🔑 Key Findings
+        #### Key Findings
 
-        **✨ Novel Aspects:**
+        **Novel Aspects:**
         - Integration of neuro-symbolic reasoning with multimodal transformers
         - Explicit knowledge graph incorporation for explainability
         - Novel attention mechanism for symbolic reasoning alignment
 
-        **📚 Related Prior Work:**
+        **Related Prior Work:**
         1. **Chen et al. (2024)** - *"Multimodal Diagnosis with Vision-Language Models"*
            - Focus: Pure deep learning without symbolic reasoning
            - Gap: Limited explainability
@@ -1059,14 +1221,14 @@ with tab2:
            - Focus: Survey of explanation methods
            - Gap: Lacks concrete hybrid architecture
 
-        **🎯 Identified Research Gaps:**
+        **Identified Research Gaps:**
         1. No existing work combines multimodal transformers with knowledge graphs
         2. Limited research on interpretable attention mechanisms in medical AI
         3. Lack of unified frameworks for symbolic-neural hybrid architectures
         4. Insufficient benchmarks for explainable medical diagnosis
         5. Limited real-world clinical validation studies
 
-        **💡 Recommendations:**
+        **Recommendations:**
         - Emphasize your hybrid architecture as the primary differentiator
         - Highlight the explainability improvements over pure deep learning
         - Consider adding ablation studies to demonstrate symbolic component impact
@@ -1077,7 +1239,7 @@ with tab2:
 
         # Download Section
         st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("### 📥 Export & Share")
+        st.markdown("### Export & Share")
 
         col1, col2, col3 = st.columns(3)
 
@@ -1088,7 +1250,7 @@ with tab2:
 
         with col1:
             st.download_button(
-                "📄 Download PDF Report",
+                "Download PDF Report",
                 data=pdf_content,
                 file_name="novelty_report.md",  # Using .md for now, can be converted to PDF
                 mime="text/markdown",
@@ -1098,7 +1260,7 @@ with tab2:
 
         with col2:
             st.download_button(
-                "📊 Download LaTeX Source",
+                "Download LaTeX Source",
                 data=latex_content,
                 file_name="novelty_report.tex",
                 mime="text/plain",
@@ -1108,7 +1270,7 @@ with tab2:
 
         with col3:
             st.download_button(
-                "📋 Download Markdown",
+                    "Download Markdown",
                 data=markdown_content,
                 file_name="novelty_report.md",
                 mime="text/markdown",
@@ -1119,7 +1281,7 @@ with tab2:
         st.markdown('</div>', unsafe_allow_html=True)
 
         # Clear Analysis Button
-        if st.button("🔄 Start New Analysis", key="clear_analysis"):
+        if st.button("Start New Analysis", key="clear_analysis"):
             st.session_state['analysis_complete'] = False
             st.session_state['research_idea'] = ""
             st.session_state['selected_fields'] = []
@@ -1129,25 +1291,27 @@ with tab2:
     else:
         st.markdown('<div class="glass-card">', unsafe_allow_html=True)
         st.markdown("""
-        ### 📊 Analysis Results
+        ### Analysis Results
 
         Configure your analysis parameters and launch the analysis in the **Input & Configure** tab
         to see comprehensive results here.
 
         **What you'll get:**
-        - 🎯 Novelty scoring and assessment
-        - 📚 Related work identification
-        - 🔍 Research gap analysis
-        - 💡 Strategic recommendations
-        - 📈 Citation network visualization
-        - 📥 Exportable reports in multiple formats
+
+        - Novelty scoring and assessment
+        - Related work identification
+        - Research gap analysis
+        - Strategic recommendations
+        - Citation network visualization
+        - Exportable reports in multiple formats
+
         """)
         st.markdown('</div>', unsafe_allow_html=True)
 
 # TAB 3: PAPER LIBRARY
 with tab3:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown("### 📚 Your Paper Collection")
+    st.markdown("### Your Paper Collection")
     st.markdown("*Manage and organize your research papers*")
 
     # Upload section
@@ -1174,10 +1338,10 @@ with tab3:
 
     # Display uploaded files
     if st.session_state['uploaded_files']:
-        st.success(f"✅ {len(st.session_state['uploaded_files'])} paper(s) in your library!")
+        st.success(f"{len(st.session_state['uploaded_files'])} paper(s) in your library!")
 
         for i, file_info in enumerate(st.session_state['uploaded_files']):
-            with st.expander(f"📄 {file_info['name']}", expanded=False):
+            with st.expander(f"{file_info['name']}", expanded=False):
                 col1, col2, col3 = st.columns([2, 1, 1])
                 with col1:
                     st.write(f"**Filename:** {file_info['name']}")
@@ -1187,7 +1351,7 @@ with tab3:
                 with col2:
                     # Download button for individual file
                     st.download_button(
-                        "📥 Download",
+                        "Download",
                         data=file_info['content'],
                         file_name=file_info['name'],
                         mime=file_info['type'],
@@ -1196,17 +1360,17 @@ with tab3:
 
                 with col3:
                     # Remove button
-                    if st.button("🗑️ Remove", key=f"remove_file_{i}"):
+                    if st.button("Remove", key=f"remove_file_{i}"):
                         remove_uploaded_file(i)
                         st.rerun()
 
         # Clear all files button
-        if st.button("🗑️ Clear All Files", key="clear_all_files"):
+        if st.button("Clear All Files", key="clear_all_files"):
             st.session_state['uploaded_files'] = []
             st.rerun()
 
     else:
-        st.info("📤 Upload PDF papers to build your research library")
+        st.info("Upload PDF papers to build your research library")
 
     # Library Statistics
     if st.session_state['uploaded_files']:
@@ -1215,7 +1379,7 @@ with tab3:
         <div style='margin-top: 1rem; padding: 1rem; background: rgba(99,102,241,0.1); 
         border-radius: 12px; border: 1px solid rgba(99,102,241,0.3);'>
             <div style='font-size: 0.9rem; color: #94a3b8; font-weight: 600;'>
-                📊 Library Statistics
+                Library Statistics
             </div>
             <div style='font-size: 0.85rem; color: #c7d2fe; margin-top: 0.5rem;'>
                 Total Papers: {len(st.session_state['uploaded_files'])} • 
@@ -1230,14 +1394,12 @@ with tab3:
 # FOOTER
 # ----------------------------
 st.markdown("""
-<div style='text-align: center; padding: 3rem 0 2rem; opacity: 0.7;'>
-    <div style='font-size: 0.9rem; color: #64748b;'>
-        Built with ❤️ using <strong style='color: #6366f1;'>Multi-Agent AI</strong> • 
-        <strong style='color: #8b5cf6;'>RAG</strong> • 
-        <strong style='color: #ec4899;'>CrewAI</strong>
+<div style='text-align: center; padding: 3rem 0 2rem; opacity: 0.85;'>
+    <div style='font-size: 0.9rem; color: #94a3b8;'>
+        ResearchNovel — Multi-Agent Literature Review and Novelty Assessment
     </div>
-    <div style='font-size: 0.8rem; color: #475569; margin-top: 0.5rem;'>
-        © 2025 ResearchNovel • Empowering Researchers Worldwide 🌍
+    <div style='font-size: 0.85rem; color: #8b98a8; margin-top: 0.5rem;'>
+        © 2025 ResearchNovel. All rights reserved.
     </div>
 </div>
 """, unsafe_allow_html=True)
