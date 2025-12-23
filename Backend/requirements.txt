@@ -1,20 +1,25 @@
-# crewai
-# langchain
-# langchain-community
-# langchain-core
-# faiss-cpu
+# Backend requirements for multi-agent RAG system
+# NOTE (Windows users): `faiss-cpu` is not reliably installable via pip on
+# Windows. Use conda to install FAISS on Windows (see steps below) and keep
+# the pip requirement conditional so `pip install -r` does not attempt FAISS on
+# Windows.
 
 crewai
 langchain
+langchain-ollama
 langchain-community
-langchain-core
-faiss-cpu
 pypdf
-semantic-scholar
-arxiv
-pubmed-py
-beautifulsoup
+beautifulsoup4
 requests
+urllib3
+arxiv
 tqdm
 unstructured[local-inference]
 sentence-transformers
+numpy
+scipy
+scikit-learn
+python-dotenv
+
+# FAISS is best installed via conda on Windows. Pip will install on Linux/macOS.
+faiss-cpu; platform_system != "Windows"

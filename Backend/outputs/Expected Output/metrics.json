@@ -1,0 +1,93 @@
+{
+  "session_id": "20251223_184530",
+  "start_time": "2025-12-23T18:45:30.123456",
+  "end_time": "2025-12-23T18:47:37.456789",
+  "total_duration_seconds": 127.34,
+  "status": "completed",
+  "inputs": {
+    "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
+    "domains": ["Natural Language Processing", "Artificial Intelligence"],
+    "uploaded_paper": true
+  },
+  "outputs": {
+    "final_report_length": 2847,
+    "report_length": 2847,
+    "success": true
+  },
+  "api_calls": [
+    {
+      "source": "arXiv",
+      "query": "lightweight transformer models Natural Language Processing",
+      "results_count": 4,
+      "duration_seconds": 3.21,
+      "success": true,
+      "timestamp": "2025-12-23T18:45:32.345678"
+    },
+    {
+      "source": "Semantic Scholar",
+      "query": "lightweight transformer models Natural Language Processing",
+      "results_count": 3,
+      "duration_seconds": 2.87,
+      "success": true,
+      "timestamp": "2025-12-23T18:45:35.234567"
+    },
+    {
+      "source": "PubMed",
+      "query": "lightweight transformer models",
+      "results_count": 3,
+      "duration_seconds": 4.12,
+      "success": true,
+      "timestamp": "2025-12-23T18:45:39.345678"
+    }
+  ],
+  "agent_performance": [
+    {
+      "agent": "Paper Retrieval Specialist",
+      "task": "Retrieve and rank papers...",
+      "duration_seconds": 18.45,
+      "input_length_chars": 234,
+      "output_length_chars": 1456,
+      "estimated_tokens": 422,
+      "success": true,
+      "timestamp": "2025-12-23T18:45:58.123456"
+    }
+  ],
+  "rag_operations": [
+    {
+      "operation": "search",
+      "query": "lightweight transformer models",
+      "results_count": 8,
+      "duration_seconds": 0.0234,
+      "cache_hit": false,
+      "timestamp": "2025-12-23T18:45:43.567890"
+    }
+  ],
+  "llm_calls": [
+    {
+      "model": "qwen2.5:3b",
+      "prompt_length_chars": 2847,
+      "response_length_chars": 1203,
+      "estimated_input_tokens": 711,
+      "estimated_output_tokens": 300,
+      "duration_seconds": 12.34,
+      "success": true,
+      "timestamp": "2025-12-23T18:45:55.678901"
+    }
+  ],
+  "timing": {
+    "total_analysis": 117.23,
+    "crew_execution": 115.67,
+    "total_session": 127.34
+  },
+  "summary": {
+    "total_api_calls": 3,
+    "successful_api_calls": 3,
+    "total_papers_retrieved": 10,
+    "total_agent_tasks": 6,
+    "total_rag_operations": 47,
+    "total_llm_calls": 18,
+    "total_estimated_tokens": 15234,
+    "rag_cache_hit_rate": 23.40,
+    "total_errors": 0
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "session_id": "20251223_192601",
+  "start_time": "2025-12-23T19:26:01.569293",
+  "inputs": {
+    "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
+    "domains": [
+      "Natural Language Processing",
+      "Artificial Intelligence"
+    ],
+    "uploaded_paper": true,
+    "selected_domains": [
+      "Natural Language Processing",
+      "Artificial Intelligence"
+    ]
+  },
+  "outputs": {
+    "final_report": "To begin the literature review and novelty detection workflow, I will first gather relevant papers based on the user's research idea and selected fields. Please provide me with the user's research idea and target fields.\n\n**User Research Idea**: [Please input the user’s research idea]\n**Target Fields**: [Please input the selected fields]",
+    "final_report_length": 339,
+    "papers_analyzed": 7,
+    "success": true,
+    "report_length": 339
+  },
+  "api_calls": [
+    {
+      "source": "PubMed",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 0,
+      "duration_seconds": 3.83,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T19:26:44.400798"
+    },
+    {
+      "source": "arXiv",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 4,
+      "duration_seconds": 4.73,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T19:26:45.298041"
+    },
+    {
+      "source": "Semantic Scholar",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 3,
+      "duration_seconds": 14.97,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T19:26:55.538435"
+    }
+  ],
+  "agent_performance": [],
+  "rag_operations": [],
+  "llm_calls": [],
+  "errors": [],
+  "timing": {
+    "paper_retrieval_and_indexing": 15.68,
+    "total_analysis": 657.67,
+    "crew_execution": 641.96,
+    "total_session": 657.67
+  },
+  "end_time": "2025-12-23T19:37:38.236458",
+  "total_duration_seconds": 696.67,
+  "summary": {
+    "total_api_calls": 3,
+    "successful_api_calls": 3,
+    "total_papers_retrieved": 7,
+    "total_agent_tasks": 0,
+    "total_rag_operations": 0,
+    "total_llm_calls": 0,
+    "total_estimated_tokens": 0,
+    "rag_cache_hit_rate": 0.0,
+    "total_errors": 0
+  }
+}

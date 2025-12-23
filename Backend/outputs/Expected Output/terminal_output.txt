@@ -1,0 +1,232 @@
+================================================================================
+🚀 Multi-Agent Literature Review System
+================================================================================
+📁 Session: outputs/session_20251223_184530
+   📝 review/literature_review.log
+   🖥️  terminal_output/terminal_output.txt
+   📊 metrics/metrics.json
+================================================================================
+
+Indexed uploaded paper: Improving Text Classification Using Transformer Models
+
+================================================================================
+📥 INPUT CONFIGURATION
+================================================================================
+Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+Domains: Natural Language Processing, Artificial Intelligence
+Uploaded Paper: Yes
+================================================================================
+
+🔍 Retrieving papers from multiple sources...
+✓ Retrieved 4 papers from arXiv
+✓ Retrieved 3 papers from Semantic Scholar  
+✓ Retrieved 3 papers from PubMed
+📚 Total papers retrieved: 10
+
+🗂️ Indexing papers into vector database...
+✓ Indexed 11 papers (10 retrieved + 1 uploaded)
+
+🤖 Starting Multi-Agent Analysis...
+
+╭─────────────────────── Agent Final Answer ────────────────────────╮
+│                                                                    │
+│  Agent: Paper Retrieval Specialist                                │
+│                                                                    │
+│  Final Answer:                                                    │
+│  Based on RAG search, here are the most relevant papers:          │
+│                                                                    │
+│  [P#1]: "DistilBERT: A Distilled Version of BERT"                │
+│  Authors: Sanh et al. | Year: 2019 | Source: arXiv              │
+│  Relevance: 9/10                                                  │
+│  Summary: Demonstrates 97% of BERT performance with 40% fewer     │
+│  parameters through knowledge distillation.                       │
+│                                                                    │
+│  [P#2]: "ALBERT: A Lite BERT for Self-supervised Learning"       │
+│  Authors: Lan et al. | Year: 2019 | Source: arXiv               │
+│  Relevance: 9/10                                                  │
+│  Summary: Parameter sharing techniques reduce model size by 18x    │
+│  while maintaining competitive accuracy.                           │
+│                                                                    │
+│  [P#3]: "TinyBERT: Distilling BERT for NLP"                      │
+│  Authors: Jiao et al. | Year: 2020 | Source: Semantic Scholar   │
+│  Relevance: 8/10                                                  │
+│  Summary: Two-stage distillation achieves 96% accuracy with 7.5x   │
+│  smaller size and 9.4x faster inference.                          │
+│                                                                    │
+│  [P#4]: "MobileBERT: Task-Agnostic Compression"                  │
+│  Authors: Sun et al. | Year: 2020 | Source: arXiv               │
+│  Relevance: 8/10                                                  │
+│  Summary: Optimized for mobile devices, 4.3x smaller and 5.5x     │
+│  faster than BERT-base.                                           │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────── Agent Final Answer ────────────────────────╮
+│                                                                    │
+│  Agent: Literature Summarization Expert                           │
+│                                                                    │
+│  Final Answer:                                                    │
+│  SYNTHESIS OF CURRENT LITERATURE                                  │
+│                                                                    │
+│  Key Approaches to Lightweight Transformers:                      │
+│                                                                    │
+│  1. Knowledge Distillation (DistilBERT, TinyBERT):               │
+│     - Transfer knowledge from large teacher to small student       │
+│     - Achieves 95-97% of original performance                     │
+│     - Reduces parameters by 40-87%                                │
+│                                                                    │
+│  2. Parameter Sharing (ALBERT):                                   │
+│     - Cross-layer parameter sharing                               │
+│     - 18x reduction in parameters                                 │
+│     - Maintains competitive accuracy on GLUE benchmark            │
+│                                                                    │
+│  3. Architecture Optimization (MobileBERT):                       │
+│     - Inverted bottleneck structures                              │
+│     - Optimized for mobile/edge devices                           │
+│     - Real-time inference capabilities                            │
+│                                                                    │
+│  Performance Metrics Summary:                                     │
+│  - Size reduction: 40-87% fewer parameters                        │
+│  - Speed improvement: 5-9x faster inference                       │
+│  - Accuracy retention: 95-99% of base model performance           │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────── Agent Final Answer ────────────────────────╮
+│                                                                    │
+│  Agent: Method Comparison Analyst                                 │
+│                                                                    │
+│  Final Answer:                                                    │
+│  COMPARATIVE ANALYSIS OF METHODS                                  │
+│                                                                    │
+│  Distillation vs. Pruning vs. Quantization:                       │
+│                                                                    │
+│  Knowledge Distillation:                                          │
+│  ✓ Best accuracy retention (95-97%)                               │
+│  ✓ Requires teacher model training                                │
+│  ✗ Computational overhead during distillation                     │
+│                                                                    │
+│  Structured Pruning:                                              │
+│  ✓ No teacher model needed                                        │
+│  ✓ 60-80% sparsity achievable                                     │
+│  ✗ Accuracy drops more significantly (90-93%)                     │
+│                                                                    │
+│  Quantization:                                                    │
+│  ✓ Fastest inference (INT8/INT4)                                  │
+│  ✓ 4x memory reduction                                            │
+│  ✗ Requires hardware support for optimal speed                    │
+│                                                                    │
+│  Hybrid Approaches:                                               │
+│  Recent work combines distillation + quantization achieving       │
+│  98% accuracy with 16x compression and 8x speedup.                │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────── Agent Final Answer ────────────────────────╮
+│                                                                    │
+│  Agent: Research Gap Identifier                                   │
+│                                                                    │
+│  Final Answer:                                                    │
+│  IDENTIFIED RESEARCH GAPS                                         │
+│                                                                    │
+│  Gap #1: Task-Specific Compression                                │
+│  Current methods focus on general compression. Limited research   │
+│  on task-specific lightweight models (e.g., for text              │
+│  classification only).                                            │
+│  Opportunity: 15-20% additional efficiency gains possible         │
+│                                                                    │
+│  Gap #2: Dynamic Model Scaling                                    │
+│  Existing models are static size. No adaptive compression based   │
+│  on input complexity or available computational budget.           │
+│  Opportunity: Runtime efficiency improvements                     │
+│                                                                    │
+│  Gap #3: Cross-Architecture Knowledge Transfer                    │
+│  Limited research on distilling from diverse teacher models       │
+│  (e.g., ensemble of CNN + Transformer → lightweight transformer)  │
+│  Opportunity: Better generalization                               │
+│                                                                    │
+│  Gap #4: Energy Efficiency Metrics                                │
+│  Most papers report FLOPs/parameters, but lack energy             │
+│  consumption analysis for real-world deployment.                  │
+│  Opportunity: Sustainability-focused optimization                 │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────── Agent Final Answer ────────────────────────╮
+│                                                                    │
+│  Agent: Novelty Assessment Specialist                             │
+│                                                                    │
+│  Final Answer:                                                    │
+│  NOVELTY ASSESSMENT REPORT                                        │
+│                                                                    │
+│  Research Idea: "Investigate how lightweight transformer models   │
+│  can achieve competitive performance with reduced computational   │
+│  cost."                                                           │
+│                                                                    │
+│  Novelty Score: 6/10 (Moderate Novelty)                          │
+│                                                                    │
+│  Analysis:                                                        │
+│                                                                    │
+│  Existing Work (60% overlap):                                     │
+│  - Well-established field with DistilBERT, ALBERT, TinyBERT      │
+│  - Multiple compression techniques already proven                 │
+│  - Extensive benchmarking on standard datasets                    │
+│                                                                    │
+│  Novel Aspects (40% unique potential):                            │
+│  ✓ Task-specific compression for text classification              │
+│  ✓ Dynamic scaling based on input complexity                      │
+│  ✓ Energy-aware optimization metrics                              │
+│  ✓ Cross-architecture knowledge distillation                      │
+│                                                                    │
+│  Recommendations:                                                 │
+│  1. Focus on text classification-specific optimizations           │
+│  2. Incorporate energy consumption benchmarks                     │
+│  3. Explore adaptive model sizing at inference time               │
+│  4. Compare against latest methods (2023-2024)                    │
+│                                                                    │
+│  Citation Support:                                                │
+│  ✓ Claims verified against 11 indexed papers                      │
+│  ✓ No contradictory evidence found                                │
+│                                                                    │
+│  Suggested Contribution:                                          │
+│  "A task-adaptive lightweight transformer framework for text      │
+│  classification with dynamic computational scaling and energy-     │
+│  aware optimization."                                             │
+│                                                                    │
+╰────────────────────────────────────────────────────────────────────╯
+
+================================================================================
+📊 FINAL NOVELTY REPORT
+================================================================================
+[Full integrated report combining all agent outputs]
+
+Your research idea has MODERATE NOVELTY (6/10). While lightweight 
+transformers are well-studied, there are significant opportunities for 
+contribution in:
+
+1. Text classification-specific optimizations
+2. Dynamic model scaling based on input complexity
+3. Energy efficiency metrics and sustainability focus
+4. Cross-architecture knowledge transfer techniques
+
+The field is active with strong baseline methods (DistilBERT achieving 
+97% accuracy with 40% parameter reduction). Your work can advance the 
+state-of-the-art by combining task-specific compression with adaptive 
+scaling and energy-aware optimization.
+
+Recommended Next Steps:
+- Review recent 2023-2024 papers on efficient transformers
+- Implement baseline DistilBERT for text classification
+- Develop dynamic scaling mechanism
+- Add energy consumption benchmarking suite
+================================================================================
+
+================================================================================
+  Session Complete
+================================================================================
+📁 All outputs saved to: outputs/session_20251223_184530
+   📝 review/literature_review.log
+   🖥️  terminal_output/terminal_output.txt
+   📊 metrics/metrics.json
+⏱️  Total time: 127.34s
+================================================================================

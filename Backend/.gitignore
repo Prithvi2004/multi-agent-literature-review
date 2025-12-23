@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.myenv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyTorch / ML artifacts
+*.pt
+*.pth
+*.ckpt
+model_weights/
+
+# FAISS index and metadata
+faiss_index/
+Backend/faiss_index/
+papers_metadata.json
+
+# Uploaded or temporary data
+data/
+*.csv
+*.tsv
+*.jsonl
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs, reports
+logs/
+*.log
+reports/
+
+# dotenv
+.env
+.env.*
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Misc
+*.sqlite
+*.db
+
+# Frontend / Node (if any)
+node_modules/
+
+# Ignore local Python wheel cache
+pip-wheel-metadata/
+
+# Keep this file tracked
+!.gitignore
+
+

@@ -1,0 +1,19 @@
+
+================================================================================
+🚀 Multi-Agent Literature Review System
+================================================================================
+📁 Session: outputs\session_20251223_201110
+   📝 review/literature_review.log
+   🖥️  terminal_output/terminal_output.txt
+   📊 metrics/metrics.json
+📄 Output file: outputs\session_20251223_201110\terminal_output\terminal_output.txt
+📊 Metrics file: outputs\session_20251223_201110\metrics\metrics.json
+================================================================================
+
+Traceback (most recent call last):
+  File "D:\15B\multi-agent-literature-review\Backend\main.py", line 230, in <module>
+    from agents import (
+  File "D:\15B\multi-agent-literature-review\Backend\agents.py", line 216
+    **User Research Idea**: [User’s input]
+                                 ^
+SyntaxError: invalid character '’' (U+2019)
