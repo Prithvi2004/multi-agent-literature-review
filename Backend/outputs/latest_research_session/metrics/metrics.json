@@ -1,6 +1,6 @@
 {
-  "session_id": "20251223_212719",
-  "start_time": "2025-12-23T21:27:19.672370",
+  "session_id": "20251224_091930",
+  "start_time": "2025-12-24T09:19:30.604912",
   "inputs": {
     "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
     "domains": [
@@ -14,39 +14,39 @@
     ]
   },
   "outputs": {
-    "final_report": "**COMPREHENSIVE LITERATURE REVIEW REPORT**\n\n**Research Context**: The current state of Artificial Intelligence (AI) in personalized education systems, focusing on the effectiveness of AI-driven adaptive learning platforms.\n\n**Research Domains**: Machine Learning, Education Technology (EdTech), Adaptive Learning Platforms, Educational Analytics\n\n**Total Papers Analyzed**: 50\n\n---\n\n**EXECUTIVE SUMMARY**\nThis report synthesizes the current state and trends in AI-driven personalized education systems. It highlights key findings from 50 papers covering diverse methodologies, including machine learning algorithms, neural networks, and reinforcement learning. Major gaps in existing research are identified, particularly regarding the long-term efficacy of AI interventions on student outcomes and the generalizability across different educational settings. The novelty assessment reveals significant contributions to the field with a Novelty Score of 85/100, driven by the integration of advanced d",
-    "final_report_length": 4973,
-    "papers_analyzed": 7,
+    "final_report": "**COMPREHENSIVE LITERATURE REVIEW REPORT**\n\n**Research Context**: The exploration of AI in personalized medicine to improve patient outcomes through precise diagnosis and treatment.\n\n**Research Domains**: Machine learning, data analytics, precision medicine, genomics, electronic health records (EHRs)\n\n**Total Papers Analyzed**: 10\n\n**EXECUTIVE SUMMARY**:\nThis literature review synthesizes the latest advancements in AI applications within personalized medicine. It highlights seminal works addressing key research gaps and identifying novel contributions that have transformed how we understand and utilize big data for precision healthcare. The analysis reveals a robust body of work with significant methodological variations, demonstrating both common approaches and unique strategies employed by various studies. Notably, this review identifies substantial research gaps related to the integration of AI in clinical decision support systems and the validation of personalized medicine protocol",
+    "final_report_length": 5063,
+    "papers_analyzed": 4,
     "success": true,
-    "report_length": 4973
+    "report_length": 5063
   },
   "api_calls": [
     {
       "source": "arXiv",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
       "results_count": 4,
-      "duration_seconds": 2.48,
+      "duration_seconds": 2.93,
       "success": true,
       "error": null,
-      "timestamp": "2025-12-23T21:27:52.035424"
-    },
-    {
-      "source": "Semantic Scholar",
-      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
-      "results_count": 3,
-      "duration_seconds": 3.27,
-      "success": true,
-      "error": null,
-      "timestamp": "2025-12-23T21:27:52.825926"
+      "timestamp": "2025-12-24T09:20:04.261687"
     },
     {
       "source": "PubMed",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
       "results_count": 0,
-      "duration_seconds": 3.58,
+      "duration_seconds": 3.88,
       "success": true,
       "error": null,
-      "timestamp": "2025-12-23T21:27:53.134811"
+      "timestamp": "2025-12-24T09:20:05.218976"
+    },
+    {
+      "source": "Semantic Scholar",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 0,
+      "duration_seconds": 21.75,
+      "success": false,
+      "error": "Max retries exceeded",
+      "timestamp": "2025-12-24T09:20:23.090611"
     }
   ],
   "agent_performance": [],
@@ -54,17 +54,17 @@
   "llm_calls": [],
   "errors": [],
   "timing": {
-    "paper_retrieval_and_indexing": 4.25,
-    "total_analysis": 456.13,
-    "crew_execution": 451.87,
-    "total_session": 456.15
+    "paper_retrieval_and_indexing": 22.23,
+    "total_analysis": 523.82,
+    "crew_execution": 501.57,
+    "total_session": 523.84
   },
-  "end_time": "2025-12-23T21:35:25.727392",
-  "total_duration_seconds": 486.06,
+  "end_time": "2025-12-24T09:28:45.210799",
+  "total_duration_seconds": 554.61,
   "summary": {
     "total_api_calls": 3,
-    "successful_api_calls": 3,
-    "total_papers_retrieved": 7,
+    "successful_api_calls": 2,
+    "total_papers_retrieved": 4,
     "total_agent_tasks": 0,
     "total_rag_operations": 0,
     "total_llm_calls": 0,

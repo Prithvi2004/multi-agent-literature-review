@@ -1,0 +1,75 @@
+{
+  "session_id": "20251223_220554",
+  "start_time": "2025-12-23T22:05:54.927072",
+  "inputs": {
+    "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
+    "domains": [
+      "Natural Language Processing",
+      "Artificial Intelligence"
+    ],
+    "uploaded_paper": true,
+    "selected_domains": [
+      "Natural Language Processing",
+      "Artificial Intelligence"
+    ]
+  },
+  "outputs": {
+    "final_report": "# Lightweight Transformer Models in Natural Language Processing: A Literature Review\n\n## Introduction\nInvestigating how lightweight transformer models can achieve competitive performance with reduced computational cost is crucial for advancing the field of natural language processing (NLP). This literature review synthesizes findings from multiple studies [P1] through [P8], focusing on methodologies and results related to this topic. The studies use a common framework, as indicated in their shared introduction and methodology sections.\n\n## Methodology\nAll studies adopt similar methodologies, leveraging lightweight transformer models for various NLP tasks. These models are designed to reduce computational costs while maintaining or even improving performance metrics such as accuracy and F1 score [P3]. For instance, study [P2] reports an average F1 score of 0.87 across multiple datasets, indicating that these models can perform competitively.\n\n## Results\nThe studies collectively report s",
+    "final_report_length": 3314,
+    "papers_analyzed": 7,
+    "success": true,
+    "report_length": 3314
+  },
+  "api_calls": [
+    {
+      "source": "Semantic Scholar",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 3,
+      "duration_seconds": 3.28,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T22:06:35.236895"
+    },
+    {
+      "source": "PubMed",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 0,
+      "duration_seconds": 3.62,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T22:06:35.571921"
+    },
+    {
+      "source": "arXiv",
+      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
+      "results_count": 4,
+      "duration_seconds": 4.9,
+      "success": true,
+      "error": null,
+      "timestamp": "2025-12-23T22:06:36.859718"
+    }
+  ],
+  "agent_performance": [],
+  "rag_operations": [],
+  "llm_calls": [],
+  "errors": [],
+  "timing": {
+    "paper_retrieval_and_indexing": 5.64,
+    "total_analysis": 518.8,
+    "crew_execution": 513.12,
+    "total_session": 518.82
+  },
+  "end_time": "2025-12-23T22:15:10.792758",
+  "total_duration_seconds": 555.87,
+  "summary": {
+    "total_api_calls": 3,
+    "successful_api_calls": 3,
+    "total_papers_retrieved": 7,
+    "total_agent_tasks": 0,
+    "total_rag_operations": 0,
+    "total_llm_calls": 0,
+    "total_estimated_tokens": 0,
+    "rag_cache_hit_rate": 0.0,
+    "total_errors": 0
+  }
+}

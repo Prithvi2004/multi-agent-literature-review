@@ -602,47 +602,78 @@ def run_analysis(user_idea: str, selected_domains: list):
 # CLI Entry supporting JSON inputs for paper data and optional fields
 if __name__ == "__main__":
     logger.info("Starting CLI interface")
-    print("Paste PAPER DATA JSON (or press Enter to skip):")
-    paper_json = []
-    try:
-        line = input().strip()
-        if line:
-            # allow multi-line JSON paste until a blank line
-            buffer = [line]
-            while True:
-                try:
-                    more = input()
-                except EOFError:
-                    break
-                if not more.strip():
-                    break
-                buffer.append(more)
-            paper_json = json.loads("\n".join(buffer))
-            logger.info("Paper data JSON parsed successfully")
-    except Exception as e:
-        logger.error(f"Invalid PAPER DATA JSON: {e}")
-        print("Invalid PAPER DATA JSON, skipping uploaded papers.")
-        paper_json = None
+    # Built-in defaults (used when user opts in)
+    default_paper_json = {
+        "paper_sections": [
+            {"field": "Title", "content": "Improving Text Classification Using Transformer Models"},
+            {"field": "Abstract", "content": "This paper explores the use of transformer-based architectures to enhance text classification accuracy across multiple NLP tasks."}
+        ],
+        "uploaded_papers": []
+    }
 
-    print("Paste OPTIONAL FIELDS DATA JSON (or press Enter to type manually):")
+    default_optional_json = {
+        "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
+        "selected_domains": ["Natural Language Processing", "Artificial Intelligence"]
+    }
+
+    # Offer a simple choice: defaults (1) or enter new data (2)
+    print("Input mode:\n  1) Use built-in default values for PAPER DATA and OPTIONAL FIELDS\n  2) Enter/paste new data (JSON or manual)")
+    mode = input("Press 1 or 2 (default 1): ").strip()
+
+    paper_json = None
     optional_json = None
-    try:
-        line = input().strip()
-        if line:
-            buffer = [line]
-            while True:
-                try:
-                    more = input()
-                except EOFError:
-                    break
-                if not more.strip():
-                    break
-                buffer.append(more)
-            optional_json = json.loads("\n".join(buffer))
-            logger.info("Optional fields JSON parsed successfully")
-    except Exception as e:
-        logger.error(f"Invalid optional fields JSON: {e}")
-        optional_json = None
+
+    if mode in ['', '1']:
+        # Use both defaults
+        paper_json = default_paper_json
+        optional_json = default_optional_json
+        logger.info("Input mode: defaults selected for both PAPER DATA and OPTIONAL FIELDS")
+        print("Using built-in default PAPER DATA and OPTIONAL FIELDS.")
+    else:
+        # PAPER DATA input (user-provided)
+        print("Paste PAPER DATA JSON (or press Enter to skip):")
+        try:
+            line = input().strip()
+            if line:
+                buffer = [line]
+                while True:
+                    try:
+                        more = input()
+                    except EOFError:
+                        break
+                    if not more.strip():
+                        break
+                    buffer.append(more)
+                paper_json = json.loads("\n".join(buffer))
+                logger.info("Paper data JSON parsed successfully")
+            else:
+                paper_json = None
+        except Exception as e:
+            logger.error(f"Invalid PAPER DATA JSON: {e}")
+            print("Invalid PAPER DATA JSON, skipping uploaded papers.")
+            paper_json = None
+
+        # OPTIONAL FIELDS input
+        print("Paste OPTIONAL FIELDS DATA JSON (or press Enter to type manually):")
+        try:
+            line = input().strip()
+            if line:
+                buffer = [line]
+                while True:
+                    try:
+                        more = input()
+                    except EOFError:
+                        break
+                    if not more.strip():
+                        break
+                    buffer.append(more)
+                optional_json = json.loads("\n".join(buffer))
+                logger.info("Optional fields JSON parsed successfully")
+            else:
+                optional_json = None
+        except Exception as e:
+            logger.error(f"Invalid optional fields JSON: {e}")
+            optional_json = None
 
     # If optional fields JSON provided, use it; otherwise prompt
     if optional_json and optional_json.get("research_idea") and optional_json.get("selected_domains"):
