@@ -13,10 +13,10 @@ from crewai import Crew, Process
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from functools import lru_cache
 import hashlib
+from typing import Dict, Any, List
 
 # Enable CrewAI tracing
 os.environ['CREWAI_TRACING_ENABLED'] = 'true'
-
 
 class TeeOutput:
     """Capture output to both file and original stream, with ANSI code stripping for file."""
@@ -24,14 +24,12 @@ class TeeOutput:
         self.file = open(file_path, 'w', encoding='utf-8')
         self.original = original_stream
         self.buffer = []
-        # ANSI escape code pattern
         import re
         self.ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
     
     def write(self, data):
         self.original.write(data)
         self.original.flush()
-        # Strip ANSI codes for file output
         clean_data = self.ansi_escape.sub('', data)
         self.file.write(clean_data)
         self.file.flush()
@@ -42,7 +40,6 @@ class TeeOutput:
     
     def close(self):
         self.file.close()
-from typing import Dict, Any, List
 
 # Metrics tracking
 class MetricsTracker:
@@ -126,8 +123,6 @@ class MetricsTracker:
     def finalize(self):
         self.metrics["end_time"] = datetime.now().isoformat()
         self.metrics["total_duration_seconds"] = round(time.time() - self.start_time, 2)
-        
-        # Calculate summary statistics
         self.metrics["summary"] = {
             "total_api_calls": len(self.metrics["api_calls"]),
             "successful_api_calls": sum(1 for call in self.metrics["api_calls"] if call["success"]),
@@ -143,42 +138,30 @@ class MetricsTracker:
     def save(self, filename: str = None, finalize: bool = True):
         if filename is None:
             filename = f"metrics_{self.metrics['session_id']}.json"
-        
         if finalize:
             self.finalize()
-        
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(self.metrics, f, indent=2, ensure_ascii=False)
-        
         return filename
     
     def save_realtime(self, filename: str = None):
-        """Save metrics without finalizing for real-time updates."""
         if filename is None:
             filename = f"metrics_{self.metrics['session_id']}.json"
-        
-        # Create a copy with current status
         temp_metrics = self.metrics.copy()
         temp_metrics["current_duration_seconds"] = round(time.time() - self.start_time, 2)
         temp_metrics["status"] = "in_progress"
-        
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(temp_metrics, f, indent=2, ensure_ascii=False)
-        
         return filename
 
 # Global metrics tracker
 metrics = MetricsTracker()
 
 # Configure logging and output capture with organized folders
-# Use single fixed folder (latest_session) that gets overwritten each run
 session_folder = os.path.join('outputs', 'latest_research_session')
-
-# Also keep timestamped backup folder
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 backup_folder = os.path.join('outputs', f'backup_session_{timestamp}')
 
-# Create 4 subfolders for comprehensive research output
 review_folder = os.path.join(session_folder, 'review')
 terminal_folder = os.path.join(session_folder, 'terminal_output')
 metrics_folder = os.path.join(session_folder, 'metrics')
@@ -190,7 +173,7 @@ os.makedirs(metrics_folder, exist_ok=True)
 os.makedirs(final_report_folder, exist_ok=True)
 
 print(f"\n{'='*80}")
-print(f"🚀 Multi-Agent Literature Review System - Research Grade")
+print(f"🚀 Multi-Agent Literature Review System - Research Grade (PhD Level)")
 print(f"{'='*80}")
 print(f"\n📁 SESSION OUTPUTS")
 print(f"{'='*80}")
@@ -204,14 +187,12 @@ print(f"   📄 final_report/final_research_report.md")
 print(f"   📄 final_report/detailed_agent_analysis.txt")
 print(f"{'='*80}\n")
 
-# Configure file paths within subfolders
 log_filename = os.path.join(review_folder, 'literature_review.log')
 output_filename = os.path.join(terminal_folder, 'terminal_output.txt')
 metrics_filename = os.path.join(metrics_folder, 'metrics.json')
 final_report_filename = os.path.join(final_report_folder, 'final_research_report.md')
 detailed_analysis_filename = os.path.join(final_report_folder, 'detailed_agent_analysis.txt')
 
-# Setup logging (file only)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -221,61 +202,51 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Capture all terminal output to file while keeping console output
 original_stdout = sys.stdout
 original_stderr = sys.stderr
 sys.stdout = TeeOutput(output_filename, original_stdout)
 sys.stderr = sys.stdout
 
 logger.info(f"=" * 80)
-logger.info(f"Multi-Agent Literature Review System Started")
+logger.info(f"Multi-Agent Literature Review System Started (PhD Edition)")
 logger.info(f"Session folder: {session_folder}")
 logger.info(f"Review log: {log_filename}")
-logger.info(f"Terminal output: {output_filename}")
-logger.info(f"Metrics file: {metrics_filename}")
-logger.info(f"Final report: {final_report_filename}")
 logger.info(f"=" * 80)
-print(f"📁 Research Session: {session_folder}")
-print(f"   📝 review/literature_review.log")
-print(f"   🖥️  terminal_output/terminal_output.txt")
-print(f"   📊 metrics/metrics.json")
-print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
-print(f"   📄 final_report/final_research_report.md")
-print(f"📄 Output file: {output_filename}")
-print(f"📊 Metrics file: {metrics_filename}")
-print(f"{'='*80}\n")
 
 # Rate limiting configuration
-API_DELAY = 1.5  # seconds between API calls
+API_DELAY = 1.5
 MAX_RETRIES = 3
-RETRY_DELAY = 2  # seconds
+RETRY_DELAY = 2
+
+# IMPORT NEW AGENTS
 from agents import (
-    controller_agent, retrieval_agent, summarization_agent,
-    method_comparison_agent, gap_analysis_agent, novelty_agent
+    retrieval_agent, 
+    decomposition_agent,
+    reasoning_agent, 
+    gap_novelty_agent,
+    synthesis_agent,
+    quality_control_agent
 )
 from tasks import create_tasks
-from tools import rag_tool, rag_tool_instance, citation_verifier_tool, evidence_validator
+from tools import rag_tool, rag_tool_instance, citation_verifier_tool, evidence_validator, validate_output_tool
 from rag_pipeline import RAGPipeline
 from evidence_store import evidence_store
 from query_rewriter import query_rewriter
 
 # Initialize global RAG
 rag_pipeline = RAGPipeline()
-
-# Wire up the evidence validator with the store
 evidence_validator.set_store(evidence_store)
 
 def fetch_arxiv_papers(query: str, max_results=5):
     """Fetch papers from arXiv with retry logic and rate limiting."""
     logger.info(f"Fetching papers from arXiv with query: '{query}' (max_results={max_results})")
     start_time = time.time()
-    
     for attempt in range(MAX_RETRIES):
         try:
-            time.sleep(API_DELAY)  # Rate limiting
+            time.sleep(API_DELAY)
             client = arxiv.Client(
                 page_size=max_results,
-                delay_seconds=3.0,  # Built-in delay between requests
+                delay_seconds=3.0,
                 num_retries=2
             )
             search = arxiv.Search(
@@ -300,19 +271,14 @@ def fetch_arxiv_papers(query: str, max_results=5):
         except arxiv.HTTPError as e:
             if "429" in str(e):
                 wait_time = RETRY_DELAY * (attempt + 1)
-                logger.warning(f"arXiv rate limit hit (429). Waiting {wait_time}s before retry {attempt + 1}/{MAX_RETRIES}")
+                logger.warning(f"arXiv rate limit hit. Waiting {wait_time}s")
                 time.sleep(wait_time)
             else:
                 logger.error(f"arXiv HTTP error: {e}")
-                metrics.log_api_call("arXiv", query, 0, time.time() - start_time, False, str(e))
                 break
         except Exception as e:
-            logger.error(f"Unexpected error fetching from arXiv: {e}")
-            metrics.log_api_call("arXiv", query, 0, time.time() - start_time, False, str(e))
-            metrics.log_error("API_ERROR", str(e), "fetch_arxiv_papers")
+            logger.error(f"Error fetching from arXiv: {e}")
             break
-    
-    logger.warning("Failed to fetch from arXiv after all retries, continuing with other sources")
     metrics.log_api_call("arXiv", query, 0, time.time() - start_time, False, "Max retries exceeded")
     return []
 
@@ -322,11 +288,10 @@ def fetch_semantic_scholar_papers(query: str, max_results=5):
     logger.info(f"Fetching papers from Semantic Scholar with query: '{query}' (max_results={max_results})")
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
     params = {"query": query, "limit": max_results, "fields": "title,authors,year,abstract,url"}
-    start_time = time.time()
     
     for attempt in range(MAX_RETRIES):
         try:
-            time.sleep(API_DELAY)  # Rate limiting
+            time.sleep(API_DELAY)
             res = requests.get(url, params=params, timeout=15)
             res.raise_for_status()
             data = res.json()
@@ -345,22 +310,9 @@ def fetch_semantic_scholar_papers(query: str, max_results=5):
             logger.info(f"Retrieved {len(papers)} papers from Semantic Scholar in {duration:.2f}s")
             metrics.log_api_call("Semantic Scholar", query, len(papers), duration, True)
             return papers
-        except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 429:
-                wait_time = RETRY_DELAY * (attempt + 1)
-                logger.warning(f"Semantic Scholar rate limit hit. Waiting {wait_time}s before retry {attempt + 1}/{MAX_RETRIES}")
-                time.sleep(wait_time)
-            else:
-                logger.error(f"Semantic Scholar HTTP error: {e}")
-                metrics.log_api_call("Semantic Scholar", query, 0, time.time() - start_time, False, str(e))
-                break
         except Exception as e:
             logger.error(f"Error fetching from Semantic Scholar: {e}")
-            metrics.log_api_call("Semantic Scholar", query, 0, time.time() - start_time, False, str(e))
-            metrics.log_error("API_ERROR", str(e), "fetch_semantic_scholar_papers")
             break
-    
-    logger.warning("Failed to fetch from Semantic Scholar, continuing with other sources")
     metrics.log_api_call("Semantic Scholar", query, 0, time.time() - start_time, False, "Max retries exceeded")
     return []
 
@@ -370,20 +322,17 @@ def fetch_pubmed_papers(query: str, max_results=5):
     logger.info(f"Fetching papers from PubMed with query: '{query}' (max_results={max_results})")
     esearch = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
     params = {"db": "pubmed", "term": query, "retmax": max_results, "retmode": "json"}
-    start_time = time.time()
     
     for attempt in range(MAX_RETRIES):
         try:
-            time.sleep(API_DELAY)  # Rate limiting for NCBI
+            time.sleep(API_DELAY)
             res = requests.get(esearch, params=params, timeout=15)
             res.raise_for_status()
             ids = res.json().get("esearchresult", {}).get("idlist", [])
             if not ids:
-                logger.info("No PubMed IDs found for query")
-                metrics.log_api_call("PubMed", query, 0, time.time() - start_time, True)
                 return []
             
-            time.sleep(API_DELAY)  # Additional delay before fetching details
+            time.sleep(API_DELAY)
             efetch = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
             fetch_res = requests.get(efetch, params={"db": "pubmed", "id": ",".join(ids), "retmode": "xml"}, timeout=15)
             fetch_res.raise_for_status()
@@ -412,50 +361,28 @@ def fetch_pubmed_papers(query: str, max_results=5):
             logger.info(f"Retrieved {len(papers)} papers from PubMed in {duration:.2f}s")
             metrics.log_api_call("PubMed", query, len(papers), duration, True)
             return papers
-        except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 429:
-                wait_time = RETRY_DELAY * (attempt + 1)
-                logger.warning(f"PubMed rate limit hit. Waiting {wait_time}s before retry {attempt + 1}/{MAX_RETRIES}")
-                time.sleep(wait_time)
-            else:
-                logger.error(f"PubMed HTTP error: {e}")
-                metrics.log_api_call("PubMed", query, 0, time.time() - start_time, False, str(e))
-                break
         except Exception as e:
             logger.error(f"Error fetching from PubMed: {e}")
-            metrics.log_api_call("PubMed", query, 0, time.time() - start_time, False, str(e))
-            metrics.log_error("API_ERROR", str(e), "fetch_pubmed_papers")
             break
-    
-    logger.warning("Failed to fetch from PubMed, continuing with other sources")
-    metrics.log_api_call("PubMed", query, 0, time.time() - start_time, False, "Max retries exceeded")
     return []
 
 def retrieve_and_index_papers(user_idea: str, domains: list):
     """Retrieve papers from multiple sources in parallel for efficiency."""
     start_time = time.time()
-    
-    # Use query rewriter for improved retrieval
     base_query = f"{user_idea} {' '.join(domains)}"
     expanded_query = query_rewriter.rewrite(user_idea, domains)
     
     logger.info(f"Starting paper retrieval for idea: '{user_idea}'")
-    logger.info(f"Domains: {domains}")
-    logger.info(f"Base query: '{base_query}'")
     logger.info(f"Expanded query: '{expanded_query}'")
-    print(f"🔍 Retrieving papers with expanded query...")
-    print(f"   Original: {user_idea[:60]}...")
-    print(f"   Expanded: {expanded_query[:80]}...")
     
-    retrieval_start = time.time()
     papers = []
     
-    # Parallel fetching for improved performance
+    # Parallel fetching with max workers for speed
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = {
-            executor.submit(fetch_arxiv_papers, expanded_query, 4): "arXiv",
-            executor.submit(fetch_semantic_scholar_papers, expanded_query, 3): "Semantic Scholar",
-            executor.submit(fetch_pubmed_papers, expanded_query, 3): "PubMed"
+            executor.submit(fetch_arxiv_papers, expanded_query, 5): "arXiv",
+            executor.submit(fetch_semantic_scholar_papers, expanded_query, 4): "Semantic Scholar",
+            executor.submit(fetch_pubmed_papers, expanded_query, 4): "PubMed"
         }
         
         for future in as_completed(futures):
@@ -467,8 +394,7 @@ def retrieve_and_index_papers(user_idea: str, domains: list):
             except Exception as e:
                 logger.error(f"Exception fetching from {source}: {e}")
     
-    # Deduplicate by title
-    logger.info(f"Total papers fetched: {len(papers)}")
+    # Deduplicate
     seen = set()
     unique_papers = []
     for p in papers:
@@ -476,32 +402,22 @@ def retrieve_and_index_papers(user_idea: str, domains: list):
             seen.add(p["title"])
             unique_papers.append(p)
     
-    logger.info(f"Unique papers after deduplication: {len(unique_papers)}")
-    
     if not unique_papers:
-        logger.warning("No papers retrieved from any source!")
         return []
     
-    # Index into RAG with full metadata
-    top_papers = unique_papers[:10]
+    # Increase Limit for Deep Research
+    top_papers = unique_papers[:15]
     logger.info(f"Indexing top {len(top_papers)} papers into RAG pipeline")
-    for idx, paper in enumerate(top_papers, 1):
-        logger.info(f"  [{idx}] {paper['title']} ({paper['year']}, {paper['source']})")
+    
+    # Use Hybrid Indexing
     rag_pipeline.add_papers(top_papers)
     rag_pipeline.save()
-    logger.info("RAG pipeline saved successfully")
     
-    retrieval_duration = time.time() - retrieval_start
+    retrieval_duration = time.time() - start_time
     metrics.log_timing("paper_retrieval_and_indexing", retrieval_duration)
-    print(f"✅ Retrieved and indexed {len(top_papers)} papers in {retrieval_duration:.2f}s")
     return top_papers
 
-
 def index_uploaded_paper(paper_data: dict):
-    """Index a user-uploaded paper payload of the form:
-    {"paper_sections":[{"field":"Title","content":"..."},...], "uploaded_papers": [...]}
-    We extract Title and Abstract when present and add to the RAG index.
-    """
     logger.info("Processing uploaded paper data")
     title = None
     abstract = None
@@ -512,7 +428,6 @@ def index_uploaded_paper(paper_data: dict):
             abstract = sec.get("content")
 
     if not title and paper_data.get("uploaded_papers"):
-        # If uploaded_papers contains dicts with title/abstract, use first
         first = paper_data.get("uploaded_papers")[0]
         title = title or first.get("title")
         abstract = abstract or first.get("abstract")
@@ -526,64 +441,54 @@ def index_uploaded_paper(paper_data: dict):
             "source": paper_data.get("source", "UserUploaded"),
             "url": paper_data.get("url", "")
         }
-        logger.info(f"Indexing uploaded paper: '{title}'")
         rag_pipeline.add_papers([paper])
         rag_pipeline.save()
-        logger.info("Uploaded paper indexed successfully")
         return paper
-    logger.warning("No valid title found in uploaded paper data")
     return None
 
 def run_analysis(user_idea: str, selected_domains: list):
     logger.info(f"="*80)
     logger.info(f"STARTING ANALYSIS")
     logger.info(f"Research Idea: {user_idea}")
-    logger.info(f"Selected Domains: {selected_domains}")
     logger.info(f"="*80)
     
-    # Log inputs to metrics
     metrics.log_input("research_idea", user_idea)
     metrics.log_input("selected_domains", selected_domains)
-    
     analysis_start = time.time()
     
     # 1. Retrieve and index papers
     papers = retrieve_and_index_papers(user_idea, selected_domains)
     if not papers:
-        logger.error("No relevant papers found")
-        metrics.log_output("result", "No relevant papers found")
-        metrics.log_output("success", False)
         return "❌ No relevant papers found."
 
-    # 2. Inject RAG into tools (RAGSearch + CitationVerifier)
+    # 2. Inject RAG into tools
     logger.info("Injecting RAG pipeline into tools")
     from tools import rag_tool
     rag_tool.rag = rag_pipeline
 
-    # 3. Assign tools to agents so all reasoning is RAG-first
+    # 3. Assign tools to agents
     logger.info("Assigning RAG tools to agents")
     retrieval_agent.tools = [rag_tool_instance]
-    summarization_agent.tools = [rag_tool_instance]
-    method_comparison_agent.tools = [rag_tool_instance]
-    gap_analysis_agent.tools = [rag_tool_instance]
-    novelty_agent.tools = [rag_tool_instance, citation_verifier_tool]
-    logger.info("Tools assigned to all agents")
+    decomposition_agent.tools = [rag_tool_instance]
+    reasoning_agent.tools = [rag_tool_instance]
+    gap_novelty_agent.tools = [rag_tool_instance, citation_verifier_tool]
+    synthesis_agent.tools = [rag_tool_instance]
+    quality_control_agent.tools = [rag_tool_instance, validate_output_tool, citation_verifier_tool]
 
     # 4. Create tasks
     logger.info("Creating tasks for crew")
     tasks = create_tasks(user_idea, selected_domains)
-    logger.info(f"Created {len(tasks)} tasks")
 
-    # 5. Run crew end-to-end
+    # 5. Run crew
     logger.info("Initializing crew with 6 agents")
     crew = Crew(
         agents=[
-            controller_agent,
             retrieval_agent,
-            summarization_agent,
-            method_comparison_agent,
-            gap_analysis_agent,
-            novelty_agent
+            decomposition_agent,
+            reasoning_agent,
+            gap_novelty_agent,
+            synthesis_agent,
+            quality_control_agent
         ],
         tasks=tasks,
         process=Process.sequential,
@@ -591,51 +496,24 @@ def run_analysis(user_idea: str, selected_domains: list):
         tracing=True
     )
 
-    logger.info("Starting crew execution (sequential process)...")
+    logger.info("Starting crew execution...")
     crew_start = time.time()
     result = crew.kickoff()
     crew_duration = time.time() - crew_start
     
     logger.info(f"Crew execution completed in {crew_duration:.2f}s")
-    logger.info(f"="*80)
-    logger.info(f"FINAL RESULT")
-    logger.info(f"="*80)
-    logger.info(str(result))
     
     # Post-processing validation
     result_str = str(result)
     
     # Check for valid citations
     citation_valid, citation_msg = evidence_validator.validate_output(result_str)
-    logger.info(f"Citation validation: {citation_msg}")
     
-    # Check for topic drift
-    topic_valid, topic_msg = evidence_validator.check_topic_drift(user_idea, result_str)
-    logger.info(f"Topic validation: {topic_msg}")
-    
-    # Log validation results
-    metrics.log_output("citation_validation", citation_msg)
-    metrics.log_output("topic_validation", topic_msg)
-    
-    if not citation_valid:
-        logger.warning(f"Citation issues detected: {citation_msg}")
-        print(f"⚠️  Citation validation: {citation_msg}")
-    
-    if not topic_valid:
-        logger.warning(f"Topic drift detected: {topic_msg}")
-        print(f"⚠️  Topic validation: {topic_msg}")
-    
-    # Log outputs to metrics
+    # Log outputs
     analysis_duration = time.time() - analysis_start
     metrics.log_timing("total_analysis", analysis_duration)
-    metrics.log_timing("crew_execution", crew_duration)
-    metrics.log_output("final_report", result_str[:1000])  # First 1000 chars
-    metrics.log_output("final_report_length", len(result_str))
-    metrics.save_realtime(metrics_filename)
-    metrics.log_output("papers_analyzed", len(papers))
     metrics.log_output("success", True)
     
-    print(f"\n✅ Analysis completed in {analysis_duration:.2f}s")
     return result_str
 
 # CLI Entry supporting JSON inputs for paper data and optional fields

@@ -1,25 +1,54 @@
-# Backend requirements for multi-agent RAG system
+# Backend requirements for Advanced Multi-Agent RAG System
 # NOTE (Windows users): `faiss-cpu` is not reliably installable via pip on
 # Windows. Use conda to install FAISS on Windows (see steps below) and keep
 # the pip requirement conditional so `pip install -r` does not attempt FAISS on
 # Windows.
 
-crewai
-langchain
+# Core Agent Framework
+crewai>=0.11.0
+crewai-tools
+
+# LLM & Embeddings
+langchain>=0.1.0
 langchain-ollama
 langchain-community
+sentence-transformers>=2.2.0
+
+# Advanced RAG Components
+rank-bm25>=0.2.2  # Sparse retrieval (BM25)
+ragas>=0.1.0  # RAG evaluation metrics
+voyageai  # Advanced embeddings (optional)
+
+# Document Processing
 pypdf
 beautifulsoup4
+unstructured[local-inference]
+python-magic-bin; platform_system == "Windows"  # File type detection
+
+# Search & Retrieval
+arxiv
 requests
 urllib3
-arxiv
-tqdm
-unstructured[local-inference]
-sentence-transformers
-numpy
+
+# Data Processing & ML
+numpy>=1.24.0
 scipy
 scikit-learn
-python-dotenv
+pandas  # For evaluation metrics
 
-# FAISS is best installed via conda on Windows. Pip will install on Linux/macOS.
+# Utilities
+tqdm
+python-dotenv
+aiohttp  # Async HTTP requests
+asyncio  # Async processing
+
+# Logging & Monitoring
+colorlog  # Enhanced logging
+rich  # Beautiful terminal output
+
+# FAISS is best installed via conda on Windows
 faiss-cpu; platform_system != "Windows"
+
+# Optional: For production deployments
+# uvicorn
+# fastapi

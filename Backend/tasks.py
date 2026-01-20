@@ -1,25 +1,16 @@
 # tasks.py
-"""Task definitions with topic anchoring and validation guards."""
-
 from crewai import Task
 from agents import (
-    controller_agent,
     retrieval_agent,
-    summarization_agent,
-    method_comparison_agent,
-    gap_analysis_agent,
-    novelty_agent,
+    decomposition_agent,
+    reasoning_agent,
+    gap_novelty_agent,
+    synthesis_agent,
+    quality_control_agent
 )
 
-
 def create_tasks(user_idea: str, domains: list):
-    """Create RAG-first workflow tasks with topic anchoring.
-    
-    Every task includes:
-    - Explicit reference to the original research idea
-    - FAIL_FAST condition if no evidence found
-    - Required citation format with [P#] handles
-    """
+    """Create RAG-first workflow tasks with strict PhD-level requirements."""
 
     domain_str = ", ".join(domains)
     
@@ -36,164 +27,127 @@ Domains: {domain_str}
 - Stay focused on the research idea above - NO topic drift
 """
 
+    # 1. Retrieval Task
     retrieval_task = Task(
         description=(
-            f"Use RAG Search tool to find relevant papers for:\n"
-            f"Research Idea: '{user_idea}'\n"
-            f"Domains: {domain_str}\n\n"
-            f"{topic_anchor}\n\n"
-            f"**INSTRUCTIONS:**\n"
-            f"1. Call RAG Search with the research idea\n"
-            f"2. List ALL papers returned with their [P#] handles\n"
-            f"3. Include: title, authors, year, source for each paper\n"
-            f"4. If INSUFFICIENT_EVIDENCE returned, state: 'No relevant papers found'\n"
-            f"5. Maximum 10 papers"
+            f"Execute a comprehensive search strategy to find impactful papers for: '{user_idea}'\n"
+            f"in domains: {domain_str}.\n"
+            f"1. Use RAG Search to retrieve top papers.\n"
+            f"2. Ensure a mix of seminal papers and recent (last 3 years) advances.\n"
+            f"3. Filter for high relevance.\n"
+            f"{topic_anchor}"
         ),
         agent=retrieval_agent,
         expected_output=(
-            "List of papers in format:\n"
-            "[P#] Title | Authors | Year | Source\n"
-            "Abstract snippet: [first 2 sentences]\n"
-            "Relevance: [brief justification]\n\n"
-            "OR if no papers: 'INSUFFICIENT_EVIDENCE: [reason]'"
+            "Structured list of top 10-15 papers:\n"
+            "- [P#] Title | Authors | Year | Venue\n"
+            "- Relevance justification\n"
+            "- Abstract snippet"
         ),
     )
 
-    summarization_task = Task(
+    # 2. Decomposition Task
+    decomposition_task = Task(
         description=(
-            f"Summarize each paper from the retrieval results.\n\n"
-            f"{topic_anchor}\n\n"
-            f"**INSTRUCTIONS:**\n"
-            f"1. Use RAG Search to get details for each paper [P#]\n"
-            f"2. Extract: contribution, methodology, results, limitations\n"
-            f"3. Include [P#] citation handles for every paper\n"
-            f"4. Focus on aspects relevant to: '{user_idea}'\n"
-            f"5. If paper not found in RAG, state 'Details not available'"
+            f"Analyze the retrieved papers deeply. For EACH relevant paper found:\n"
+            f"1. Extract the Core Problem, Hypothesis, Methodology (Steps/Algorithms), and Key Result (metrics).\n"
+            f"2. Extract explicit Limitations stated by authors.\n"
+            f"3. Ignore fluff; focus on technical substance.\n"
+            f"{topic_anchor}"
         ),
-        agent=summarization_agent,
+        agent=decomposition_agent,
         expected_output=(
-            "Structured summary per paper:\n"
-            "[P#] Title:\n"
-            "- Problem: [what problem solved]\n"
-            "- Method: [approach/algorithm]\n"
-            "- Results: [key findings with metrics]\n"
-            "- Limitations: [acknowledged weaknesses]\n"
-            "- Relevance to research idea: [connection]"
+            "JSON-like or structured blocks per paper:\n"
+            "[P#] Title\n"
+            "   Problem: ...\n"
+            "   Method: ...\n"
+            "   Results: ...\n"
+            "   Limitations: ..."
         ),
         context=[retrieval_task]
     )
 
-    comparison_task = Task(
+    # 3. Cross-Paper Reasoning Task
+    reasoning_task = Task(
         description=(
-            f"Compare methodologies across papers from summaries.\n\n"
-            f"{topic_anchor}\n\n"
-            f"**INSTRUCTIONS:**\n"
-            f"1. Compare techniques, datasets, evaluation metrics\n"
-            f"2. Identify common approaches vs variations\n"
-            f"3. Note any conflicts or contradictions\n"
-            f"4. Use [P#] citations for all comparisons\n"
-            f"5. Create comparison table if 3+ papers available"
+            f"Perform comparative analysis across the extracted knowledge.\n"
+            f"1. Group papers by approach/school of thought.\n"
+            f"2. Compare conflicting evidence: Does Paper A contradict Paper B?\n"
+            f"3. Trace methodology evolution: How did methods improve over time?\n"
+            f"4. Create a Comparative Matrix of features/performance.\n"
+            f"{topic_anchor}"
         ),
-        agent=method_comparison_agent,
+        agent=reasoning_agent,
         expected_output=(
-            "Comparative analysis with:\n"
-            "- Common approaches: [list with [P#] citations]\n"
-            "- Key differences: [variations noted]\n"
-            "- Datasets used: [by paper]\n"
-            "- Metrics: [evaluation methods]\n"
-            "- Trends: [emerging patterns]"
+            "1. Thematic Taxonomy (grouping of approaches)\n"
+            "2. Comparative Matrix (table of methods vs metrics)\n"
+            "3. Consensus vs Conflict Analysis (where papers agree/disagree)"
         ),
-        context=[summarization_task]
+        context=[decomposition_task]
     )
 
-    gap_task = Task(
+    # 4. Gap & Novelty Task
+    gap_novelty_task = Task(
         description=(
-            f"Identify research gaps based on method comparison.\n\n"
-            f"{topic_anchor}\n\n"
-            f"**INSTRUCTIONS:**\n"
-            f"1. Identify 3-5 gaps NOT addressed by existing papers\n"
-            f"2. For each gap: explain importance and supporting evidence\n"
-            f"3. Cite papers [P#] that reveal each gap\n"
-            f"4. Rate gap importance: High/Medium/Low with justification\n"
-            f"5. Connect gaps to research idea: '{user_idea}'"
+            f"Identify RESEARCH GAPS and assess NOVELTY of '{user_idea}'.\n"
+            f"1. Based on the analysis, what is missing? (Unsolved problems, weak baselines, etc.)\n"
+            f"2. Compare '{user_idea}' to the closest existing papers.\n"
+            f"3. Score Novelty (0-100) with strict justification.\n"
+            f"{topic_anchor}"
         ),
-        agent=gap_analysis_agent,
+        agent=gap_novelty_agent,
         expected_output=(
-            "Gap #1: [description]\n"
-            "  Importance: [High/Medium/Low]\n"
-            "  Evidence: [P#] citations supporting this gap\n"
-            "  Opportunity: [how it relates to research idea]\n\n"
-            "[Repeat for 3-5 gaps]"
+            "1. Validated Research Gaps (with [P#] citations)\n"
+            "2. Novelty Assessment (Score + Reasoning)\n"
+            "3. Critical Differentiators"
         ),
-        context=[comparison_task]
+        context=[reasoning_task]
     )
 
-    novelty_task = Task(
-        description=(
-            f"Evaluate novelty of the research idea vs existing literature.\n\n"
-            f"{topic_anchor}\n\n"
-            f"**INSTRUCTIONS:**\n"
-            f"1. Use RAG Search to find closest existing work\n"
-            f"2. Use Citation Verifier to validate claims\n"
-            f"3. Score novelty 0-100 based on evidence\n"
-            f"4. Identify what's novel vs what's incremental\n"
-            f"5. Cite specific papers [P#] for all comparisons\n"
-            f"6. If uncertain, state uncertainty level"
-        ),
-        agent=novelty_agent,
-        expected_output=(
-            "Novelty Score: X/100\n"
-            "Reasoning: [evidence-based justification with [P#] citations]\n"
-            "Closest work: [P#] [title] - [similarity %]\n"
-            "Novel aspects: [what's new]\n"
-            "Incremental aspects: [what builds on prior work]\n"
-            "Recommendation: [Highly Novel / Moderately Novel / Incremental]"
-        ),
-        context=[gap_task, summarization_task]
-    )
-
+    # 5. Synthesis Task
     synthesis_task = Task(
         description=(
-            f"SYNTHESIZE ALL PREVIOUS OUTPUTS INTO ONE COMPREHENSIVE REPORT.\n\n"
-            f"**TOPIC ANCHOR:**\n"
-            f"Research Idea: '{user_idea}'\n"
-            f"Domains: {domain_str}\n\n"
-            f"**YOU HAVE RECEIVED:**\n"
-            f"1. Retrieved papers with [P#] handles\n"
-            f"2. Paper summaries\n"
-            f"3. Method comparison\n"
-            f"4. Research gaps\n"
-            f"5. Novelty assessment\n\n"
-            f"**CRITICAL INSTRUCTIONS:**\n"
-            f"- DO NOT ask for user input\n"
-            f"- DO NOT start new research\n"
-            f"- ONLY synthesize what previous agents provided\n"
-            f"- Use REAL [P#] citations from the evidence\n"
-            f"- Stay focused on: '{user_idea}'\n"
-            f"- If any section lacks evidence, state: 'Limited evidence available'"
+            f"Write a PhD-level Literature Review merging all insights.\n"
+            f"Structure:\n"
+            f"- Information Landscape (Overview)\n"
+            f"- Thematic Evolution (History of ideas)\n"
+            f"- Methodological Deep Dive (Comparative)\n"
+            f"- The Gap Analysis\n"
+            f"- Future Directions\n"
+            f"TONE: Formal, dense, authoritative. NO placeholders.\n"
+            f"{topic_anchor}"
         ),
-        agent=controller_agent,
+        agent=synthesis_agent,
         expected_output=(
-            "**COMPREHENSIVE LITERATURE REVIEW REPORT**\n\n"
-            "**Research Context**: [user's idea]\n"
-            "**Domains**: [domains]\n"
-            "**Papers Analyzed**: [count]\n\n"
-            "**Executive Summary**: [150-200 words]\n\n"
-            "**1. Retrieved Papers**: [list with [P#] citations]\n\n"
-            "**2. Literature Analysis**: [summaries]\n\n"
-            "**3. Methodology Comparison**: [analysis]\n\n"
-            "**4. Research Gaps**: [gaps with evidence]\n\n"
-            "**5. Novelty Assessment**: [score and reasoning]\n\n"
-            "**6. Recommendations**: [actionable next steps]"
+            "A complete 1500+ word Literature Review Markdown.\n"
+            "Including 'References' section with [P#] mapping."
         ),
-        context=[retrieval_task, summarization_task, comparison_task, gap_task, novelty_task]
+        context=[retrieval_task, decomposition_task, reasoning_task, gap_novelty_task]
+    )
+
+    # 6. Quality Control Task
+    quality_control_task = Task(
+        description=(
+            f"Review the draft Literature Review. CRITIQUE and REFINE it.\n"
+            f"1. Check all [P#] citations correspond to real papers in the context.\n"
+            f"2. Remove any vague claims ('performance was good') -> replace with metrics if available or delete.\n"
+            f"3. Ensure the flow is logical. If not, re-write sections.\n"
+            f"4. Final Output must be the POLISHED versions.\n"
+            f"{topic_anchor}"
+        ),
+        agent=quality_control_agent,
+        expected_output=(
+            "FINAL REVISED LITERATURE REVIEW.\n"
+            "Ready for submission."
+        ),
+        context=[synthesis_task, retrieval_task] # Needs retrieval_task to verify citations
     )
 
     return [
         retrieval_task,
-        summarization_task,
-        comparison_task,
-        gap_task,
-        novelty_task,
+        decomposition_task,
+        reasoning_task,
+        gap_novelty_task,
         synthesis_task,
+        quality_control_task
     ]

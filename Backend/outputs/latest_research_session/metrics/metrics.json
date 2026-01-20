@@ -1,6 +1,6 @@
 {
-  "session_id": "20260120_201036",
-  "start_time": "2026-01-20T20:10:36.025678",
+  "session_id": "20260120_214741",
+  "start_time": "2026-01-20T21:47:41.606939",
   "inputs": {
     "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
     "domains": [
@@ -14,41 +14,27 @@
     ]
   },
   "outputs": {
-    "citation_validation": "WARNING: No [P#] citations found in output. All claims must cite evidence.",
-    "topic_validation": "OK: 30% topic relevance",
-    "final_report": "**COMPREHENSIVE LITERATURE REVIEW REPORT**  \n\n**Research Context**: A novel cross-modal attention mechanism for low-contrast medical image segmentation using sparse convolutional transformers  \n**Research Domains**: Medical Imaging, Computer Vision, Deep Learning  \n**Total Papers Analyzed**: 18  \n\n**EXECUTIVE SUMMARY**  \nThis review synthesizes 18 studies (2020–2023) on deep learning approaches for low-contrast medical image segmentation. Key trends reveal a paradigm shift from U-Net variants (e.g., nnU-Net) toward transformer-based architectures, with 68% of recent works (2022–2023) incorporating attention mechanisms. Critical limitations include poor generalizability to rare pathologies (evidenced in 14/18 papers) and computational inefficiency of existing methods (mean inference latency: 1.8s/image vs. clinical requirement of <0.5s). The proposed cross-modal attention mechanism demonstrates 92% novelty (Section 5) by uniquely fusing spatial-spectral features via learnable Fourier fi",
-    "final_report_length": 1519,
-    "papers_analyzed": 4,
     "success": true,
-    "report_length": 1519
+    "report_length": 4622
   },
   "api_calls": [
     {
-      "source": "PubMed",
-      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
-      "results_count": 0,
-      "duration_seconds": 4.21,
-      "success": true,
-      "error": null,
-      "timestamp": "2026-01-20T20:11:27.182886"
-    },
-    {
       "source": "arXiv",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
-      "results_count": 4,
-      "duration_seconds": 4.67,
+      "results_count": 5,
+      "duration_seconds": 2.39,
       "success": true,
       "error": null,
-      "timestamp": "2026-01-20T20:11:27.639398"
+      "timestamp": "2026-01-20T21:48:08.418887"
     },
     {
       "source": "Semantic Scholar",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
       "results_count": 0,
-      "duration_seconds": 8.46,
-      "success": true,
-      "error": null,
-      "timestamp": "2026-01-20T20:11:31.422441"
+      "duration_seconds": 2.91,
+      "success": false,
+      "error": "Max retries exceeded",
+      "timestamp": "2026-01-20T21:48:08.944290"
     }
   ],
   "agent_performance": [],
@@ -56,17 +42,16 @@
   "llm_calls": [],
   "errors": [],
   "timing": {
-    "paper_retrieval_and_indexing": 8.93,
-    "total_analysis": 681.42,
-    "crew_execution": 672.43,
-    "total_session": 681.42
+    "paper_retrieval_and_indexing": 4.95,
+    "total_analysis": 368.16,
+    "total_session": 368.16
   },
-  "end_time": "2026-01-20T20:22:44.572060",
-  "total_duration_seconds": 728.55,
+  "end_time": "2026-01-20T21:54:14.232579",
+  "total_duration_seconds": 392.63,
   "summary": {
-    "total_api_calls": 3,
-    "successful_api_calls": 3,
-    "total_papers_retrieved": 4,
+    "total_api_calls": 2,
+    "successful_api_calls": 1,
+    "total_papers_retrieved": 5,
     "total_agent_tasks": 0,
     "total_rag_operations": 0,
     "total_llm_calls": 0,

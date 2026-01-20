@@ -245,6 +245,533 @@
         }
       ],
       "added_at": "2026-01-20T20:11:31.426976"
+    },
+    "1508fb741fb0": {
+      "paper_id": "1508fb741fb0",
+      "handle": "P7",
+      "title": "Changing Data Sources in the Age of Machine Learning for Official Statistics",
+      "authors": [
+        "Cedric De Boom",
+        "Michael Reusens"
+      ],
+      "year": 2023,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2306.04338v1",
+      "url": "http://arxiv.org/abs/2306.04338v1",
+      "source": "arXiv",
+      "abstract": "Data science has become increasingly essential for the production of official statistics, as it enables the automated collection, processing, and analysis of large amounts of data. With such data science practices in place, it enables more timely, more insightful and more flexible reporting. However, the quality and integrity of data-science-driven statistics rely on the accuracy and reliability of the data sources and the machine learning techniques that support them. In particular, changes in data sources are inevitable to occur and pose significant risks that are crucial to address in the context of machine learning for official statistics.\n  This paper gives an overview of the main risks, liabilities, and uncertainties associated with changing data sources in the context of machine learning for official statistics. We provide a checklist of the most prevalent origins and causes of changing data sources; not only on a technical level but also regarding ownership, ethics, regulation, and public perception. Next, we highlight the repercussions of changing data sources on statistical reporting. These include technical effects such as concept drift, bias, availability, validity, accuracy and completeness, but also the neutrality and potential discontinuation of the statistical offering. We offer a few important precautionary measures, such as enhancing robustness in both data sourcing and statistical techniques, and thorough monitoring. In doing so, machine learning-based official statistics can maintain integrity, reliability, consistency, and relevance in policy-making, decision-making, and public discourse.",
+      "chunks": [
+        {
+          "chunk_id": "1508fb741fb0_chunk_0",
+          "text": "Data science has become increasingly essential for the production of official statistics, as it enables the automated collection, processing, and analysis of large amounts of data. With such data science practices in place, it enables more timely, more insightful and more flexible reporting. However",
+          "embedding_id": "emb_1508fb741fb0_chunk_0"
+        },
+        {
+          "chunk_id": "1508fb741fb0_chunk_1",
+          "text": ", the quality and integrity of data-science-driven statistics rely on the accuracy and reliability of the data sources and the machine learning techniques that support them. In particular, changes in data sources are inevitable to occur and pose significant risks that are crucial to address in the c",
+          "embedding_id": "emb_1508fb741fb0_chunk_1"
+        },
+        {
+          "chunk_id": "1508fb741fb0_chunk_2",
+          "text": "ontext of machine learning for official statistics.\n  This paper gives an overview of the main risks, liabilities, and uncertainties associated with changing data sources in the context of machine learning for official statistics. We provide a checklist of the most prevalent origins and causes of ch",
+          "embedding_id": "emb_1508fb741fb0_chunk_2"
+        },
+        {
+          "chunk_id": "1508fb741fb0_chunk_3",
+          "text": "anging data sources; not only on a technical level but also regarding ownership, ethics, regulation, and public perception. Next, we highlight the repercussions of changing data sources on statistical reporting. These include technical effects such as concept drift, bias, availability, validity, acc",
+          "embedding_id": "emb_1508fb741fb0_chunk_3"
+        },
+        {
+          "chunk_id": "1508fb741fb0_chunk_4",
+          "text": "uracy and completeness, but also the neutrality and potential discontinuation of the statistical offering. We offer a few important precautionary measures, such as enhancing robustness in both data sourcing and statistical techniques, and thorough monitoring. In doing so, machine learning-based offi",
+          "embedding_id": "emb_1508fb741fb0_chunk_4"
+        },
+        {
+          "chunk_id": "1508fb741fb0_chunk_5",
+          "text": "cial statistics can maintain integrity, reliability, consistency, and relevance in policy-making, decision-making, and public discourse.",
+          "embedding_id": "emb_1508fb741fb0_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.035657"
+    },
+    "1f233e710765": {
+      "paper_id": "1f233e710765",
+      "handle": "P8",
+      "title": "Emotion in Reinforcement Learning Agents and Robots: A Survey",
+      "authors": [
+        "Thomas M. Moerland",
+        "Joost Broekens",
+        "Catholijn M. Jonker"
+      ],
+      "year": 2017,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/1705.05172v1",
+      "url": "http://arxiv.org/abs/1705.05172v1",
+      "source": "arXiv",
+      "abstract": "This article provides the first survey of computational models of emotion in reinforcement learning (RL) agents. The survey focuses on agent/robot emotions, and mostly ignores human user emotions. Emotions are recognized as functional in decision-making by influencing motivation and action selection. Therefore, computational emotion models are usually grounded in the agent's decision making architecture, of which RL is an important subclass. Studying emotions in RL-based agents is useful for three research fields. For machine learning (ML) researchers, emotion models may improve learning efficiency. For the interactive ML and human-robot interaction (HRI) community, emotions can communicate state and enhance user investment. Lastly, it allows affective modelling (AM) researchers to investigate their emotion theories in a successful AI agent class. This survey provides background on emotion theory and RL. It systematically addresses 1) from what underlying dimensions (e.g., homeostasis, appraisal) emotions can be derived and how these can be modelled in RL-agents, 2) what types of emotions have been derived from these dimensions, and 3) how these emotions may either influence the learning efficiency of the agent or be useful as social signals. We also systematically compare evaluation criteria, and draw connections to important RL sub-domains like (intrinsic) motivation and model-based RL. In short, this survey provides both a practical overview for engineers wanting to implement emotions in their RL agents, and identifies challenges and directions for future emotion-RL research.",
+      "chunks": [
+        {
+          "chunk_id": "1f233e710765_chunk_0",
+          "text": "This article provides the first survey of computational models of emotion in reinforcement learning (RL) agents. The survey focuses on agent/robot emotions, and mostly ignores human user emotions. Emotions are recognized as functional in decision-making by influencing motivation and action selection",
+          "embedding_id": "emb_1f233e710765_chunk_0"
+        },
+        {
+          "chunk_id": "1f233e710765_chunk_1",
+          "text": ". Therefore, computational emotion models are usually grounded in the agent's decision making architecture, of which RL is an important subclass. Studying emotions in RL-based agents is useful for three research fields. For machine learning (ML) researchers, emotion models may improve learning effic",
+          "embedding_id": "emb_1f233e710765_chunk_1"
+        },
+        {
+          "chunk_id": "1f233e710765_chunk_2",
+          "text": "iency. For the interactive ML and human-robot interaction (HRI) community, emotions can communicate state and enhance user investment. Lastly, it allows affective modelling (AM) researchers to investigate their emotion theories in a successful AI agent class. This survey provides background on emoti",
+          "embedding_id": "emb_1f233e710765_chunk_2"
+        },
+        {
+          "chunk_id": "1f233e710765_chunk_3",
+          "text": "on theory and RL. It systematically addresses 1) from what underlying dimensions (e.g., homeostasis, appraisal) emotions can be derived and how these can be modelled in RL-agents, 2) what types of emotions have been derived from these dimensions, and 3) how these emotions may either influence the le",
+          "embedding_id": "emb_1f233e710765_chunk_3"
+        },
+        {
+          "chunk_id": "1f233e710765_chunk_4",
+          "text": "arning efficiency of the agent or be useful as social signals. We also systematically compare evaluation criteria, and draw connections to important RL sub-domains like (intrinsic) motivation and model-based RL. In short, this survey provides both a practical overview for engineers wanting to implem",
+          "embedding_id": "emb_1f233e710765_chunk_4"
+        },
+        {
+          "chunk_id": "1f233e710765_chunk_5",
+          "text": "ent emotions in their RL agents, and identifies challenges and directions for future emotion-RL research.",
+          "embedding_id": "emb_1f233e710765_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.039349"
+    },
+    "05b904ce055c": {
+      "paper_id": "05b904ce055c",
+      "handle": "P9",
+      "title": "DOME: Recommendations for supervised machine learning validation in biology",
+      "authors": [
+        "Ian Walsh",
+        "Dmytro Fishman",
+        "Dario Garcia-Gasulla",
+        "Tiina Titma",
+        "Gianluca Pollastri",
+        "The ELIXIR Machine Learning focus group",
+        "Jen Harrow",
+        "Fotis E. Psomopoulos",
+        "Silvio C. E. Tosatto"
+      ],
+      "year": 2020,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2006.16189v4",
+      "url": "http://arxiv.org/abs/2006.16189v4",
+      "source": "arXiv",
+      "abstract": "Modern biology frequently relies on machine learning to provide predictions and improve decision processes. There have been recent calls for more scrutiny on machine learning performance and possible limitations. Here we present a set of community-wide recommendations aiming to help establish standards of supervised machine learning validation in biology. Adopting a structured methods description for machine learning based on data, optimization, model, evaluation (DOME) will aim to help both reviewers and readers to better understand and assess the performance and limitations of a method or outcome. The recommendations are formulated as questions to anyone wishing to pursue implementation of a machine learning algorithm. Answers to these questions can be easily included in the supplementary material of published papers.",
+      "chunks": [
+        {
+          "chunk_id": "05b904ce055c_chunk_0",
+          "text": "Modern biology frequently relies on machine learning to provide predictions and improve decision processes. There have been recent calls for more scrutiny on machine learning performance and possible limitations. Here we present a set of community-wide recommendations aiming to help establish standa",
+          "embedding_id": "emb_05b904ce055c_chunk_0"
+        },
+        {
+          "chunk_id": "05b904ce055c_chunk_1",
+          "text": "rds of supervised machine learning validation in biology. Adopting a structured methods description for machine learning based on data, optimization, model, evaluation (DOME) will aim to help both reviewers and readers to better understand and assess the performance and limitations of a method or ou",
+          "embedding_id": "emb_05b904ce055c_chunk_1"
+        },
+        {
+          "chunk_id": "05b904ce055c_chunk_2",
+          "text": "tcome. The recommendations are formulated as questions to anyone wishing to pursue implementation of a machine learning algorithm. Answers to these questions can be easily included in the supplementary material of published papers.",
+          "embedding_id": "emb_05b904ce055c_chunk_2"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.042215"
+    },
+    "775c3563c44e": {
+      "paper_id": "775c3563c44e",
+      "handle": "P10",
+      "title": "Active learning for data streams: a survey",
+      "authors": [
+        "Davide Cacciarelli",
+        "Murat Kulahci"
+      ],
+      "year": 2023,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2302.08893v4",
+      "url": "http://arxiv.org/abs/2302.08893v4",
+      "source": "arXiv",
+      "abstract": "Online active learning is a paradigm in machine learning that aims to select the most informative data points to label from a data stream. The problem of minimizing the cost associated with collecting labeled observations has gained a lot of attention in recent years, particularly in real-world applications where data is only available in an unlabeled form. Annotating each observation can be time-consuming and costly, making it difficult to obtain large amounts of labeled data. To overcome this issue, many active learning strategies have been proposed in the last decades, aiming to select the most informative observations for labeling in order to improve the performance of machine learning models. These approaches can be broadly divided into two categories: static pool-based and stream-based active learning. Pool-based active learning involves selecting a subset of observations from a closed pool of unlabeled data, and it has been the focus of many surveys and literature reviews. However, the growing availability of data streams has led to an increase in the number of approaches that focus on online active learning, which involves continuously selecting and labeling observations as they arrive in a stream. This work aims to provide an overview of the most recently proposed approaches for selecting the most informative observations from data streams in real time. We review the various techniques that have been proposed and discuss their strengths and limitations, as well as the challenges and opportunities that exist in this area of research.",
+      "chunks": [
+        {
+          "chunk_id": "775c3563c44e_chunk_0",
+          "text": "Online active learning is a paradigm in machine learning that aims to select the most informative data points to label from a data stream. The problem of minimizing the cost associated with collecting labeled observations has gained a lot of attention in recent years, particularly in real-world appl",
+          "embedding_id": "emb_775c3563c44e_chunk_0"
+        },
+        {
+          "chunk_id": "775c3563c44e_chunk_1",
+          "text": "ications where data is only available in an unlabeled form. Annotating each observation can be time-consuming and costly, making it difficult to obtain large amounts of labeled data. To overcome this issue, many active learning strategies have been proposed in the last decades, aiming to select the ",
+          "embedding_id": "emb_775c3563c44e_chunk_1"
+        },
+        {
+          "chunk_id": "775c3563c44e_chunk_2",
+          "text": "most informative observations for labeling in order to improve the performance of machine learning models. These approaches can be broadly divided into two categories: static pool-based and stream-based active learning. Pool-based active learning involves selecting a subset of observations from a cl",
+          "embedding_id": "emb_775c3563c44e_chunk_2"
+        },
+        {
+          "chunk_id": "775c3563c44e_chunk_3",
+          "text": "osed pool of unlabeled data, and it has been the focus of many surveys and literature reviews. However, the growing availability of data streams has led to an increase in the number of approaches that focus on online active learning, which involves continuously selecting and labeling observations as",
+          "embedding_id": "emb_775c3563c44e_chunk_3"
+        },
+        {
+          "chunk_id": "775c3563c44e_chunk_4",
+          "text": " they arrive in a stream. This work aims to provide an overview of the most recently proposed approaches for selecting the most informative observations from data streams in real time. We review the various techniques that have been proposed and discuss their strengths and limitations, as well as th",
+          "embedding_id": "emb_775c3563c44e_chunk_4"
+        },
+        {
+          "chunk_id": "775c3563c44e_chunk_5",
+          "text": "e challenges and opportunities that exist in this area of research.",
+          "embedding_id": "emb_775c3563c44e_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.045152"
+    },
+    "bed5bf7c52a3": {
+      "paper_id": "bed5bf7c52a3",
+      "handle": "P11",
+      "title": "Alpha MAML: Adaptive Model-Agnostic Meta-Learning",
+      "authors": [
+        "Harkirat Singh Behl",
+        "Atılım Güneş Baydin",
+        "Philip H. S. Torr"
+      ],
+      "year": 2019,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/1905.07435v1",
+      "url": "http://arxiv.org/abs/1905.07435v1",
+      "source": "arXiv",
+      "abstract": "Model-agnostic meta-learning (MAML) is a meta-learning technique to train a model on a multitude of learning tasks in a way that primes the model for few-shot learning of new tasks. The MAML algorithm performs well on few-shot learning problems in classification, regression, and fine-tuning of policy gradients in reinforcement learning, but comes with the need for costly hyperparameter tuning for training stability. We address this shortcoming by introducing an extension to MAML, called Alpha MAML, to incorporate an online hyperparameter adaptation scheme that eliminates the need to tune meta-learning and learning rates. Our results with the Omniglot database demonstrate a substantial reduction in the need to tune MAML training hyperparameters and improvement to training stability with less sensitivity to hyperparameter choice.",
+      "chunks": [
+        {
+          "chunk_id": "bed5bf7c52a3_chunk_0",
+          "text": "Model-agnostic meta-learning (MAML) is a meta-learning technique to train a model on a multitude of learning tasks in a way that primes the model for few-shot learning of new tasks. The MAML algorithm performs well on few-shot learning problems in classification, regression, and fine-tuning of polic",
+          "embedding_id": "emb_bed5bf7c52a3_chunk_0"
+        },
+        {
+          "chunk_id": "bed5bf7c52a3_chunk_1",
+          "text": "y gradients in reinforcement learning, but comes with the need for costly hyperparameter tuning for training stability. We address this shortcoming by introducing an extension to MAML, called Alpha MAML, to incorporate an online hyperparameter adaptation scheme that eliminates the need to tune meta-",
+          "embedding_id": "emb_bed5bf7c52a3_chunk_1"
+        },
+        {
+          "chunk_id": "bed5bf7c52a3_chunk_2",
+          "text": "learning and learning rates. Our results with the Omniglot database demonstrate a substantial reduction in the need to tune MAML training hyperparameters and improvement to training stability with less sensitivity to hyperparameter choice.",
+          "embedding_id": "emb_bed5bf7c52a3_chunk_2"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.048003"
+    },
+    "556f24d728f4": {
+      "paper_id": "556f24d728f4",
+      "handle": "P12",
+      "title": "Spatial transcriptomics AI agent charts hPSC-pancreas maturation in vivo.",
+      "authors": [
+        "Lin Zuwan",
+        "Wang Wenbo",
+        "Marin-Llobet Arnau",
+        "Li Qiang",
+        "Pollock Samuel D",
+        "Sui Xin",
+        "Aljovic Almir",
+        "Lee Jaeyong",
+        "Baek Jongmin",
+        "Liang Ningyue",
+        "Zhang Xinhe",
+        "Wang Connie Kangni",
+        "Huang Jiahao",
+        "Liu Mai",
+        "Gao Zihan",
+        "Sheng Hao",
+        "Du Jin",
+        "Lee Stephen J",
+        "Wang Brandon",
+        "He Yichun",
+        "Ding Jie",
+        "Wang Xiao",
+        "Alvarez-Dominguez Juan R",
+        "Liu Jia"
+      ],
+      "year": 2025,
+      "venue": "PubMed",
+      "doi_or_arxiv": "https://pubmed.ncbi.nlm.nih.gov/40236029",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40236029",
+      "source": "PubMed",
+      "abstract": "Spatial transcriptomics has revolutionized our understanding of tissue organization by simultaneously capturing gene expression and spatial localization within intact tissues. However, analyzing these increasingly complex datasets requires specialized expertise across computational biology, statistics, and biological context. To address this challenge, we introduce the Spatial Transcriptomics AI Agent (STAgent), an autonomous multimodal agentic AI that integrates multimodal large language models (LLMs) with specialized computational tools to transform weeks-long analysis tasks into minutes of automated processing. Unlike conventional machine learning approaches that are limited to narrow, predefined tasks, STAgent leverages the emergent capabilities of multimodal LLMs - such as flexible reasoning, contextual understanding, and cross-modal integration - which allow it to adapt to novel data, execute multi-step analyses, and generate biologically meaningful insights with minimal human input. STAgent enables autonomous deep research through integrated capabilities, including dynamic code generation for complex analytical workflows, visual reasoning for interpreting spatial patterns, real-time retrieval of relevant peer-reviewd scientific literature, and synthesis of comprehensive, actionable reports. We applied STAgent to investigate the in vivo maturation of human stem cell-derived pancreatic cells (SC-pancreas) transplanted into immunodeficient mice. We generated single-cell spatial transcriptomics data spanning multiple developmental timepoints. STAgent autonomously (1) identified the maturation of initially scattered endocrine cells into well-defined islet-like structures, with predominantly peripheral α-cells surrounding β-cell cores supported by an expanding mesenchymal network; (2) revealed strengthening endocrine-endocrine cell interactions over time and, through context-aware gene set analysis, uncovered spatially resolved biological processes driving maturation; (3) unlike traditional analytical approaches, STAgent offers mechanistic explanations of spatial patterns, contextualizing findings with relevant literatures and developing cohesive insights into human pancreatic development. This agentic approach establishes a new paradigm in spatial transcriptomics analysis by substantially lowering the expertise barrier and reducing analysis time, accelerating biological and biomedical discovery.",
+      "chunks": [
+        {
+          "chunk_id": "556f24d728f4_chunk_0",
+          "text": "Spatial transcriptomics has revolutionized our understanding of tissue organization by simultaneously capturing gene expression and spatial localization within intact tissues. However, analyzing these increasingly complex datasets requires specialized expertise across computational biology, statisti",
+          "embedding_id": "emb_556f24d728f4_chunk_0"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_1",
+          "text": "cs, and biological context. To address this challenge, we introduce the Spatial Transcriptomics AI Agent (STAgent), an autonomous multimodal agentic AI that integrates multimodal large language models (LLMs) with specialized computational tools to transform weeks-long analysis tasks into minutes of ",
+          "embedding_id": "emb_556f24d728f4_chunk_1"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_2",
+          "text": "automated processing. Unlike conventional machine learning approaches that are limited to narrow, predefined tasks, STAgent leverages the emergent capabilities of multimodal LLMs - such as flexible reasoning, contextual understanding, and cross-modal integration - which allow it to adapt to novel da",
+          "embedding_id": "emb_556f24d728f4_chunk_2"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_3",
+          "text": "ta, execute multi-step analyses, and generate biologically meaningful insights with minimal human input. STAgent enables autonomous deep research through integrated capabilities, including dynamic code generation for complex analytical workflows, visual reasoning for interpreting spatial patterns, r",
+          "embedding_id": "emb_556f24d728f4_chunk_3"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_4",
+          "text": "eal-time retrieval of relevant peer-reviewd scientific literature, and synthesis of comprehensive, actionable reports. We applied STAgent to investigate the in vivo maturation of human stem cell-derived pancreatic cells (SC-pancreas) transplanted into immunodeficient mice. We generated single-cell s",
+          "embedding_id": "emb_556f24d728f4_chunk_4"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_5",
+          "text": "patial transcriptomics data spanning multiple developmental timepoints. STAgent autonomously (1) identified the maturation of initially scattered endocrine cells into well-defined islet-like structures, with predominantly peripheral α-cells surrounding β-cell cores supported by an expanding mesenchy",
+          "embedding_id": "emb_556f24d728f4_chunk_5"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_6",
+          "text": "mal network; (2) revealed strengthening endocrine-endocrine cell interactions over time and, through context-aware gene set analysis, uncovered spatially resolved biological processes driving maturation; (3) unlike traditional analytical approaches, STAgent offers mechanistic explanations of spatial",
+          "embedding_id": "emb_556f24d728f4_chunk_6"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_7",
+          "text": " patterns, contextualizing findings with relevant literatures and developing cohesive insights into human pancreatic development. This agentic approach establishes a new paradigm in spatial transcriptomics analysis by substantially lowering the expertise barrier and reducing analysis time, accelerat",
+          "embedding_id": "emb_556f24d728f4_chunk_7"
+        },
+        {
+          "chunk_id": "556f24d728f4_chunk_8",
+          "text": "ing biological and biomedical discovery.",
+          "embedding_id": "emb_556f24d728f4_chunk_8"
+        }
+      ],
+      "added_at": "2026-01-20T21:01:02.051373"
+    },
+    "76bbe3aba144": {
+      "paper_id": "76bbe3aba144",
+      "handle": "P13",
+      "title": "A human-centered automated machine learning agent with large language models for multimodal data management and analysis",
+      "authors": [
+        "Rong Huang",
+        "Su Tao"
+      ],
+      "year": 2025,
+      "venue": "Semantic Scholar",
+      "doi_or_arxiv": "https://www.semanticscholar.org/paper/171b8176daeb545d8695936eeb6d75acfd8ee8c3",
+      "url": "https://www.semanticscholar.org/paper/171b8176daeb545d8695936eeb6d75acfd8ee8c3",
+      "source": "Semantic Scholar",
+      "abstract": "Automated Machine Learning (AutoML) aims to streamline the end-to-end process of ML models, yet current approaches remain constrained by rigid rule-based frameworks and structured input requirements that create barriers for non-expert users. Despite advances in Large Language Models (LLMs) demonstrating capabilities in code generation and natural language understanding, their potential to improve AutoML accessibility has not been fully realized. We present an innovative LLM-driven AI agent that enables natural language interaction throughout the entire ML workflow while maintaining high performance standards, reducing the need for predefined rules and minimizing technical expertise requirements. The proposed agent implements an end-to-end ML pipeline, incorporating automatic data loading and pre-processing, task identification, neural architecture selection, hyperparameter optimization, and training automation. Additionally, we propose a novel data processing approach that leverages LLMs to automatically interpret and handle diverse data formats without requiring manual pre-processing or format conversion. Moreover, we propose an adaptive hyperparameter optimization strategy that combines LLMs' knowledge of ML best practices with dynamic performance feedback to intelligently adjust search spaces. Extensive evaluation on 10 diverse datasets spanning classification and regression tasks across multiple data modalities demonstrates that our approach consistently achieves superior performance compared to traditional rule-based AutoML frameworks. By bridging the gap between human intent and ML implementation, our approach contributes to the development of a more accessible AutoML framework.",
+      "chunks": [
+        {
+          "chunk_id": "76bbe3aba144_chunk_0",
+          "text": "Automated Machine Learning (AutoML) aims to streamline the end-to-end process of ML models, yet current approaches remain constrained by rigid rule-based frameworks and structured input requirements that create barriers for non-expert users. Despite advances in Large Language Models (LLMs) demonstra",
+          "embedding_id": "emb_76bbe3aba144_chunk_0"
+        },
+        {
+          "chunk_id": "76bbe3aba144_chunk_1",
+          "text": "ting capabilities in code generation and natural language understanding, their potential to improve AutoML accessibility has not been fully realized. We present an innovative LLM-driven AI agent that enables natural language interaction throughout the entire ML workflow while maintaining high perfor",
+          "embedding_id": "emb_76bbe3aba144_chunk_1"
+        },
+        {
+          "chunk_id": "76bbe3aba144_chunk_2",
+          "text": "mance standards, reducing the need for predefined rules and minimizing technical expertise requirements. The proposed agent implements an end-to-end ML pipeline, incorporating automatic data loading and pre-processing, task identification, neural architecture selection, hyperparameter optimization, ",
+          "embedding_id": "emb_76bbe3aba144_chunk_2"
+        },
+        {
+          "chunk_id": "76bbe3aba144_chunk_3",
+          "text": "and training automation. Additionally, we propose a novel data processing approach that leverages LLMs to automatically interpret and handle diverse data formats without requiring manual pre-processing or format conversion. Moreover, we propose an adaptive hyperparameter optimization strategy that c",
+          "embedding_id": "emb_76bbe3aba144_chunk_3"
+        },
+        {
+          "chunk_id": "76bbe3aba144_chunk_4",
+          "text": "ombines LLMs' knowledge of ML best practices with dynamic performance feedback to intelligently adjust search spaces. Extensive evaluation on 10 diverse datasets spanning classification and regression tasks across multiple data modalities demonstrates that our approach consistently achieves superior",
+          "embedding_id": "emb_76bbe3aba144_chunk_4"
+        },
+        {
+          "chunk_id": "76bbe3aba144_chunk_5",
+          "text": " performance compared to traditional rule-based AutoML frameworks. By bridging the gap between human intent and ML implementation, our approach contributes to the development of a more accessible AutoML framework.",
+          "embedding_id": "emb_76bbe3aba144_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T21:03:37.974025"
+    },
+    "d882540cb2d1": {
+      "paper_id": "d882540cb2d1",
+      "handle": "P14",
+      "title": "The dawn of a new era: can machine learning and large language models reshape QSP modeling?",
+      "authors": [
+        "Ioannis P Androulakis",
+        "Lourdes Cucurull-Sanchez",
+        "Anna Kondic",
+        "Krina Mehta",
+        "Cesar Pichardo",
+        "Meghan Pryor",
+        "Marissa Renardy"
+      ],
+      "year": 2025,
+      "venue": "Semantic Scholar",
+      "doi_or_arxiv": "https://www.semanticscholar.org/paper/c4ac28152fcec3f69e9a6894df9793a32dbfc116",
+      "url": "https://www.semanticscholar.org/paper/c4ac28152fcec3f69e9a6894df9793a32dbfc116",
+      "source": "Semantic Scholar",
+      "abstract": "Quantitative Systems Pharmacology (QSP) has emerged as a cornerstone of modern drug development, providing a robust framework to integrate data from preclinical and clinical studies, enhance decision-making, and optimize therapeutic strategies. By modeling biological systems and drug interactions, QSP enables predictions of outcomes, optimization of dosing regimens, and personalized medicine applications. Recent advancements in artificial intelligence (AI) and machine learning (ML) hold the potential to significantly transform QSP by enabling enhanced data extraction, fostering the development of hybrid mechanistic ML models, and supporting the introduction of surrogate models and digital twins. This manuscript explores the transformative role of AI and ML in reshaping QSP modeling workflows. AI/ML tools now enable automated literature mining, the generation of dynamic models from data, and the creation of hybrid frameworks that blend mechanistic insights with data-driven approaches. Large Language Models (LLMs) further revolutionize the field by transitioning AI/ML from merely a tool to becoming an active partner in QSP modeling. By facilitating interdisciplinary collaboration, lowering barriers to entry, and democratizing QSP workflows, LLMs empower researchers without deep coding expertise to engage in complex modeling tasks. Additionally, the integration of Artificial General Intelligence (AGI) holds the potential to autonomously propose, refine, and validate models, further accelerating innovation across multiscale biological processes. Key challenges remain in integrating AI/ML into QSP workflows, particularly in ensuring rigorous validation pipelines, addressing ethical considerations, and establishing robust regulatory frameworks to address the reliability and reproducibility of AI-assisted models. Moreover, the complexity of multiscale biological integration, effective data management, and fostering interdisciplinary collaboration present ongoing hurdles. Despite these challenges, the potential of AI/ML to enhance hybrid model development, improve model interpretability, and democratize QSP modeling offers an exciting opportunity to revolutionize drug development and therapeutic innovation. This work highlights a pathway toward a transformative era for QSP, leveraging advancements in AI and ML to address these challenges and drive innovation in the field.",
+      "chunks": [
+        {
+          "chunk_id": "d882540cb2d1_chunk_0",
+          "text": "Quantitative Systems Pharmacology (QSP) has emerged as a cornerstone of modern drug development, providing a robust framework to integrate data from preclinical and clinical studies, enhance decision-making, and optimize therapeutic strategies. By modeling biological systems and drug interactions, Q",
+          "embedding_id": "emb_d882540cb2d1_chunk_0"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_1",
+          "text": "SP enables predictions of outcomes, optimization of dosing regimens, and personalized medicine applications. Recent advancements in artificial intelligence (AI) and machine learning (ML) hold the potential to significantly transform QSP by enabling enhanced data extraction, fostering the development",
+          "embedding_id": "emb_d882540cb2d1_chunk_1"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_2",
+          "text": " of hybrid mechanistic ML models, and supporting the introduction of surrogate models and digital twins. This manuscript explores the transformative role of AI and ML in reshaping QSP modeling workflows. AI/ML tools now enable automated literature mining, the generation of dynamic models from data, ",
+          "embedding_id": "emb_d882540cb2d1_chunk_2"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_3",
+          "text": "and the creation of hybrid frameworks that blend mechanistic insights with data-driven approaches. Large Language Models (LLMs) further revolutionize the field by transitioning AI/ML from merely a tool to becoming an active partner in QSP modeling. By facilitating interdisciplinary collaboration, lo",
+          "embedding_id": "emb_d882540cb2d1_chunk_3"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_4",
+          "text": "wering barriers to entry, and democratizing QSP workflows, LLMs empower researchers without deep coding expertise to engage in complex modeling tasks. Additionally, the integration of Artificial General Intelligence (AGI) holds the potential to autonomously propose, refine, and validate models, furt",
+          "embedding_id": "emb_d882540cb2d1_chunk_4"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_5",
+          "text": "her accelerating innovation across multiscale biological processes. Key challenges remain in integrating AI/ML into QSP workflows, particularly in ensuring rigorous validation pipelines, addressing ethical considerations, and establishing robust regulatory frameworks to address the reliability and r",
+          "embedding_id": "emb_d882540cb2d1_chunk_5"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_6",
+          "text": "eproducibility of AI-assisted models. Moreover, the complexity of multiscale biological integration, effective data management, and fostering interdisciplinary collaboration present ongoing hurdles. Despite these challenges, the potential of AI/ML to enhance hybrid model development, improve model i",
+          "embedding_id": "emb_d882540cb2d1_chunk_6"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_7",
+          "text": "nterpretability, and democratize QSP modeling offers an exciting opportunity to revolutionize drug development and therapeutic innovation. This work highlights a pathway toward a transformative era for QSP, leveraging advancements in AI and ML to address these challenges and drive innovation in the ",
+          "embedding_id": "emb_d882540cb2d1_chunk_7"
+        },
+        {
+          "chunk_id": "d882540cb2d1_chunk_8",
+          "text": "field.",
+          "embedding_id": "emb_d882540cb2d1_chunk_8"
+        }
+      ],
+      "added_at": "2026-01-20T21:03:37.979015"
+    },
+    "17e5c6725a95": {
+      "paper_id": "17e5c6725a95",
+      "handle": "P15",
+      "title": "Multi-Agent Geophysical AI Workflow for Automated Reservoir Characterization",
+      "authors": [
+        "M. Q. Nasim",
+        "Paresh Nath",
+        "Singha Roy",
+        "T. Maiti"
+      ],
+      "year": 2025,
+      "venue": "Semantic Scholar",
+      "doi_or_arxiv": "https://www.semanticscholar.org/paper/ddf29751c534cb5fb1b9e90d50c3cd146d84c40b",
+      "url": "https://www.semanticscholar.org/paper/ddf29751c534cb5fb1b9e90d50c3cd146d84c40b",
+      "source": "Semantic Scholar",
+      "abstract": "\n Traditional geophysical workflows like reservoir characterization are driven in a collaborative manner where teams of geoscientists share their individual analyses to inform key decisions made by managers or executives. However, these standard workflows are repetitive, time-consuming, prone to human error, and introduce subjective bias. While researchers have used automation to address these limitations via machine learning or deep learning models for specific interpretation tasks, the overall complex workflow remains manual; specialists still select, run, and process model outputs, which proves to be a bottleneck and has the potential to introduce inconsistency and human bias. This paper introduces a novel, agentic AI framework, driven by a Large Language Model, that automates the entire geological analysis workflow, from initial data discovery to the generation of a final, multi-modal technical report. Our approach mimics the collaborative nature of a human team through a collaborative, event-driven multi-agent system built on a microservice architecture. The system comprises multiple agents, each specializing in a set of tasks. Manager Agent, that initiates the geophysical workflow, a suite of specialized worker agents (Data Finder Agent, Geological Analysis Agent, Reporting Agent) that perform discrete tasks, and a shared workspace that facilitates communication between different agents to allow for collaboration. To validate this framework, we present a case study of an end-to-end lithology analysis on data from the Athabasca oil sands area. The proposed framework successfully took a natural language query, autonomously located the correct well log data, executed the lithology analysis model, and procedurally generated a complex multi-modal technical report. We conclude that this agentic approach represents a promising framework for efficient, consistent, and autonomous scientific workflows in the geosciences. This workflow design is to empower geoscientists with tools for making informed and speedy decisions.",
+      "chunks": [
+        {
+          "chunk_id": "17e5c6725a95_chunk_0",
+          "text": "\n Traditional geophysical workflows like reservoir characterization are driven in a collaborative manner where teams of geoscientists share their individual analyses to inform key decisions made by managers or executives. However, these standard workflows are repetitive, time-consuming, prone to hum",
+          "embedding_id": "emb_17e5c6725a95_chunk_0"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_1",
+          "text": "an error, and introduce subjective bias. While researchers have used automation to address these limitations via machine learning or deep learning models for specific interpretation tasks, the overall complex workflow remains manual; specialists still select, run, and process model outputs, which pr",
+          "embedding_id": "emb_17e5c6725a95_chunk_1"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_2",
+          "text": "oves to be a bottleneck and has the potential to introduce inconsistency and human bias. This paper introduces a novel, agentic AI framework, driven by a Large Language Model, that automates the entire geological analysis workflow, from initial data discovery to the generation of a final, multi-moda",
+          "embedding_id": "emb_17e5c6725a95_chunk_2"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_3",
+          "text": "l technical report. Our approach mimics the collaborative nature of a human team through a collaborative, event-driven multi-agent system built on a microservice architecture. The system comprises multiple agents, each specializing in a set of tasks. Manager Agent, that initiates the geophysical wor",
+          "embedding_id": "emb_17e5c6725a95_chunk_3"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_4",
+          "text": "kflow, a suite of specialized worker agents (Data Finder Agent, Geological Analysis Agent, Reporting Agent) that perform discrete tasks, and a shared workspace that facilitates communication between different agents to allow for collaboration. To validate this framework, we present a case study of a",
+          "embedding_id": "emb_17e5c6725a95_chunk_4"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_5",
+          "text": "n end-to-end lithology analysis on data from the Athabasca oil sands area. The proposed framework successfully took a natural language query, autonomously located the correct well log data, executed the lithology analysis model, and procedurally generated a complex multi-modal technical report. We c",
+          "embedding_id": "emb_17e5c6725a95_chunk_5"
+        },
+        {
+          "chunk_id": "17e5c6725a95_chunk_6",
+          "text": "onclude that this agentic approach represents a promising framework for efficient, consistent, and autonomous scientific workflows in the geosciences. This workflow design is to empower geoscientists with tools for making informed and speedy decisions.",
+          "embedding_id": "emb_17e5c6725a95_chunk_6"
+        }
+      ],
+      "added_at": "2026-01-20T21:03:37.983826"
+    },
+    "bc8f78fe3c82": {
+      "paper_id": "bc8f78fe3c82",
+      "handle": "P16",
+      "title": "A Review of Research on AI-Assisted Code Generation and AI-Driven Code Review",
+      "authors": [
+        "Yuzhi Wang"
+      ],
+      "year": 2025,
+      "venue": "Semantic Scholar",
+      "doi_or_arxiv": "https://www.semanticscholar.org/paper/fb7d24843191c299d73cc3118518f59bcefdd58d",
+      "url": "https://www.semanticscholar.org/paper/fb7d24843191c299d73cc3118518f59bcefdd58d",
+      "source": "Semantic Scholar",
+      "abstract": "With the significant breakthroughs of deep learning technologies such as large language models (LLMs) in the field of code analysis, AI has evolved from an auxiliary tool to a key technology that deeply participates in code optimization and resolving performance issues. As modern software system architectures become increasingly complex, the requirements for their performance have also become more stringent. During the coding stage, developers find it difficult to effectively identify and resolve potential performance issues using traditional methods. This review focuses on the application of artificial intelligence in two key areas: AI-assisted intelligent code generation and AI-povered code review. The review systematically analyzed the application of LLMs in software development, revealing a situation where efficiency gains coexist with quality challenges. In terms of code generation, models such as Code Llama and Copilot have significantly accelerated the development process. In the field of code review, AI can effectively handle code standards and low-severity defects. However, in the future, this field still needs to address the issues of the reliability and security of the code generated by LLMs, as well as the insufficient explainability of the results of automated performance analysis. The future research focus in this field lies in addressing issues such as the lack of interpretability and insufficient domain knowledge of LLMs. It is necessary to prioritize enhancing the reliability of AI recommendations and promoting the transformation of AI from an auxiliary tool to an intelligent Agent with self-repair capabilities, in order to achieve a truly efficient and secure human-machine collaboration paradigm. This article systematically reviews the relevant progress, aiming to promote the transformation of software engineering from an artificial-driven model to an AI-enhanced automated paradigm. It provides theoretical references for ensuring the quality of backend code, improving product delivery speed, and enhancing system reliability.",
+      "chunks": [
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_0",
+          "text": "With the significant breakthroughs of deep learning technologies such as large language models (LLMs) in the field of code analysis, AI has evolved from an auxiliary tool to a key technology that deeply participates in code optimization and resolving performance issues. As modern software system arc",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_0"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_1",
+          "text": "hitectures become increasingly complex, the requirements for their performance have also become more stringent. During the coding stage, developers find it difficult to effectively identify and resolve potential performance issues using traditional methods. This review focuses on the application of ",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_1"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_2",
+          "text": "artificial intelligence in two key areas: AI-assisted intelligent code generation and AI-povered code review. The review systematically analyzed the application of LLMs in software development, revealing a situation where efficiency gains coexist with quality challenges. In terms of code generation,",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_2"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_3",
+          "text": " models such as Code Llama and Copilot have significantly accelerated the development process. In the field of code review, AI can effectively handle code standards and low-severity defects. However, in the future, this field still needs to address the issues of the reliability and security of the c",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_3"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_4",
+          "text": "ode generated by LLMs, as well as the insufficient explainability of the results of automated performance analysis. The future research focus in this field lies in addressing issues such as the lack of interpretability and insufficient domain knowledge of LLMs. It is necessary to prioritize enhancin",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_4"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_5",
+          "text": "g the reliability of AI recommendations and promoting the transformation of AI from an auxiliary tool to an intelligent Agent with self-repair capabilities, in order to achieve a truly efficient and secure human-machine collaboration paradigm. This article systematically reviews the relevant progres",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_5"
+        },
+        {
+          "chunk_id": "bc8f78fe3c82_chunk_6",
+          "text": "s, aiming to promote the transformation of software engineering from an artificial-driven model to an AI-enhanced automated paradigm. It provides theoretical references for ensuring the quality of backend code, improving product delivery speed, and enhancing system reliability.",
+          "embedding_id": "emb_bc8f78fe3c82_chunk_6"
+        }
+      ],
+      "added_at": "2026-01-20T21:03:37.988474"
     }
   },
   "handle_map": {
@@ -253,13 +780,23 @@
     "9d0a1d699b44": "P3",
     "5bd3013489c6": "P4",
     "821afd5eaa81": "P5",
-    "ef10ab94f8d8": "P6"
+    "ef10ab94f8d8": "P6",
+    "1508fb741fb0": "P7",
+    "1f233e710765": "P8",
+    "05b904ce055c": "P9",
+    "775c3563c44e": "P10",
+    "bed5bf7c52a3": "P11",
+    "556f24d728f4": "P12",
+    "76bbe3aba144": "P13",
+    "d882540cb2d1": "P14",
+    "17e5c6725a95": "P15",
+    "bc8f78fe3c82": "P16"
   },
-  "next_handle": 7,
+  "next_handle": 17,
   "metadata": {
     "created_at": "2025-12-24T11:18:43.717928",
-    "last_updated": "2026-01-20T20:11:31.426976",
-    "total_papers": 6,
-    "total_chunks": 25
+    "last_updated": "2026-01-20T21:03:37.988474",
+    "total_papers": 16,
+    "total_chunks": 87
   }
 }
