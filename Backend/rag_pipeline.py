@@ -6,9 +6,13 @@ import os
 import json
 import logging
 import time
-from typing import List, Dict, Any
+import hashlib
+from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 from sentence_transformers import SentenceTransformer
+
+# Import centralized store
+from evidence_store import evidence_store
 
 logger = logging.getLogger(__name__)
 
@@ -146,37 +150,56 @@ class RAGPipeline:
         self.metadata[title] = base_meta
         self._save_metadata()
 
-    def add_papers(self, papers: List[Dict[str, Any]]) -> None:
-        """Bulk-add papers with batch processing for efficiency."""
+    def add_papers(self, papers: List[Dict[str, Any]]) -> List[str]:
+        """Bulk-add papers with batch processing for efficiency.
+        
+        Returns:
+            List of P# handles assigned to the papers.
+        """
         if not papers:
-            return
+            return []
         
         logger.info(f"Batch processing {len(papers)} papers")
         all_docs = []
+        handles = []
         
+        # First, add all papers to the Evidence Store to get P# handles
         for p in papers:
             title = p.get("title") or "Untitled"
             abstract = p.get("abstract") or ""
-            source = p.get("source", "Unknown")
             
             if not abstract or not abstract.strip():
                 logger.debug(f"Skipping paper with empty abstract: {title}")
                 continue
             
-            # Prepare metadata
+            # Add to Evidence Store and get P# handle
+            handle = evidence_store.add_paper(
+                title=title,
+                authors=p.get("authors", "Unknown"),
+                year=p.get("year", 0),
+                venue=p.get("source", "Unknown"),
+                doi_or_arxiv=p.get("url", ""),
+                abstract=abstract,
+                url=p.get("url", ""),
+                source=p.get("source", "Unknown")
+            )
+            handles.append(handle)
+            
+            # Prepare metadata with P# handle
             meta = {
                 "title": title,
-                "source": source,
+                "source": p.get("source", "Unknown"),
                 "authors": p.get("authors"),
                 "year": p.get("year"),
                 "url": p.get("url"),
+                "handle": handle,  # Include P# handle for citation tracking
             }
             
             # Split into chunks
             splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
             chunks = splitter.split_text(abstract or title)
             
-            # Create documents
+            # Create documents with handle in metadata
             for chunk in chunks:
                 all_docs.append(Document(page_content=chunk, metadata=meta))
             
@@ -190,6 +213,9 @@ class RAGPipeline:
             self._save_metadata()
         else:
             logger.warning("No valid documents to add")
+        
+        logger.info(f"Assigned handles: {handles}")
+        return handles
 
     # --------------------
     # Retrieval
@@ -198,7 +224,7 @@ class RAGPipeline:
         """Return structured search results for use by tools/agents.
 
         Each result contains page_content and metadata including title,
-        source, authors, year, and url when available.
+        source, authors, year, url, and P# handle when available.
         """
         start_time = time.time()
         cache_key = f"{query}::k={k}"
@@ -229,6 +255,7 @@ class RAGPipeline:
                     "authors": meta.get("authors"),
                     "year": meta.get("year"),
                     "url": meta.get("url"),
+                    "handle": meta.get("handle"),  # Include P# handle from EvidenceStore
                 }
             )
 
@@ -247,14 +274,18 @@ class RAGPipeline:
     def search(self, query: str, k: int = 4) -> str:
         """Human/LLM-friendly string view of retrieved evidence.
 
-        This is what the RAG tool currently exposes to agents. It keeps
-        explicit citation handles [P1], [P2], ... to encourage traceable
-        referencing in downstream reasoning.
+        This is what the RAG tool currently exposes to agents. Uses
+        real P# handles from the EvidenceStore for consistent citation tracking.
         """
         results = self.similarity_search(query, k=k)
+        
+        if not results:
+            return "INSUFFICIENT_EVIDENCE: No supporting passages found in the current corpus."
+        
         lines = []
         for idx, r in enumerate(results, start=1):
-            handle = f"P{idx}"
+            # Use actual handle from metadata if available, otherwise fallback
+            handle = r.get("handle") or f"P{idx}"
             title = r.get("title", "Untitled")
             source = r.get("source", "N/A")
             authors = r.get("authors") or "Unknown authors"
@@ -269,7 +300,7 @@ class RAGPipeline:
             lines.append(f"{header}\n---\n{body}")
 
         if not lines:
-            return "No supporting passages found in the current corpus."
+            return "INSUFFICIENT_EVIDENCE: No supporting passages found in the current corpus."
 
         return "\n\n".join(lines)
 

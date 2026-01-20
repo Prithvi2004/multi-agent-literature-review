@@ -192,11 +192,14 @@ os.makedirs(final_report_folder, exist_ok=True)
 print(f"\n{'='*80}")
 print(f"🚀 Multi-Agent Literature Review System - Research Grade")
 print(f"{'='*80}")
+print(f"\n📁 SESSION OUTPUTS")
+print(f"{'='*80}")
 print(f"📁 Main Session: {session_folder}")
 print(f"   (This folder will be overwritten each run)")
 print(f"   📝 review/literature_review.log")
 print(f"   🖥️  terminal_output/terminal_output.txt")
 print(f"   📊 metrics/metrics.json")
+print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
 print(f"   📄 final_report/final_research_report.md")
 print(f"   📄 final_report/detailed_agent_analysis.txt")
 print(f"{'='*80}\n")
@@ -236,6 +239,7 @@ print(f"📁 Research Session: {session_folder}")
 print(f"   📝 review/literature_review.log")
 print(f"   🖥️  terminal_output/terminal_output.txt")
 print(f"   📊 metrics/metrics.json")
+print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
 print(f"   📄 final_report/final_research_report.md")
 print(f"📄 Output file: {output_filename}")
 print(f"📊 Metrics file: {metrics_filename}")
@@ -250,11 +254,16 @@ from agents import (
     method_comparison_agent, gap_analysis_agent, novelty_agent
 )
 from tasks import create_tasks
-from tools import rag_tool, rag_tool_instance, citation_verifier_tool
+from tools import rag_tool, rag_tool_instance, citation_verifier_tool, evidence_validator
 from rag_pipeline import RAGPipeline
+from evidence_store import evidence_store
+from query_rewriter import query_rewriter
 
 # Initialize global RAG
 rag_pipeline = RAGPipeline()
+
+# Wire up the evidence validator with the store
+evidence_validator.set_store(evidence_store)
 
 def fetch_arxiv_papers(query: str, max_results=5):
     """Fetch papers from arXiv with retry logic and rate limiting."""
@@ -425,11 +434,18 @@ def fetch_pubmed_papers(query: str, max_results=5):
 def retrieve_and_index_papers(user_idea: str, domains: list):
     """Retrieve papers from multiple sources in parallel for efficiency."""
     start_time = time.time()
-    query = f"{user_idea} {' '.join(domains)}"
+    
+    # Use query rewriter for improved retrieval
+    base_query = f"{user_idea} {' '.join(domains)}"
+    expanded_query = query_rewriter.rewrite(user_idea, domains)
+    
     logger.info(f"Starting paper retrieval for idea: '{user_idea}'")
     logger.info(f"Domains: {domains}")
-    logger.info(f"Combined query: '{query}'")
-    print("🔍 Retrieving papers from arXiv, Semantic Scholar, PubMed in parallel...")
+    logger.info(f"Base query: '{base_query}'")
+    logger.info(f"Expanded query: '{expanded_query}'")
+    print(f"🔍 Retrieving papers with expanded query...")
+    print(f"   Original: {user_idea[:60]}...")
+    print(f"   Expanded: {expanded_query[:80]}...")
     
     retrieval_start = time.time()
     papers = []
@@ -437,9 +453,9 @@ def retrieve_and_index_papers(user_idea: str, domains: list):
     # Parallel fetching for improved performance
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = {
-            executor.submit(fetch_arxiv_papers, query, 4): "arXiv",
-            executor.submit(fetch_semantic_scholar_papers, query, 3): "Semantic Scholar",
-            executor.submit(fetch_pubmed_papers, query, 3): "PubMed"
+            executor.submit(fetch_arxiv_papers, expanded_query, 4): "arXiv",
+            executor.submit(fetch_semantic_scholar_papers, expanded_query, 3): "Semantic Scholar",
+            executor.submit(fetch_pubmed_papers, expanded_query, 3): "PubMed"
         }
         
         for future in as_completed(futures):
@@ -586,18 +602,41 @@ def run_analysis(user_idea: str, selected_domains: list):
     logger.info(f"="*80)
     logger.info(str(result))
     
+    # Post-processing validation
+    result_str = str(result)
+    
+    # Check for valid citations
+    citation_valid, citation_msg = evidence_validator.validate_output(result_str)
+    logger.info(f"Citation validation: {citation_msg}")
+    
+    # Check for topic drift
+    topic_valid, topic_msg = evidence_validator.check_topic_drift(user_idea, result_str)
+    logger.info(f"Topic validation: {topic_msg}")
+    
+    # Log validation results
+    metrics.log_output("citation_validation", citation_msg)
+    metrics.log_output("topic_validation", topic_msg)
+    
+    if not citation_valid:
+        logger.warning(f"Citation issues detected: {citation_msg}")
+        print(f"⚠️  Citation validation: {citation_msg}")
+    
+    if not topic_valid:
+        logger.warning(f"Topic drift detected: {topic_msg}")
+        print(f"⚠️  Topic validation: {topic_msg}")
+    
     # Log outputs to metrics
     analysis_duration = time.time() - analysis_start
     metrics.log_timing("total_analysis", analysis_duration)
     metrics.log_timing("crew_execution", crew_duration)
-    metrics.log_output("final_report", str(result)[:1000])  # First 1000 chars
-    metrics.log_output("final_report_length", len(str(result)))
+    metrics.log_output("final_report", result_str[:1000])  # First 1000 chars
+    metrics.log_output("final_report_length", len(result_str))
     metrics.save_realtime(metrics_filename)
     metrics.log_output("papers_analyzed", len(papers))
     metrics.log_output("success", True)
     
     print(f"\n✅ Analysis completed in {analysis_duration:.2f}s")
-    return str(result)
+    return result_str
 
 # CLI Entry supporting JSON inputs for paper data and optional fields
 if __name__ == "__main__":
@@ -780,6 +819,7 @@ if __name__ == "__main__":
         print(f"   📝 review/literature_review.log")
         print(f"   🖥️  terminal_output/terminal_output.txt")
         print(f"   📊 metrics/metrics.json")
+        print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
         print(f"   📄 final_report/final_research_report.md  ← Synthesized Report")
         print(f"   📄 final_report/detailed_agent_analysis.txt  ← Detailed Agent Outputs")
         print(f"⏱️  Total time: {session_elapsed:.2f}s")
