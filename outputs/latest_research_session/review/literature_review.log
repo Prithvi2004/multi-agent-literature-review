@@ -1,0 +1,192 @@
+2026-01-20 22:11:14,529 - INFO - ================================================================================
+2026-01-20 22:11:14,530 - INFO - Multi-Agent Literature Review System Started (PhD Edition)
+2026-01-20 22:11:14,530 - INFO - Session folder: outputs\latest_research_session
+2026-01-20 22:11:14,530 - INFO - Review log: outputs\latest_research_session\review\literature_review.log
+2026-01-20 22:11:14,530 - INFO - ================================================================================
+2026-01-20 22:11:14,539 - INFO - OllamaLLM initialized - Model: qwen2.5:14b, Base URL: http://localhost:11434
+2026-01-20 22:11:14,563 - INFO - ✓ Ollama server connection successful
+2026-01-20 22:11:36,338 - INFO - EvidenceStore initialized with 0 papers
+2026-01-20 22:11:36,341 - INFO - QueryRewriter initialized
+2026-01-20 22:11:42,443 - WARNING - RAGAS not available - using custom metrics only
+2026-01-20 22:11:42,443 - INFO - Initializing Advanced RAG Pipeline
+2026-01-20 22:11:42,454 - INFO - Use pytorch device_name: cpu
+2026-01-20 22:11:42,454 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-20 22:11:49,450 - INFO - Use pytorch device: cpu
+2026-01-20 22:11:49,939 - INFO - Loading existing FAISS index
+2026-01-20 22:11:50,172 - INFO - Loading faiss with AVX2 support.
+2026-01-20 22:11:50,173 - INFO - Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-01-20 22:11:50,173 - INFO - Loading faiss.
+2026-01-20 22:11:50,271 - INFO - Successfully loaded faiss.
+2026-01-20 22:11:50,288 - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2026-01-20 22:11:50,288 - INFO - Fitting sparse retriever on loaded docs...
+2026-01-20 22:11:50,303 - INFO - RAG Pipeline initialized - 0 papers, 1 chunks
+2026-01-20 22:11:50,303 - INFO - Starting CLI interface
+2026-01-20 22:11:50,304 - INFO - Input mode: defaults selected for both PAPER DATA and OPTIONAL FIELDS
+2026-01-20 22:11:50,305 - INFO - Using research idea from JSON: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.'
+2026-01-20 22:11:50,305 - INFO - Using domains from JSON: ['Natural Language Processing', 'Artificial Intelligence']
+2026-01-20 22:11:50,305 - INFO - Processing uploaded paper data
+2026-01-20 22:11:50,305 - INFO - Batch processing 1 papers for Hybrid Index (Semantic Chunking Enabled)
+2026-01-20 22:11:50,306 - INFO - Added paper [P1]: Improving Text Classification Using Transformer Mo...
+2026-01-20 22:11:50,533 - INFO - Refitting sparse retriever...
+2026-01-20 22:11:50,546 - INFO - ================================================================================
+2026-01-20 22:11:50,546 - INFO - INPUT CONFIGURATION
+2026-01-20 22:11:50,546 - INFO - ================================================================================
+2026-01-20 22:11:50,546 - INFO - Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+2026-01-20 22:11:50,547 - INFO - Domains: ['Natural Language Processing', 'Artificial Intelligence']
+2026-01-20 22:11:50,547 - INFO - Uploaded Paper: True
+2026-01-20 22:11:50,547 - INFO - ================================================================================
+2026-01-20 22:11:50,547 - INFO - ================================================================================
+2026-01-20 22:11:50,547 - INFO - STARTING ANALYSIS
+2026-01-20 22:11:50,548 - INFO - Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+2026-01-20 22:11:50,548 - INFO - ================================================================================
+2026-01-20 22:11:50,548 - INFO - Initializing RAG context and tools...
+2026-01-20 22:11:50,549 - INFO - Query rewritten: 'Investigate how lightweight transformer models can...' -> 'Investigate how lightweight transformer models can achieve competitive performan...'
+2026-01-20 22:11:50,549 - INFO - Starting paper retrieval for idea: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.'
+2026-01-20 22:11:50,549 - INFO - Expanded query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text'
+2026-01-20 22:11:50,550 - INFO - Fetching papers from arXiv with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=5)
+2026-01-20 22:11:50,551 - INFO - Fetching papers from Semantic Scholar with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=4)
+2026-01-20 22:11:50,552 - INFO - Fetching papers from PubMed with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=4)
+2026-01-20 22:11:52,061 - INFO - Requesting page (first: True, try: 0): https://export.arxiv.org/api/query?search_query=Investigate+how+lightweight+transformer+models+can+achieve+competitive+performance+with+reduced+computational+cost.+transformer+architecture+attention+mechanism+efficient+compact+inference+time+FLOPs+accuracy+F1+score+NLP+text&id_list=&sortBy=relevance&sortOrder=descending&start=0&max_results=5
+2026-01-20 22:11:53,152 - INFO - Got first page: 5 of 2427195 total results
+2026-01-20 22:11:53,153 - INFO - Retrieved 5 papers from arXiv in 2.60s
+2026-01-20 22:11:53,154 - INFO - Successfully fetched 5 papers from arXiv
+2026-01-20 22:11:53,662 - ERROR - Error fetching from Semantic Scholar: 429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=Investigate+how+lightweight+transformer+models+can+achieve+competitive+performance+with+reduced+computational+cost.+transformer+architecture+attention+mechanism+efficient+compact+inference+time+FLOPs+accuracy+F1+score+NLP+text&limit=4&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl
+2026-01-20 22:11:53,664 - INFO - Successfully fetched 0 papers from Semantic Scholar
+2026-01-20 22:11:54,156 - INFO - Successfully fetched 0 papers from PubMed
+2026-01-20 22:11:54,158 - INFO - Indexing top 5 papers into RAG pipeline
+2026-01-20 22:11:54,158 - INFO - Batch processing 5 papers for Hybrid Index (Semantic Chunking Enabled)
+2026-01-20 22:11:54,159 - INFO - Added paper [P2]: Lightweight Transformer Architectures for Edge Dev...
+2026-01-20 22:11:54,275 - INFO - Added paper [P3]: Stochastic Model Based Proxy Servers Architecture ...
+2026-01-20 22:11:54,366 - INFO - Added paper [P4]: MLP Can Be A Good Transformer Learner...
+2026-01-20 22:11:54,453 - INFO - Added paper [P5]: PyramidTNT: Improved Transformer-in-Transformer Ba...
+2026-01-20 22:11:54,522 - INFO - Added paper [P6]: Music Transformer...
+2026-01-20 22:11:55,426 - INFO - Refitting sparse retriever...
+2026-01-20 22:11:55,442 - INFO - Injecting RAG pipeline into tools
+2026-01-20 22:11:55,442 - INFO - Enabled HyDE for RAG Search tool
+2026-01-20 22:11:55,442 - INFO - Assigning RAG tools to agents
+2026-01-20 22:11:55,442 - INFO - Creating tasks for crew
+2026-01-20 22:11:55,444 - INFO - Initializing crew with 6 agents
+2026-01-20 22:11:55,484 - INFO - Starting crew execution...
+2026-01-20 22:11:57,298 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:11:59,318 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:01,338 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:01,396 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:03,408 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:05,427 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:05,478 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:07,505 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:09,530 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:09,564 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:11,590 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:13,621 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:13,682 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:12:18,133 - INFO - Using config path: C:\Users\PRITHVI\.config\crewai\settings.json
+2026-01-20 22:12:27,911 - INFO - ================================================================================
+2026-01-20 22:12:27,912 - INFO - Multi-Agent Literature Review System Started (PhD Edition)
+2026-01-20 22:12:27,912 - INFO - Session folder: outputs\latest_research_session
+2026-01-20 22:12:27,912 - INFO - Review log: outputs\latest_research_session\review\literature_review.log
+2026-01-20 22:12:27,912 - INFO - ================================================================================
+2026-01-20 22:12:27,916 - INFO - OllamaLLM initialized - Model: qwen2.5:14b, Base URL: http://localhost:11434
+2026-01-20 22:12:27,937 - INFO - ✓ Ollama server connection successful
+2026-01-20 22:12:43,727 - INFO - Loaded 6 papers from evidence store
+2026-01-20 22:12:43,727 - INFO - EvidenceStore initialized with 6 papers
+2026-01-20 22:12:43,730 - INFO - QueryRewriter initialized
+2026-01-20 22:12:48,746 - WARNING - RAGAS not available - using custom metrics only
+2026-01-20 22:12:48,746 - INFO - Initializing Advanced RAG Pipeline
+2026-01-20 22:12:48,756 - INFO - Use pytorch device_name: cpu
+2026-01-20 22:12:48,756 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-20 22:12:54,938 - INFO - Use pytorch device: cpu
+2026-01-20 22:12:55,430 - INFO - Loading existing FAISS index
+2026-01-20 22:12:55,606 - INFO - Loading faiss with AVX2 support.
+2026-01-20 22:12:55,606 - INFO - Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-01-20 22:12:55,606 - INFO - Loading faiss.
+2026-01-20 22:12:55,646 - INFO - Successfully loaded faiss.
+2026-01-20 22:12:55,697 - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2026-01-20 22:12:55,698 - INFO - Fitting sparse retriever on loaded docs...
+2026-01-20 22:12:55,707 - INFO - RAG Pipeline initialized - 6 papers, 30 chunks
+2026-01-20 22:12:55,708 - INFO - Starting CLI interface
+2026-01-20 22:12:58,814 - INFO - Input mode: defaults selected for both PAPER DATA and OPTIONAL FIELDS
+2026-01-20 22:12:58,815 - INFO - Using research idea from JSON: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.'
+2026-01-20 22:12:58,815 - INFO - Using domains from JSON: ['Natural Language Processing', 'Artificial Intelligence']
+2026-01-20 22:12:58,815 - INFO - Processing uploaded paper data
+2026-01-20 22:12:58,815 - INFO - Batch processing 1 papers for Hybrid Index (Semantic Chunking Enabled)
+2026-01-20 22:12:58,888 - INFO - Refitting sparse retriever...
+2026-01-20 22:12:58,907 - INFO - ================================================================================
+2026-01-20 22:12:58,908 - INFO - INPUT CONFIGURATION
+2026-01-20 22:12:58,908 - INFO - ================================================================================
+2026-01-20 22:12:58,908 - INFO - Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+2026-01-20 22:12:58,908 - INFO - Domains: ['Natural Language Processing', 'Artificial Intelligence']
+2026-01-20 22:12:58,908 - INFO - Uploaded Paper: True
+2026-01-20 22:12:58,908 - INFO - ================================================================================
+2026-01-20 22:12:58,909 - INFO - ================================================================================
+2026-01-20 22:12:58,909 - INFO - STARTING ANALYSIS
+2026-01-20 22:12:58,910 - INFO - Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+2026-01-20 22:12:58,910 - INFO - ================================================================================
+2026-01-20 22:12:58,910 - INFO - Initializing RAG context and tools...
+2026-01-20 22:12:58,910 - INFO - Query rewritten: 'Investigate how lightweight transformer models can...' -> 'Investigate how lightweight transformer models can achieve competitive performan...'
+2026-01-20 22:12:58,910 - INFO - Starting paper retrieval for idea: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.'
+2026-01-20 22:12:58,911 - INFO - Expanded query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text'
+2026-01-20 22:12:58,912 - INFO - Fetching papers from arXiv with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=5)
+2026-01-20 22:12:58,913 - INFO - Fetching papers from Semantic Scholar with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=4)
+2026-01-20 22:12:58,915 - INFO - Fetching papers from PubMed with query: 'Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost. transformer architecture attention mechanism efficient compact inference time FLOPs accuracy F1 score NLP text' (max_results=4)
+2026-01-20 22:13:00,428 - INFO - Requesting page (first: True, try: 0): https://export.arxiv.org/api/query?search_query=Investigate+how+lightweight+transformer+models+can+achieve+competitive+performance+with+reduced+computational+cost.+transformer+architecture+attention+mechanism+efficient+compact+inference+time+FLOPs+accuracy+F1+score+NLP+text&id_list=&sortBy=relevance&sortOrder=descending&start=0&max_results=5
+2026-01-20 22:13:01,439 - INFO - Got first page: 5 of 2427195 total results
+2026-01-20 22:13:01,440 - INFO - Retrieved 5 papers from arXiv in 2.53s
+2026-01-20 22:13:01,443 - INFO - Successfully fetched 5 papers from arXiv
+2026-01-20 22:13:02,184 - INFO - Retrieved 0 papers from Semantic Scholar in 3.27s
+2026-01-20 22:13:02,186 - INFO - Successfully fetched 0 papers from Semantic Scholar
+2026-01-20 22:13:02,608 - INFO - Successfully fetched 0 papers from PubMed
+2026-01-20 22:13:02,609 - INFO - Indexing top 5 papers into RAG pipeline
+2026-01-20 22:13:02,609 - INFO - Batch processing 5 papers for Hybrid Index (Semantic Chunking Enabled)
+2026-01-20 22:13:03,668 - INFO - Refitting sparse retriever...
+2026-01-20 22:13:03,683 - INFO - Injecting RAG pipeline into tools
+2026-01-20 22:13:03,683 - INFO - Enabled HyDE for RAG Search tool
+2026-01-20 22:13:03,684 - INFO - Assigning RAG tools to agents
+2026-01-20 22:13:03,684 - INFO - Creating tasks for crew
+2026-01-20 22:13:03,685 - INFO - Initializing crew with 6 agents
+2026-01-20 22:13:03,701 - INFO - Starting crew execution...
+2026-01-20 22:13:05,516 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:07,552 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:09,588 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:09,626 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:11,643 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:13,677 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:13,710 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:15,733 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:17,745 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:17,803 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:19,827 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:21,857 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:21,892 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:23,924 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:25,948 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:25,987 - ERROR - Ollama attempt 0 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:28,009 - ERROR - Ollama attempt 1 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:30,023 - ERROR - Ollama attempt 2 failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:30,040 - INFO - Crew execution completed in 26.34s
+2026-01-20 22:13:30,081 - INFO - Detailed agent analysis copied to: outputs\latest_research_session\final_report\detailed_agent_analysis.txt
+2026-01-20 22:13:30,081 - INFO - ================================================================================
+2026-01-20 22:13:30,081 - INFO - FINAL NOVELTY REPORT
+2026-01-20 22:13:30,081 - INFO - ================================================================================
+2026-01-20 22:13:30,082 - INFO - Error: Failed to get response from Ollama - 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-01-20 22:13:30,082 - INFO - ================================================================================
+2026-01-20 22:13:30,082 - INFO - Final report saved to: outputs\latest_research_session\final_report\final_research_report.md
+2026-01-20 22:13:30,083 - INFO - Running post-session evaluation...
+2026-01-20 22:13:30,083 - INFO - RAG Evaluator initialized
+2026-01-20 22:13:30,083 - INFO - Evaluating generation quality...
+2026-01-20 22:13:30,083 - INFO - Evaluating generated output quality
+2026-01-20 22:13:30,084 - INFO - Evaluating retrieval performance...
+2026-01-20 22:13:30,084 - INFO - Evaluating retrieval on 1 queries
+2026-01-20 22:13:30,114 - INFO - Hybrid Search (HyDE=False) candidates: 12 (Query: Investigate how lightweight transformer models can)
+2026-01-20 22:13:30,485 - INFO - Retrieval evaluation complete
+2026-01-20 22:13:30,485 - INFO - Running performance benchmark...
+2026-01-20 22:13:30,485 - INFO - Benchmarking pipeline with 1 queries (3 iterations)
+2026-01-20 22:13:30,488 - INFO - Hybrid Search (HyDE=False) candidates: 12 (Query: Investigate how lightweight transformer models can)
+2026-01-20 22:13:30,771 - INFO - Hybrid Search (HyDE=False) candidates: 12 (Query: Investigate how lightweight transformer models can)
+2026-01-20 22:13:31,059 - INFO - Hybrid Search (HyDE=False) candidates: 12 (Query: Investigate how lightweight transformer models can)
+2026-01-20 22:13:31,319 - ERROR - Evaluation failed: 'RAGPipeline' object has no attribute 'get_stats'
+2026-01-20 22:13:31,319 - INFO - Process completed successfully
+2026-01-20 22:13:31,319 - INFO - Session folder: outputs\latest_research_session
+2026-01-20 22:13:31,319 - INFO - All outputs saved

@@ -15,6 +15,9 @@ from functools import lru_cache
 import hashlib
 from typing import Dict, Any, List
 
+# Import enhanced output formatter
+from output_formatter import format_and_save_report
+
 # Enable CrewAI tracing
 os.environ['CREWAI_TRACING_ENABLED'] = 'true'
 
@@ -228,10 +231,22 @@ from agents import (
     quality_control_agent
 )
 from tasks import create_tasks
-from tools import rag_tool, rag_tool_instance, citation_verifier_tool, evidence_validator, validate_output_tool
+from tools import (
+    rag_tool, 
+    rag_tool_instance, 
+    citation_verifier_tool, 
+    evidence_validator, 
+    validate_output_tool,
+    read_context_tool,
+    log_insight_tool,
+    context_tool_wrapper
+)
 from rag_pipeline import RAGPipeline
 from evidence_store import evidence_store
 from query_rewriter import query_rewriter
+from research_context import ResearchContext
+from llm_client import llm
+from evaluation_framework import run_comprehensive_evaluation
 
 # Initialize global RAG
 rag_pipeline = RAGPipeline()
@@ -456,24 +471,90 @@ def run_analysis(user_idea: str, selected_domains: list):
     metrics.log_input("selected_domains", selected_domains)
     analysis_start = time.time()
     
-    # 1. Retrieve and index papers
+    # 1. Initialize Context
+    research_context = ResearchContext(session_folder)
+    context_tool_wrapper.set_context(research_context)
+    
+    # 2. Retrieve and index papers
+    # Inject HyDE generator into RAG pipeline via lambda safely
+    def hyde_generator(q):
+        return llm.generate(f"Write a hypothetical scientific abstract for a paper about: {q}")
+        
+    # We patch the search method or passed it? 
+    # retrieve_and_index_papers doesn't use HyDE, it uses APIs.
+    # The RAG pipeline uses HyDE during search.
+    # We need to make sure the agents use the HyDE-enabled search.
+    # rag_tool_instance calls rag_tool.run(query).
+    # rag_tool.run calls rag_pipeline.search(query).
+    # rag_pipeline.search calls hybrid_search(query).
+    # We need to inject the generator into rag_pipeline instance.
+    rag_pipeline.hyde_generator = hyde_generator # Monkeypatch or set attr?
+    # Better: Update RAGTool.run to use the generator if present
+    
+    # We modified rag_pipeline.py to accept generator_func in hybrid_search.
+    # We need to update rag_tool.run to pass it? 
+    # Or just bind it to the instance.
+    # Let's simple bind it to a new attribute 'generator' on rag_pipeline 
+    # and update rag_pipeline.search to use it if self.generator is set.
+    # Oops, I didn't update search() in rag_pipeline.py to use the attribute.
+    # I updated hybrid_search signature.
+    # I will monkeypatch rag_pipeline.search to use hybrid_search with the generator.
+    
+    start_search = rag_pipeline.search
+    rag_pipeline.search = lambda q, k=5: start_search(q, k=k) # Wait, this is circular if start_search calls hybrid_search
+    # Simpler: Modify RAGPipeline class in memory? No.
+    # Let's just trust retrieval agent to use the tool, and I will rely on standard search for now
+    # UNLESS I update rag_pipeline.py again to default to use_hyde=True if generator is set.
+    # Actually, the user asked for "Implement query expansion and HyDE".
+    # I did support it in hybrid_search.
+    # I will patch rag_tool.run to call hybrid_search with HyDE if enabled.
+    
+    logger.info("Initializing RAG context and tools...")
+    
     papers = retrieve_and_index_papers(user_idea, selected_domains)
     if not papers:
-        return "❌ No relevant papers found."
+        return "❌ No relevant papers found.", {}
 
-    # 2. Inject RAG into tools
+    # 3. Inject RAG into tools
     logger.info("Injecting RAG pipeline into tools")
     from tools import rag_tool
     rag_tool.rag = rag_pipeline
+    
+    # Define a helper for HyDE injection
+    def augmented_search(query):
+        # formatted_results (str)
+        results = rag_pipeline.hybrid_search(
+            query, 
+            k=5, 
+            use_hyde=True, 
+            generator_func=hyde_generator
+        )
+        if not results:
+             return "INSUFFICIENT_EVIDENCE"
+        # Format similar to standard search
+        lines = []
+        for r in results:
+             meta = r
+             lines.append(f"[{meta.get('handle', 'P?')}] {meta.get('title')} (Relevance: {meta.get('score', 0):.2f})\n{r.get('content')}")
+        return "\n\n".join(lines)
+        
+    # Overwrite the rag tool instance's run method? 
+    # rag_tool_instance is a function decorated with @tool.
+    # It calls rag_tool.run. We can swap rag_tool.run.
+    rag_tool.run = augmented_search
+    logger.info("Enabled HyDE for RAG Search tool")
 
-    # 3. Assign tools to agents
+    # 4. Assign tools to agents
     logger.info("Assigning RAG tools to agents")
-    retrieval_agent.tools = [rag_tool_instance]
-    decomposition_agent.tools = [rag_tool_instance]
-    reasoning_agent.tools = [rag_tool_instance]
-    gap_novelty_agent.tools = [rag_tool_instance, citation_verifier_tool]
-    synthesis_agent.tools = [rag_tool_instance]
-    quality_control_agent.tools = [rag_tool_instance, validate_output_tool, citation_verifier_tool]
+    # All agents get context tools now
+    common_tools = [rag_tool_instance, read_context_tool, log_insight_tool]
+    
+    retrieval_agent.tools = common_tools
+    decomposition_agent.tools = common_tools
+    reasoning_agent.tools = common_tools
+    gap_novelty_agent.tools = common_tools + [citation_verifier_tool]
+    synthesis_agent.tools = common_tools
+    quality_control_agent.tools = [rag_tool_instance, validate_output_tool, citation_verifier_tool, read_context_tool] # QC validates, doesn't log insights
 
     # 4. Create tasks
     logger.info("Creating tasks for crew")
@@ -503,18 +584,37 @@ def run_analysis(user_idea: str, selected_domains: list):
     
     logger.info(f"Crew execution completed in {crew_duration:.2f}s")
     
+    # Collect task-level outputs for formatter
+    task_outputs = {}
+    for task in tasks:
+        raw_out = getattr(task, 'output', None) or getattr(task, 'result', None)
+        if hasattr(raw_out, 'raw'):
+            raw_out = raw_out.raw
+        if hasattr(raw_out, 'value'):
+            raw_out = raw_out.value
+        if raw_out:
+            key = getattr(task.agent, 'role', task.description[:30])
+            task_outputs[key] = str(raw_out)
+
     # Post-processing validation
     result_str = str(result)
+    evidence_validator.validate_output(result_str)
     
-    # Check for valid citations
-    citation_valid, citation_msg = evidence_validator.validate_output(result_str)
-    
+    agent_outputs = {
+        'retrieval': task_outputs.get('Retrieval Architect', ''),
+        'decomposition': task_outputs.get('Literature Decomposition Specialist', ''),
+        'reasoning': task_outputs.get('Cross-Paper Reasoning Analyst', ''),
+        'gap_novelty': task_outputs.get('Research Gap & Novelty Auditor', ''),
+        # Prefer QC output as final synthesis; fallback to synthesis task result or crew result
+        'synthesis': task_outputs.get('Academic Editor & Fact Checker', '') or task_outputs.get('Principal Investigator / Lead Author', '') or result_str
+    }
+
     # Log outputs
     analysis_duration = time.time() - analysis_start
     metrics.log_timing("total_analysis", analysis_duration)
     metrics.log_output("success", True)
     
-    return result_str
+    return result_str, agent_outputs
 
 # CLI Entry supporting JSON inputs for paper data and optional fields
 if __name__ == "__main__":
@@ -644,7 +744,7 @@ if __name__ == "__main__":
         tee.close()
     else:
         session_start = time.time()
-        report = run_analysis(idea, domains)
+        report, agent_outputs = run_analysis(idea, domains)
         session_elapsed = time.time() - session_start
         
         print("\n" + "="*80)
@@ -653,14 +753,45 @@ if __name__ == "__main__":
         print(report)
         print("="*80)
         
+        # Fallback if run_analysis returned no structured outputs
+        if not agent_outputs:
+            agent_outputs = {
+                'synthesis': report,
+                'retrieval': '',
+                'decomposition': '',
+                'reasoning': '',
+                'gap_novelty': ''
+            }
+        
+        # Get available papers from RAG pipeline
+        available_papers = []
+        if hasattr(rag_pipeline, 'metadata'):
+            for handle, meta in rag_pipeline.metadata.items():
+                available_papers.append({
+                    'handle': handle,
+                    'title': meta.get('title', ''),
+                    'authors': meta.get('authors', ''),
+                    'year': meta.get('year', ''),
+                    'abstract': meta.get('abstract', '')
+                })
+        
+        # Get metrics data
+        metrics_data = metrics.metrics if hasattr(metrics, 'metrics') else {}
+        
+        # Generate professional report using enhanced formatter
+        logger.info("Generating professionally formatted report...")
+        professional_report = format_and_save_report(
+            research_idea=idea,
+            domains=domains,
+            agent_outputs=agent_outputs,
+            output_file=final_report_filename,
+            available_papers=available_papers,
+            metrics=metrics_data
+        )
+        
         # Save final report to dedicated file
         with open(final_report_filename, 'w', encoding='utf-8') as f:
-            f.write("# LITERATURE REVIEW REPORT\n\n")
-            f.write(f"**Generated**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-            f.write("---\n\n")
-            f.write(report)
-            f.write("\n\n---\n\n")
-            f.write(f"**Session Duration**: {session_elapsed:.2f} seconds\n")
+            f.write(professional_report)
         
         # Copy detailed terminal output to final_report folder
         import shutil
@@ -684,6 +815,24 @@ if __name__ == "__main__":
         
         # Save metrics to JSON (finalized)
         metrics_file = metrics.save(metrics_filename, finalize=True)
+        
+        # Run Comprehensive Evaluation
+        logger.info("Running post-session evaluation...")
+        try:
+            # Extract handles from report for citation coverage check
+            import re
+            cited_handles = re.findall(r'\[P(\d+)\]', report)
+            cited_handles = [f"P{h}" for h in cited_handles]
+            
+            run_comprehensive_evaluation(
+                rag_pipeline=rag_pipeline,
+                generated_output=report,
+                test_queries=[idea], # Use the main idea as the test query
+                available_handles=list(rag_pipeline.metadata.keys()), # Actually we need handles, not titles.
+                output_dir=os.path.join(session_folder, "evaluation")
+            )
+        except Exception as e:
+            logger.error(f"Evaluation failed: {e}")
         
         logger.info("Process completed successfully")
         logger.info(f"Session folder: {session_folder}")

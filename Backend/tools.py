@@ -132,6 +132,44 @@ class EvidenceValidator:
         
         return (True, f"OK: {score:.0%} topic relevance")
 
+class ContextTool:
+    """Tool for agents to read and write to the shared Research Context."""
+    
+    def __init__(self):
+        self.context = None # Injected by main.py
+        
+    def set_context(self, context):
+        self.context = context
+        
+    def log_insight(self, content: str, agent_name: str) -> str:
+        if self.context:
+            self.context.add_insight(content, source_agent=agent_name)
+            return "✅ Insight logged to Research Context."
+        return "❌ Context not initialized."
+        
+    def read_summary(self) -> str:
+        if self.context:
+            return self.context.get_context_summary()
+        return "No context available."
+
+# Initialize Context Tool
+context_tool_wrapper = ContextTool()
+
+@tool("Read Research Context")
+def read_context_tool() -> str:
+    """Read the current summary of insights, gaps, and findings from the shared session memory.
+    Use this to see what other agents have found so far to avoid duplication."""
+    return context_tool_wrapper.read_summary()
+
+@tool("Log Insight")
+def log_insight_tool(insight: str, agent_name: str) -> str:
+    """Log a key finding or insight into the shared memory. 
+    Args:
+        insight: The finding to record
+        agent_name: Your role name
+    """
+    return context_tool_wrapper.log_insight(insight, agent_name)
+
 
 # External tools (fallback, e.g., for metadata lookups beyond local corpus)
 search_tool = DuckDuckGoSearchRun()

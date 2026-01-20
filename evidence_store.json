@@ -1,0 +1,265 @@
+{
+  "papers": {
+    "32e1291e1532": {
+      "paper_id": "32e1291e1532",
+      "handle": "P1",
+      "title": "Improving Text Classification Using Transformer Models",
+      "authors": [
+        "Unknown"
+      ],
+      "year": 0,
+      "venue": "UserUploaded",
+      "doi_or_arxiv": "",
+      "url": "",
+      "source": "UserUploaded",
+      "abstract": "This paper explores the use of transformer-based architectures to enhance text classification accuracy across multiple NLP tasks.",
+      "chunks": [
+        {
+          "chunk_id": "32e1291e1532_chunk_0",
+          "text": "This paper explores the use of transformer-based architectures to enhance text classification accuracy across multiple NLP tasks.",
+          "embedding_id": "emb_32e1291e1532_chunk_0"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:50.305018"
+    },
+    "ef10ab94f8d8": {
+      "paper_id": "ef10ab94f8d8",
+      "handle": "P2",
+      "title": "Lightweight Transformer Architectures for Edge Devices in Real-Time Applications",
+      "authors": [
+        "Hema Hariharan Samson"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2601.03290v1",
+      "url": "http://arxiv.org/abs/2601.03290v1",
+      "source": "arXiv",
+      "abstract": "The deployment of transformer-based models on resource-constrained edge devices represents a critical challenge in enabling real-time artificial intelligence applications. This comprehensive survey examines lightweight transformer architectures specifically designed for edge deployment, analyzing recent advances in model compression, quantization, pruning, and knowledge distillation techniques. We systematically review prominent lightweight variants including MobileBERT, TinyBERT, DistilBERT, EfficientFormer, EdgeFormer, and MobileViT, providing detailed performance benchmarks on standard datasets such as GLUE, SQuAD, ImageNet-1K, and COCO. Our analysis encompasses current industry adoption patterns across major hardware platforms (NVIDIA Jetson, Qualcomm Snapdragon, Apple Neural Engine, ARM architectures), deployment frameworks (TensorFlow Lite, ONNX Runtime, PyTorch Mobile, CoreML), and optimization strategies. Experimental results demonstrate that modern lightweight transformers can achieve 75-96% of full-model accuracy while reducing model size by 4-10x and inference latency by 3-9x, enabling deployment on devices with as little as 2-5W power consumption. We identify sparse attention mechanisms, mixed-precision quantization (INT8/FP16), and hardware-aware neural architecture search as the most effective optimization strategies. Novel findings include memory-bandwidth bottleneck analysis revealing 15-40M parameter models achieve optimal hardware utilization (60-75% efficiency), quantization sweet spots for different model types, and comprehensive energy efficiency profiling across edge platforms. We establish real-time performance boundaries and provide a practical 6-step deployment pipeline achieving 8-12x size reduction with less than 2% accuracy degradation.",
+      "chunks": [
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_0",
+          "text": "The deployment of transformer-based models on resource-constrained edge devices represents a critical challenge in enabling real-time artificial intelligence applications. This comprehensive survey examines lightweight transformer architectures specifically designed for edge deployment, analyzing re",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_0"
+        },
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_1",
+          "text": "cent advances in model compression, quantization, pruning, and knowledge distillation techniques. We systematically review prominent lightweight variants including MobileBERT, TinyBERT, DistilBERT, EfficientFormer, EdgeFormer, and MobileViT, providing detailed performance benchmarks on standard data",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_1"
+        },
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_2",
+          "text": "sets such as GLUE, SQuAD, ImageNet-1K, and COCO. Our analysis encompasses current industry adoption patterns across major hardware platforms (NVIDIA Jetson, Qualcomm Snapdragon, Apple Neural Engine, ARM architectures), deployment frameworks (TensorFlow Lite, ONNX Runtime, PyTorch Mobile, CoreML), an",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_2"
+        },
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_3",
+          "text": "d optimization strategies. Experimental results demonstrate that modern lightweight transformers can achieve 75-96% of full-model accuracy while reducing model size by 4-10x and inference latency by 3-9x, enabling deployment on devices with as little as 2-5W power consumption. We identify sparse att",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_3"
+        },
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_4",
+          "text": "ention mechanisms, mixed-precision quantization (INT8/FP16), and hardware-aware neural architecture search as the most effective optimization strategies. Novel findings include memory-bandwidth bottleneck analysis revealing 15-40M parameter models achieve optimal hardware utilization (60-75% efficie",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_4"
+        },
+        {
+          "chunk_id": "ef10ab94f8d8_chunk_5",
+          "text": "ncy), quantization sweet spots for different model types, and comprehensive energy efficiency profiling across edge platforms. We establish real-time performance boundaries and provide a practical 6-step deployment pipeline achieving 8-12x size reduction with less than 2% accuracy degradation.",
+          "embedding_id": "emb_ef10ab94f8d8_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:54.158410"
+    },
+    "a6bf0c6b4ead": {
+      "paper_id": "a6bf0c6b4ead",
+      "handle": "P3",
+      "title": "Stochastic Model Based Proxy Servers Architecture for VoD to Achieve Reduced Client Waiting Time",
+      "authors": [
+        "T. R. GopalaKrishnan Nair",
+        "M. Dakshayini"
+      ],
+      "year": 2010,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/1002.1195v1",
+      "url": "http://arxiv.org/abs/1002.1195v1",
+      "source": "arXiv",
+      "abstract": "In a video on demand system, the main video repository may be far away from the user and generally has limited streaming capacities. Since a high quality video's size is huge, it requires high bandwidth for streaming over the internet. In order to achieve a higher video hit ratio, reduced client waiting time, distributed server's architecture can be used, in which multiple local servers are placed close to clients and, based on their regional demands video contents are cached dynamically from the main server. As the cost of proxy server is decreasing and demand for reduced waiting time is increasing day by day, newer architectures are explored, innovative schemes are arrived at. In this paper we present novel 3 layer architecture, includes main multimedia server, a Tracker and Proxy servers. This architecture targets to optimize the client waiting time. We also propose an efficient prefix caching and load sharing algorithm at the proxy server to allocate the cache according to regional popularity of the video. The simulation results demonstrate that it achieves significantly lower client's waiting time, when compared to the other existing algorithms.",
+      "chunks": [
+        {
+          "chunk_id": "a6bf0c6b4ead_chunk_0",
+          "text": "In a video on demand system, the main video repository may be far away from the user and generally has limited streaming capacities. Since a high quality video's size is huge, it requires high bandwidth for streaming over the internet. In order to achieve a higher video hit ratio, reduced client wai",
+          "embedding_id": "emb_a6bf0c6b4ead_chunk_0"
+        },
+        {
+          "chunk_id": "a6bf0c6b4ead_chunk_1",
+          "text": "ting time, distributed server's architecture can be used, in which multiple local servers are placed close to clients and, based on their regional demands video contents are cached dynamically from the main server. As the cost of proxy server is decreasing and demand for reduced waiting time is incr",
+          "embedding_id": "emb_a6bf0c6b4ead_chunk_1"
+        },
+        {
+          "chunk_id": "a6bf0c6b4ead_chunk_2",
+          "text": "easing day by day, newer architectures are explored, innovative schemes are arrived at. In this paper we present novel 3 layer architecture, includes main multimedia server, a Tracker and Proxy servers. This architecture targets to optimize the client waiting time. We also propose an efficient prefi",
+          "embedding_id": "emb_a6bf0c6b4ead_chunk_2"
+        },
+        {
+          "chunk_id": "a6bf0c6b4ead_chunk_3",
+          "text": "x caching and load sharing algorithm at the proxy server to allocate the cache according to regional popularity of the video. The simulation results demonstrate that it achieves significantly lower client's waiting time, when compared to the other existing algorithms.",
+          "embedding_id": "emb_a6bf0c6b4ead_chunk_3"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:54.273843"
+    },
+    "9d0a1d699b44": {
+      "paper_id": "9d0a1d699b44",
+      "handle": "P4",
+      "title": "MLP Can Be A Good Transformer Learner",
+      "authors": [
+        "Sihao Lin",
+        "Pumeng Lyu",
+        "Dongrui Liu",
+        "Tao Tang",
+        "Xiaodan Liang",
+        "Andy Song",
+        "Xiaojun Chang"
+      ],
+      "year": 2024,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2404.05657v1",
+      "url": "http://arxiv.org/abs/2404.05657v1",
+      "source": "arXiv",
+      "abstract": "Self-attention mechanism is the key of the Transformer but often criticized for its computation demands. Previous token pruning works motivate their methods from the view of computation redundancy but still need to load the full network and require same memory costs. This paper introduces a novel strategy that simplifies vision transformers and reduces computational load through the selective removal of non-essential attention layers, guided by entropy considerations. We identify that regarding the attention layer in bottom blocks, their subsequent MLP layers, i.e. two feed-forward layers, can elicit the same entropy quantity. Meanwhile, the accompanied MLPs are under-exploited since they exhibit smaller feature entropy compared to those MLPs in the top blocks. Therefore, we propose to integrate the uninformative attention layers into their subsequent counterparts by degenerating them into identical mapping, yielding only MLP in certain transformer blocks. Experimental results on ImageNet-1k show that the proposed method can remove 40% attention layer of DeiT-B, improving throughput and memory bound without performance compromise. Code is available at https://github.com/sihaoevery/lambda_vit.",
+      "chunks": [
+        {
+          "chunk_id": "9d0a1d699b44_chunk_0",
+          "text": "Self-attention mechanism is the key of the Transformer but often criticized for its computation demands. Previous token pruning works motivate their methods from the view of computation redundancy but still need to load the full network and require same memory costs. This paper introduces a novel st",
+          "embedding_id": "emb_9d0a1d699b44_chunk_0"
+        },
+        {
+          "chunk_id": "9d0a1d699b44_chunk_1",
+          "text": "rategy that simplifies vision transformers and reduces computational load through the selective removal of non-essential attention layers, guided by entropy considerations. We identify that regarding the attention layer in bottom blocks, their subsequent MLP layers, i.e. two feed-forward layers, can",
+          "embedding_id": "emb_9d0a1d699b44_chunk_1"
+        },
+        {
+          "chunk_id": "9d0a1d699b44_chunk_2",
+          "text": " elicit the same entropy quantity. Meanwhile, the accompanied MLPs are under-exploited since they exhibit smaller feature entropy compared to those MLPs in the top blocks. Therefore, we propose to integrate the uninformative attention layers into their subsequent counterparts by degenerating them in",
+          "embedding_id": "emb_9d0a1d699b44_chunk_2"
+        },
+        {
+          "chunk_id": "9d0a1d699b44_chunk_3",
+          "text": "to identical mapping, yielding only MLP in certain transformer blocks. Experimental results on ImageNet-1k show that the proposed method can remove 40% attention layer of DeiT-B, improving throughput and memory bound without performance compromise. Code is available at https://github.com/sihaoevery/",
+          "embedding_id": "emb_9d0a1d699b44_chunk_3"
+        },
+        {
+          "chunk_id": "9d0a1d699b44_chunk_4",
+          "text": "lambda_vit.",
+          "embedding_id": "emb_9d0a1d699b44_chunk_4"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:54.364777"
+    },
+    "5bd3013489c6": {
+      "paper_id": "5bd3013489c6",
+      "handle": "P5",
+      "title": "PyramidTNT: Improved Transformer-in-Transformer Baselines with Pyramid Architecture",
+      "authors": [
+        "Kai Han",
+        "Jianyuan Guo",
+        "Yehui Tang",
+        "Yunhe Wang"
+      ],
+      "year": 2022,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2201.00978v1",
+      "url": "http://arxiv.org/abs/2201.00978v1",
+      "source": "arXiv",
+      "abstract": "Transformer networks have achieved great progress for computer vision tasks. Transformer-in-Transformer (TNT) architecture utilizes inner transformer and outer transformer to extract both local and global representations. In this work, we present new TNT baselines by introducing two advanced designs: 1) pyramid architecture, and 2) convolutional stem. The new \"PyramidTNT\" significantly improves the original TNT by establishing hierarchical representations. PyramidTNT achieves better performances than the previous state-of-the-art vision transformers such as Swin Transformer. We hope this new baseline will be helpful to the further research and application of vision transformer. Code will be available at https://github.com/huawei-noah/CV-Backbones/tree/master/tnt_pytorch.",
+      "chunks": [
+        {
+          "chunk_id": "5bd3013489c6_chunk_0",
+          "text": "Transformer networks have achieved great progress for computer vision tasks. Transformer-in-Transformer (TNT) architecture utilizes inner transformer and outer transformer to extract both local and global representations. In this work, we present new TNT baselines by introducing two advanced designs",
+          "embedding_id": "emb_5bd3013489c6_chunk_0"
+        },
+        {
+          "chunk_id": "5bd3013489c6_chunk_1",
+          "text": ": 1) pyramid architecture, and 2) convolutional stem. The new \"PyramidTNT\" significantly improves the original TNT by establishing hierarchical representations. PyramidTNT achieves better performances than the previous state-of-the-art vision transformers such as Swin Transformer. We hope this new b",
+          "embedding_id": "emb_5bd3013489c6_chunk_1"
+        },
+        {
+          "chunk_id": "5bd3013489c6_chunk_2",
+          "text": "aseline will be helpful to the further research and application of vision transformer. Code will be available at https://github.com/huawei-noah/CV-Backbones/tree/master/tnt_pytorch.",
+          "embedding_id": "emb_5bd3013489c6_chunk_2"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:54.451536"
+    },
+    "821afd5eaa81": {
+      "paper_id": "821afd5eaa81",
+      "handle": "P6",
+      "title": "Music Transformer",
+      "authors": [
+        "Cheng-Zhi Anna Huang",
+        "Ashish Vaswani",
+        "Jakob Uszkoreit",
+        "Noam Shazeer",
+        "Ian Simon",
+        "Curtis Hawthorne",
+        "Andrew M. Dai",
+        "Matthew D. Hoffman",
+        "Monica Dinculescu",
+        "Douglas Eck"
+      ],
+      "year": 2018,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/1809.04281v3",
+      "url": "http://arxiv.org/abs/1809.04281v3",
+      "source": "arXiv",
+      "abstract": "Music relies heavily on repetition to build structure and meaning. Self-reference occurs on multiple timescales, from motifs to phrases to reusing of entire sections of music, such as in pieces with ABA structure. The Transformer (Vaswani et al., 2017), a sequence model based on self-attention, has achieved compelling results in many generation tasks that require maintaining long-range coherence. This suggests that self-attention might also be well-suited to modeling music. In musical composition and performance, however, relative timing is critically important. Existing approaches for representing relative positional information in the Transformer modulate attention based on pairwise distance (Shaw et al., 2018). This is impractical for long sequences such as musical compositions since their memory complexity for intermediate relative information is quadratic in the sequence length. We propose an algorithm that reduces their intermediate memory requirement to linear in the sequence length. This enables us to demonstrate that a Transformer with our modified relative attention mechanism can generate minute-long compositions (thousands of steps, four times the length modeled in Oore et al., 2018) with compelling structure, generate continuations that coherently elaborate on a given motif, and in a seq2seq setup generate accompaniments conditioned on melodies. We evaluate the Transformer with our relative attention mechanism on two datasets, JSB Chorales and Piano-e-Competition, and obtain state-of-the-art results on the latter.",
+      "chunks": [
+        {
+          "chunk_id": "821afd5eaa81_chunk_0",
+          "text": "Music relies heavily on repetition to build structure and meaning. Self-reference occurs on multiple timescales, from motifs to phrases to reusing of entire sections of music, such as in pieces with ABA structure. The Transformer (Vaswani et al., 2017), a sequence model based on self-attention, has ",
+          "embedding_id": "emb_821afd5eaa81_chunk_0"
+        },
+        {
+          "chunk_id": "821afd5eaa81_chunk_1",
+          "text": "achieved compelling results in many generation tasks that require maintaining long-range coherence. This suggests that self-attention might also be well-suited to modeling music. In musical composition and performance, however, relative timing is critically important. Existing approaches for represe",
+          "embedding_id": "emb_821afd5eaa81_chunk_1"
+        },
+        {
+          "chunk_id": "821afd5eaa81_chunk_2",
+          "text": "nting relative positional information in the Transformer modulate attention based on pairwise distance (Shaw et al., 2018). This is impractical for long sequences such as musical compositions since their memory complexity for intermediate relative information is quadratic in the sequence length. We ",
+          "embedding_id": "emb_821afd5eaa81_chunk_2"
+        },
+        {
+          "chunk_id": "821afd5eaa81_chunk_3",
+          "text": "propose an algorithm that reduces their intermediate memory requirement to linear in the sequence length. This enables us to demonstrate that a Transformer with our modified relative attention mechanism can generate minute-long compositions (thousands of steps, four times the length modeled in Oore ",
+          "embedding_id": "emb_821afd5eaa81_chunk_3"
+        },
+        {
+          "chunk_id": "821afd5eaa81_chunk_4",
+          "text": "et al., 2018) with compelling structure, generate continuations that coherently elaborate on a given motif, and in a seq2seq setup generate accompaniments conditioned on melodies. We evaluate the Transformer with our relative attention mechanism on two datasets, JSB Chorales and Piano-e-Competition,",
+          "embedding_id": "emb_821afd5eaa81_chunk_4"
+        },
+        {
+          "chunk_id": "821afd5eaa81_chunk_5",
+          "text": " and obtain state-of-the-art results on the latter.",
+          "embedding_id": "emb_821afd5eaa81_chunk_5"
+        }
+      ],
+      "added_at": "2026-01-20T22:11:54.520760"
+    }
+  },
+  "handle_map": {
+    "32e1291e1532": "P1",
+    "ef10ab94f8d8": "P2",
+    "a6bf0c6b4ead": "P3",
+    "9d0a1d699b44": "P4",
+    "5bd3013489c6": "P5",
+    "821afd5eaa81": "P6"
+  },
+  "next_handle": 7,
+  "metadata": {
+    "created_at": "2026-01-20T22:11:36.338472",
+    "last_updated": "2026-01-20T22:11:54.520760",
+    "total_papers": 6,
+    "total_chunks": 25
+  }
+}

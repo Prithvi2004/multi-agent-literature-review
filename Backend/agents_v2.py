@@ -119,7 +119,7 @@ agent_memory = AgentMemory()
 class OllamaLLM:
     """Optimized Ollama LLM client with connection pooling and retry logic."""
     
-    def __init__(self, model="qwen2.5:14b", base_url="http://localhost:11434", temperature=0.1):
+    def __init__(self, model="deepseek-v3.1:671b-cloud", base_url="http://localhost:11434", temperature=0.1):
         self.model = model
         self.base_url = base_url.rstrip("/")
         self.temperature = temperature

@@ -1,6 +1,6 @@
 {
-  "session_id": "20260120_225659",
-  "start_time": "2026-01-20T22:56:59.086090",
+  "session_id": "20260120_221227",
+  "start_time": "2026-01-20T22:12:27.864856",
   "inputs": {
     "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
     "domains": [
@@ -15,26 +15,26 @@
   },
   "outputs": {
     "success": true,
-    "report_length": 8566
+    "report_length": 116
   },
   "api_calls": [
     {
       "source": "arXiv",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
       "results_count": 5,
-      "duration_seconds": 2.42,
+      "duration_seconds": 2.53,
       "success": true,
       "error": null,
-      "timestamp": "2026-01-20T22:57:32.697983"
+      "timestamp": "2026-01-20T22:13:01.440860"
     },
     {
       "source": "Semantic Scholar",
       "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
       "results_count": 0,
-      "duration_seconds": 3.12,
+      "duration_seconds": 3.27,
       "success": true,
       "error": null,
-      "timestamp": "2026-01-20T22:57:33.407266"
+      "timestamp": "2026-01-20T22:13:02.184493"
     }
   ],
   "agent_performance": [],
@@ -42,12 +42,12 @@
   "llm_calls": [],
   "errors": [],
   "timing": {
-    "paper_retrieval_and_indexing": 5.62,
-    "total_analysis": 942.94,
-    "total_session": 942.94
+    "paper_retrieval_and_indexing": 4.77,
+    "total_analysis": 31.13,
+    "total_session": 31.13
   },
-  "end_time": "2026-01-20T23:14:47.336807",
-  "total_duration_seconds": 1068.25,
+  "end_time": "2026-01-20T22:13:30.082258",
+  "total_duration_seconds": 62.22,
   "summary": {
     "total_api_calls": 2,
     "successful_api_calls": 2,

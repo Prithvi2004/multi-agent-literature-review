@@ -22,8 +22,58 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Import centralized store
 from evidence_store import evidence_store
+import re
 
 logger = logging.getLogger(__name__)
+
+class SemanticChunker:
+    """Splits text into semantically coherent chunks using sentence embeddings."""
+    
+    def __init__(self, embeddings_model, percentile_threshold=40):
+        self.embeddings_model = embeddings_model
+        self.percentile_threshold = percentile_threshold
+        
+    def split_text(self, text: str) -> List[str]:
+        # Simple sentence splitting
+        sentences = re.split(r'(?<=[.?!])\s+', text)
+        if len(sentences) <= 1:
+            return sentences
+            
+        # Embed all sentences
+        embeddings = self.embeddings_model.embed_documents(sentences)
+        if not embeddings:
+            return [text]
+            
+        # Calculate cosine similarity between adjacent sentences
+        from sklearn.metrics.pairwise import cosine_similarity
+        similarities = []
+        for i in range(len(embeddings) - 1):
+            sim = cosine_similarity([embeddings[i]], [embeddings[i+1]])[0][0]
+            similarities.append(sim)
+            
+        # Determine strictness dynamic threshold
+        # Split at the "valleys" of similarity
+        if not similarities:
+            return [text]
+            
+        threshold = np.percentile(similarities, self.percentile_threshold)
+        
+        chunks = []
+        current_group = [sentences[0]]
+        
+        for i, sim in enumerate(similarities):
+            if sim < threshold:
+                # Break point
+                chunks.append(" ".join(current_group))
+                current_group = [sentences[i+1]]
+            else:
+                current_group.append(sentences[i+1])
+                
+        if current_group:
+            chunks.append(" ".join(current_group))
+            
+        return chunks
+
 
 class SBERTEmbeddings:
     """Optimized embedding adapter using sentence-transformers with caching."""
@@ -64,10 +114,10 @@ class SBERTEmbeddings:
 METADATA_STORE_PATH = "papers_metadata.json"
 
 class HybridRetriever:
-    """Simple Sparse Retriever using TF-IDF (approximate BM25)."""
+    """Robust Sparse Retriever using TF-IDF with BM25-like scoring."""
     
     def __init__(self):
-        self.vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2))
+        self.vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2), min_df=1)
         self.docs = []
         self.tfidf_matrix = None
         self.is_fitted = False
@@ -78,30 +128,38 @@ class HybridRetriever:
             return
         self.docs = docs
         texts = [d.page_content for d in docs]
-        self.tfidf_matrix = self.vectorizer.fit_transform(texts)
-        self.is_fitted = True
+        try:
+            self.tfidf_matrix = self.vectorizer.fit_transform(texts)
+            self.is_fitted = True
+        except ValueError:
+            # Handle case with empty vocabulary
+            self.is_fitted = False
         
-    def search(self, query: str, k: int = 10) -> List[Document]:
-        """Return top-k docs based on TF-IDF score."""
+    def search(self, query: str, k: int = 10) -> List[Dict[str, Any]]:
+        """Return top-k docs with normalized scores."""
         if not self.is_fitted or not self.docs:
             return []
         
-        query_vec = self.vectorizer.transform([query])
-        # Compute cosine similarity (equivalent to refined TF-IDF matching)
-        scores = cosine_similarity(query_vec, self.tfidf_matrix).flatten()
-        
-        # Get top-k indices
-        top_indices = scores.argsort()[-k:][::-1]
-        
-        results = []
-        for idx in top_indices:
-            score = scores[idx]
-            if score > 0.05: # Minimal threshold
-                doc = self.docs[idx]
-                # Inject score metadata
-                doc.metadata['sparse_score'] = float(score)
-                results.append(doc)
-        return results
+        try:
+            query_vec = self.vectorizer.transform([query])
+            scores = cosine_similarity(query_vec, self.tfidf_matrix).flatten()
+            
+            # Get top-k indices
+            top_indices = scores.argsort()[-k:][::-1]
+            
+            results = []
+            for idx in top_indices:
+                score = float(scores[idx])
+                if score > 0.01: # Lower threshold
+                    doc = self.docs[idx]
+                    results.append({
+                        "doc": doc,
+                        "score": score
+                    })
+            return results
+        except Exception as e:
+            logger.warning(f"Sparse search failed: {e}")
+            return []
 
 class RAGPipeline:
     """Advanced RAG pipeline with Hybrid Search (Dense + Sparse) and Reranking."""
@@ -178,13 +236,15 @@ class RAGPipeline:
     # Indexing
     # --------------------
     def add_papers(self, papers: List[Dict[str, Any]]) -> List[str]:
-        """Bulk-add papers with Hybrid indexing."""
+        """Bulk-add papers with Semantic Chunking and Hybrid Indexing."""
         if not papers:
             return []
         
-        logger.info(f"Batch processing {len(papers)} papers for Hybrid Index")
+        logger.info(f"Batch processing {len(papers)} papers for Hybrid Index (Semantic Chunking Enabled)")
         new_docs = []
         handles = []
+        
+        semantic_chunker = SemanticChunker(self.embeddings, percentile_threshold=40)
         
         for p in papers:
             title = p.get("title") or "Untitled"
@@ -214,14 +274,24 @@ class RAGPipeline:
                 "handle": handle,
             }
             
-            # 2. Advanced Chunking (Semantic approx)
-            # Use smaller chunks for better dense retrieval, contextual overlap
-            splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
-            chunks = splitter.split_text(abstract) 
-            # Also index title/intro explicitly
-            chunks.insert(0, f"Title: {title}\nAbstract: {abstract[:200]}")
+            # 2. Semantic Chunking
+            # First, try semantic chunking
+            raw_chunks = semantic_chunker.split_text(abstract)
             
-            for chunk in chunks:
+            # If chunks are too large, fall back to recursive split on them
+            final_chunks = []
+            recursive_splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=64)
+            for rc in raw_chunks:
+                if len(rc) > 800: # Threshold for too big
+                    sub_chunks = recursive_splitter.split_text(rc)
+                    final_chunks.extend(sub_chunks)
+                else:
+                    final_chunks.append(rc)
+            
+            # Always index title explicitly
+            final_chunks.insert(0, f"Title: {title}\nAbstract: {abstract[:300]}...")
+            
+            for chunk in final_chunks:
                 new_docs.append(Document(page_content=chunk, metadata=meta))
             
             self.metadata[title] = meta
@@ -264,50 +334,87 @@ class RAGPipeline:
             
         return "\n\n".join(lines)
 
-    def hybrid_search(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
-        """Perform Hybrid Search (BM25 + Dense) with Cross-Encoder Reranking."""
+    def hybrid_search(self, query: str, k: int = 5, use_hyde: bool = False, generator_func=None) -> List[Dict[str, Any]]:
+        """Perform Hybrid Search (Reciprocal Rank Fusion) with Cross-Encoder Reranking and optional HyDE."""
         start_time = time.time()
         
-        # 1. Dense Search (FAISS)
-        dense_docs = self.db.similarity_search_with_score(query, k=k*2)
-        # FAISS returns L2 distance (lower is better) or dot product depending on index.
-        # Assuming L2 default: convert to similarity? Or just normalize.
-        # For simplicity, treat them as candidate set 1.
-        candidate_map = {}
-        for doc, score in dense_docs:
-            # In FAISS L2, score is distance.
-            uid = f"{doc.metadata.get('handle')}_{hash(doc.page_content)}"
-            candidate_map[uid] = doc
-            doc.metadata['dense_score'] = float(score)
+        search_queries = [query]
+        # HyDE Expansion
+        if use_hyde and generator_func:
+            try:
+                # We expect generator_func to take a string and return a hypothetical abstract
+                hypothetical_doc = generator_func(query)
+                logger.info(f"HyDE generated hypothetical doc length: {len(hypothetical_doc)}")
+                search_queries.append(hypothetical_doc)
+            except Exception as e:
+                logger.warning(f"HyDE generation failed: {e}")
 
-        # 2. Sparse Search (TF-IDF)
-        sparse_docs = self.sparse_retriever.search(query, k=k*2)
-        for doc in sparse_docs:
-            uid = f"{doc.metadata.get('handle')}_{hash(doc.page_content)}"
-            if uid not in candidate_map:
-                candidate_map[uid] = doc
+        # Collect candidates from all queries
+        candidate_map = {} # handle_contenthash -> {doc, dense_score, sparse_score}
         
+        # 1. Reciprocal Rank Fusion Logic
+        # We will sum 1/(rank + 60) for dense and sparse ranks
+        
+        for q in search_queries:
+            # A. Dense Search
+            dense_results = self.db.similarity_search_with_score(q, k=k*3)
+            # Normalize FAISS L2 distances (lower is better) to similarity (0-1)
+            # Rough approx: 1 / (1 + distance)
+            for rank, (doc, score) in enumerate(dense_results):
+                uid = f"{doc.metadata.get('handle')}_{hash(doc.page_content)}"
+                if uid not in candidate_map:
+                    candidate_map[uid] = {"doc": doc, "rrf_score": 0.0, "dense_score": 0.0, "sparse_score": 0.0}
+                
+                # RRF update
+                candidate_map[uid]["rrf_score"] += 1.0 / (rank + 60)
+                candidate_map[uid]["dense_score"] = float(1.0 / (1.0 + score)) # approx
+
+            # B. Sparse Search
+            sparse_results = self.sparse_retriever.search(q, k=k*3)
+            for rank, res in enumerate(sparse_results):
+                doc = res["doc"]
+                score = res["score"]
+                uid = f"{doc.metadata.get('handle')}_{hash(doc.page_content)}"
+                if uid not in candidate_map:
+                     candidate_map[uid] = {"doc": doc, "rrf_score": 0.0, "dense_score": 0.0, "sparse_score": 0.0}
+                
+                candidate_map[uid]["rrf_score"] += 1.0 / (rank + 60)
+                candidate_map[uid]["sparse_score"] = float(score)
+
+        # Convert to list
         candidates = list(candidate_map.values())
-        logger.info(f"Hybrid Search candidates: {len(candidates)} (Query: {query[:50]})")
+        # Filter by minimum RRF (optional)
         
-        # 3. Reranking
+        logger.info(f"Hybrid Search (HyDE={use_hyde}) candidates: {len(candidates)} (Query: {query[:50]})")
+        
+        # 2. Reranking (Cross-Encoder)
         if self.reranker and candidates:
-            pairs = [[query, doc.page_content] for doc in candidates]
+            # We rerank the top 20 by RRF score to save time
+            candidates.sort(key=lambda x: x["rrf_score"], reverse=True)
+            top_candidates = candidates[:20]
+            
+            pairs = [[query, c["doc"].page_content] for c in top_candidates]
             scores = self.reranker.predict(pairs)
             
-            # Attach scores
-            for doc, score in zip(candidates, scores):
-                doc.metadata['rerank_score'] = float(score)
+            for i, score in enumerate(scores):
+                top_candidates[i]["rerank_score"] = float(score)
+                # Inject useful debug scores into metadata
+                top_candidates[i]["doc"].metadata["rrf"] = top_candidates[i]["rrf_score"]
+                top_candidates[i]["doc"].metadata["cross_score"] = float(score)
             
-            # Sort by reranker score (descending)
-            candidates.sort(key=lambda x: x.metadata['rerank_score'], reverse=True)
+            # Sort by Cross-Encoder score
+            top_candidates.sort(key=lambda x: x["rerank_score"], reverse=True)
+            final_selection = top_candidates[:k]
         else:
-            # Fallback: Prefer sparse (keyword match) if dense fails, or simple merge
-            # Here we just take them roughly as is.
-            pass
+            # Fallback to RRF sort
+            candidates.sort(key=lambda x: x["rrf_score"], reverse=True)
+            final_selection = candidates[:k]
+            for c in final_selection:
+                c["rerank_score"] = c["rrf_score"] # Proxy
             
         final_results = []
-        for doc in candidates[:k]:
+        for item in final_selection:
+            doc = item["doc"]
             meta = doc.metadata
             final_results.append({
                 "content": doc.page_content,
@@ -316,7 +423,7 @@ class RAGPipeline:
                 "authors": meta.get("authors"),
                 "year": meta.get("year"),
                 "source": meta.get("source"),
-                "score": meta.get('rerank_score', 0.0)
+                "score": item.get('rerank_score', 0.0)
             })
             
         return final_results

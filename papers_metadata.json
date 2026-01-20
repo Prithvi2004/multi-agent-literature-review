@@ -1,0 +1,50 @@
+{
+  "Improving Text Classification Using Transformer Models": {
+    "title": "Improving Text Classification Using Transformer Models",
+    "source": "UserUploaded",
+    "authors": "Unknown",
+    "year": "",
+    "url": "",
+    "handle": "P1"
+  },
+  "Lightweight Transformer Architectures for Edge Devices in Real-Time Applications": {
+    "title": "Lightweight Transformer Architectures for Edge Devices in Real-Time Applications",
+    "source": "arXiv",
+    "authors": "Hema Hariharan Samson",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.03290v1",
+    "handle": "P2"
+  },
+  "Stochastic Model Based Proxy Servers Architecture for VoD to Achieve Reduced Client Waiting Time": {
+    "title": "Stochastic Model Based Proxy Servers Architecture for VoD to Achieve Reduced Client Waiting Time",
+    "source": "arXiv",
+    "authors": "T. R. GopalaKrishnan Nair, M. Dakshayini",
+    "year": 2010,
+    "url": "http://arxiv.org/abs/1002.1195v1",
+    "handle": "P3"
+  },
+  "MLP Can Be A Good Transformer Learner": {
+    "title": "MLP Can Be A Good Transformer Learner",
+    "source": "arXiv",
+    "authors": "Sihao Lin, Pumeng Lyu, Dongrui Liu, Tao Tang, Xiaodan Liang, Andy Song, Xiaojun Chang",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2404.05657v1",
+    "handle": "P4"
+  },
+  "PyramidTNT: Improved Transformer-in-Transformer Baselines with Pyramid Architecture": {
+    "title": "PyramidTNT: Improved Transformer-in-Transformer Baselines with Pyramid Architecture",
+    "source": "arXiv",
+    "authors": "Kai Han, Jianyuan Guo, Yehui Tang, Yunhe Wang",
+    "year": 2022,
+    "url": "http://arxiv.org/abs/2201.00978v1",
+    "handle": "P5"
+  },
+  "Music Transformer": {
+    "title": "Music Transformer",
+    "source": "arXiv",
+    "authors": "Cheng-Zhi Anna Huang, Ashish Vaswani, Jakob Uszkoreit, Noam Shazeer, Ian Simon, Curtis Hawthorne, Andrew M. Dai, Matthew D. Hoffman, Monica Dinculescu, Douglas Eck",
+    "year": 2018,
+    "url": "http://arxiv.org/abs/1809.04281v3",
+    "handle": "P6"
+  }
+}

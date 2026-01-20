@@ -1,0 +1,478 @@
+Input mode:
+  1) Use built-in default values for PAPER DATA and OPTIONAL FIELDS
+  2) Enter/paste new data (JSON or manual)
+Press 1 or 2 (default 1): Using built-in default PAPER DATA and OPTIONAL FIELDS.
+Indexed uploaded paper: Improving Text Classification Using Transformer Models
+
+================================================================================
+📥 INPUT CONFIGURATION
+================================================================================
+Research Idea: Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.
+Domains: Natural Language Processing, Artificial Intelligence
+Uploaded Paper: Yes
+================================================================================
+
+╭───────────────────────── Crew Execution Started ─────────────────────────╮
+│                                                                          │
+│  Crew Execution Started                                                  │
+│  Name: crew                                                              │
+│  ID: 0d4ccc96-f211-4cfd-8c1f-f38a47fd8f8b                                │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+└── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Retrieval Architect                                              │
+│                                                                          │
+│  Task: Execute a comprehensive search strategy to find impactful papers  │
+│  for: 'Investigate how lightweight transformer models can achieve        │
+│  competitive performance with reduced computational cost.'               │
+│  in domains: Natural Language Processing, Artificial Intelligence.       │
+│  1. Use RAG Search to retrieve top papers.                               │
+│  2. Ensure a mix of seminal papers and recent (last 3 years) advances.   │
+│  3. Filter for high relevance.                                           │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Retrieval Architect                                              │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+└── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+    Assigned to: Retrieval Architect
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: 7f565fc1-3030-4f44-9404-8836c260f33b                              │
+│  Agent: Retrieval Architect                                              │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+└── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Literature Decomposition Specialist                              │
+│                                                                          │
+│  Task: Analyze the retrieved papers deeply. For EACH relevant paper      │
+│  found:                                                                  │
+│  1. Extract the Core Problem, Hypothesis, Methodology                    │
+│  (Steps/Algorithms), and Key Result (metrics).                           │
+│  2. Extract explicit Limitations stated by authors.                      │
+│  3. Ignore fluff; focus on technical substance.                          │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Literature Decomposition Specialist                              │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+└── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+    Assigned to: Literature Decomposition Specialist
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: 29baee3e-feb5-4fba-840b-23a67552c7bd                              │
+│  Agent: Literature Decomposition Specialist                              │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+└── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Cross-Paper Reasoning Analyst                                    │
+│                                                                          │
+│  Task: Perform comparative analysis across the extracted knowledge.      │
+│  1. Group papers by approach/school of thought.                          │
+│  2. Compare conflicting evidence: Does Paper A contradict Paper B?       │
+│  3. Trace methodology evolution: How did methods improve over time?      │
+│  4. Create a Comparative Matrix of features/performance.                 │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Cross-Paper Reasoning Analyst                                    │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+└── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+    Assigned to: Cross-Paper Reasoning Analyst
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: 1f5436ef-853e-4fc1-8202-9013493ecb96                              │
+│  Agent: Cross-Paper Reasoning Analyst                                    │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+└── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Research Gap & Novelty Auditor                                   │
+│                                                                          │
+│  Task: Identify RESEARCH GAPS and assess NOVELTY of 'Investigate how     │
+│  lightweight transformer models can achieve competitive performance      │
+│  with reduced computational cost.'.                                      │
+│  1. Based on the analysis, what is missing? (Unsolved problems, weak     │
+│  baselines, etc.)                                                        │
+│  2. Compare 'Investigate how lightweight transformer models can achieve  │
+│  competitive performance with reduced computational cost.' to the        │
+│  closest existing papers.                                                │
+│  3. Score Novelty (0-100) with strict justification.                     │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Research Gap & Novelty Auditor                                   │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+└── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+    Assigned to: Research Gap & Novelty Auditor
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e                              │
+│  Agent: Research Gap & Novelty Auditor                                   │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+├── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+│   Assigned to: Research Gap & Novelty Auditor
+│   Status: ✅ Completed
+└── 📋 Task: b92c053a-2ccf-4618-b8a5-a0a9fb7f6b42
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Principal Investigator / Lead Author                             │
+│                                                                          │
+│  Task: Write a PhD-level Literature Review merging all insights.         │
+│  Structure:                                                              │
+│  - Information Landscape (Overview)                                      │
+│  - Thematic Evolution (History of ideas)                                 │
+│  - Methodological Deep Dive (Comparative)                                │
+│  - The Gap Analysis                                                      │
+│  - Future Directions                                                     │
+│  TONE: Formal, dense, authoritative. NO placeholders.                    │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Principal Investigator / Lead Author                             │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+├── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+│   Assigned to: Research Gap & Novelty Auditor
+│   Status: ✅ Completed
+└── 📋 Task: b92c053a-2ccf-4618-b8a5-a0a9fb7f6b42
+    Assigned to: Principal Investigator / Lead Author
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: b92c053a-2ccf-4618-b8a5-a0a9fb7f6b42                              │
+│  Agent: Principal Investigator / Lead Author                             │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+├── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+│   Assigned to: Research Gap & Novelty Auditor
+│   Status: ✅ Completed
+├── 📋 Task: b92c053a-2ccf-4618-b8a5-a0a9fb7f6b42
+│   Assigned to: Principal Investigator / Lead Author
+│   Status: ✅ Completed
+└── 📋 Task: 7f53184a-a742-4336-b46b-d0487e705321
+    Status: Executing Task...╭──────────────────────────── 🤖 Agent Started ────────────────────────────╮
+│                                                                          │
+│  Agent: Academic Editor & Fact Checker                                   │
+│                                                                          │
+│  Task: Review the draft Literature Review. CRITIQUE and REFINE it.       │
+│  1. Check all [P#] citations correspond to real papers in the context.   │
+│  2. Remove any vague claims ('performance was good') -> replace with     │
+│  metrics if available or delete.                                         │
+│  3. Ensure the flow is logical. If not, re-write sections.               │
+│  4. Final Output must be the POLISHED versions.                          │
+│                                                                          │
+│  **TOPIC ANCHOR (Stay on this topic):**                                  │
+│  Research Idea: "Investigate how lightweight transformer models can      │
+│  achieve competitive performance with reduced computational cost."       │
+│  Domains: Natural Language Processing, Artificial Intelligence           │
+│                                                                          │
+│  **FAIL_FAST RULES:**                                                    │
+│  - If RAG Search returns INSUFFICIENT_EVIDENCE, report that clearly      │
+│  - NEVER fabricate papers, citations, or claims                          │
+│  - Every paper cited MUST have a valid [P#] handle from RAG Search       │
+│  - Stay focused on the research idea above - NO topic drift              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────── ✅ Agent Final Answer ──────────────────────────╮
+│                                                                          │
+│  Agent: Academic Editor & Fact Checker                                   │
+│                                                                          │
+│  Final Answer:                                                           │
+│  Error: Failed to get response from Ollama - 404 Client Error: Not       │
+│  Found for url: http://localhost:11434/api/generate                      │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+🚀 Crew: crew
+├── 📋 Task: 7f565fc1-3030-4f44-9404-8836c260f33b
+│   Assigned to: Retrieval Architect
+│   Status: ✅ Completed
+├── 📋 Task: 29baee3e-feb5-4fba-840b-23a67552c7bd
+│   Assigned to: Literature Decomposition Specialist
+│   Status: ✅ Completed
+├── 📋 Task: 1f5436ef-853e-4fc1-8202-9013493ecb96
+│   Assigned to: Cross-Paper Reasoning Analyst
+│   Status: ✅ Completed
+├── 📋 Task: 6594ccc4-c1e8-454e-bdb1-4d3f57a4745e
+│   Assigned to: Research Gap & Novelty Auditor
+│   Status: ✅ Completed
+├── 📋 Task: b92c053a-2ccf-4618-b8a5-a0a9fb7f6b42
+│   Assigned to: Principal Investigator / Lead Author
+│   Status: ✅ Completed
+└── 📋 Task: 7f53184a-a742-4336-b46b-d0487e705321
+    Assigned to: Academic Editor & Fact Checker
+    Status: ✅ Completed╭──────────────────────────── Task Completion ─────────────────────────────╮
+│                                                                          │
+│  Task Completed                                                          │
+│  Name: 7f53184a-a742-4336-b46b-d0487e705321                              │
+│  Agent: Academic Editor & Fact Checker                                   │
+│  Tool Args:                                                              │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────── Crew Completion ─────────────────────────────╮
+│                                                                          │
+│  Crew Execution Completed                                                │
+│  Name: crew                                                              │
+│  ID: 0d4ccc96-f211-4cfd-8c1f-f38a47fd8f8b                                │
+│  Tool Args:                                                              │
+│  Final Output: Error: Failed to get response from Ollama - 404 Client    │
+│  Error: Not Found for url: http://localhost:11434/api/generate           │
+│                                                                          │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+================================================================================
+
+📊 FINAL NOVELTY REPORT
+
+
+================================================================================
+╭──────────────────────────── Execution Traces ────────────────────────────╮
+│                                                                          │
+│  🔍 Detailed execution traces are available!                             │
+│                                                                          │
+│  View insights including:                                                │
+│    • Agent decision-making process                                       │
+│    • Task execution flow and timing                                      │
+│    • Tool usage details                                                  │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+Error: Failed to get response from Ollama - 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+================================================================================
+
+
+╭──────────────────────── Tracing Preference Saved ────────────────────────╮
+│                                                                          │
+│  Info: Tracing has been disabled.                                        │
+│                                                                          │
+│  Your preference has been saved. Future Crew/Flow executions will not    │
+│  collect traces.                                                         │
+│                                                                          │
+│  To enable tracing later, do any one of these:                           │
+│  • Set tracing=True in your Crew/Flow code                               │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file           │
+│  • Run: crewai traces enable                                             │
+│                                                                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+
+Batches:   0%|                                       | 0/1 [00:00<?, ?it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  2.77it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  2.76it/s]
+Batches:   0%|                                       | 0/1 [00:00<?, ?it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.67it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.66it/s]
+Batches:   0%|                                       | 0/1 [00:00<?, ?it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.62it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.61it/s]
+Batches:   0%|                                       | 0/1 [00:00<?, ?it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.96it/s]Batches: 100%|###############################| 1/1 [00:00<00:00,  3.96it/s]
+
+================================================================================
+✅ Research Session Complete
+================================================================================
+📁 Research outputs saved to: outputs\latest_research_session
+   (Folder will be overwritten on next run)
+   📝 review/literature_review.log
+   🖥️  terminal_output/terminal_output.txt
+   📊 metrics/metrics.json
+   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls
+   📄 final_report/final_research_report.md  ← Synthesized Report
+   📄 final_report/detailed_agent_analysis.txt  ← Detailed Agent Outputs
+⏱️  Total time: 31.13s
+================================================================================
+
