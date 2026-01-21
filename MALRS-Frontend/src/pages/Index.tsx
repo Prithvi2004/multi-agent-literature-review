@@ -74,7 +74,7 @@ const Index = () => {
           <main className="flex-1 min-w-0" role="main">
             {/* Tabs Navigation */}
             <nav
-              className="glass-card p-2 mb-6"
+              className="glass-card p-1.5 mb-8"
               role="tablist"
               aria-label="Main navigation"
             >
@@ -88,24 +88,28 @@ const Index = () => {
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
                       className={cn(
-                        "relative flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-colors",
+                        "relative flex-1 flex items-center justify-center gap-2.5 px-5 py-3.5 rounded font-medium text-sm transition-all duration-300",
                         isActive
-                          ? "text-primary-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                          ? "text-primary-foreground shadow-lg"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/40",
                       )}
                       role="tab"
                       aria-selected={isActive}
                       aria-controls={`${tab.id}-panel`}
-                      whileTap={{ scale: 0.98 }}
+                      whileTap={{ scale: 0.97 }}
                     >
                       {isActive && (
                         <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-lg"
+                          className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary/80 rounded"
                           layoutId="activeTab"
                           transition={{
                             type: "spring",
-                            stiffness: 500,
-                            damping: 30,
+                            stiffness: 400,
+                            damping: 35,
+                          }}
+                          style={{
+                            boxShadow:
+                              "0 0 20px hsla(38, 92%, 58%, 0.3), inset 0 1px 0 hsla(40, 100%, 70%, 0.2)",
                           }}
                         />
                       )}
@@ -170,10 +174,16 @@ const Index = () => {
         </div>
 
         {/* Footer */}
-        <footer className="relative z-10 py-6 text-center border-t border-border/30">
-          <p className="text-sm text-muted-foreground">
-            ResearchNovel © 2025 • AI-Powered Novelty Assessment Platform •
-            Created by Prithvi
+        <footer className="relative z-10 py-8 text-center border-t border-border/40">
+          <p className="text-xs tracking-wide text-muted-foreground/80">
+            <span className="font-serif font-semibold text-primary/90">
+              Literature Review System
+            </span>{" "}
+            © 2025
+            <span className="mx-3 opacity-40">•</span>
+            Multi-Agent Intelligence Platform
+            <span className="mx-3 opacity-40">•</span>
+            Crafted by Prithvi
           </p>
         </footer>
       </div>
