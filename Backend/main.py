@@ -23,11 +23,13 @@ os.environ['CREWAI_TRACING_ENABLED'] = 'true'
 
 class TeeOutput:
     """Capture output to both file and original stream, with ANSI code stripping for file."""
-    def __init__(self, file_path, original_stream):
+    def __init__(self, file_path, original_stream, log_queue=None):
         self.file = open(file_path, 'w', encoding='utf-8')
         self.original = original_stream
+        self.log_queue = log_queue
         self.buffer = []
         import re
+        import json
         self.ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
     
     def write(self, data):
@@ -36,6 +38,21 @@ class TeeOutput:
         clean_data = self.ansi_escape.sub('', data)
         self.file.write(clean_data)
         self.file.flush()
+        
+        # Push to SSE log queue if available
+        if self.log_queue and data.strip():
+            try:
+                import json
+                from datetime import datetime
+                log_message = {
+                    'timestamp': datetime.now().strftime('%H:%M:%S.%f')[:-3],
+                    'level': 'OUTPUT',
+                    'message': clean_data.strip(),
+                    'raw': clean_data.strip()
+                }
+                self.log_queue.put_nowait(json.dumps(log_message))
+            except Exception:
+                pass  # Silently fail if queue is full or unavailable
     
     def flush(self):
         self.original.flush()

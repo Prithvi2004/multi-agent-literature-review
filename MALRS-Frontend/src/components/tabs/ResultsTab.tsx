@@ -9,35 +9,99 @@ import {
   CheckCircle,
   BookOpen,
   Lightbulb,
+  Terminal as TerminalIcon,
+  FileCode,
+  FileText,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GradientButton } from "@/components/ui/GradientButton";
 import { AnalysisResult } from "@/hooks/useResearchState";
+import { Terminal } from "@/components/Terminal";
+import { ReportViewer } from "@/components/ReportViewer";
+import { useState, useEffect } from "react";
 
 interface ResultsTabProps {
   analysisResult: AnalysisResult | null;
   onReset: () => void;
+  isAnalyzing: boolean;
 }
 
-export function ResultsTab({ analysisResult, onReset }: ResultsTabProps) {
+export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabProps) {
+  // Terminal visibility state with localStorage persistence
+  const hasAnalysisCompleted = analysisResult !== null;
+  const [isTerminalVisible, setIsTerminalVisible] = useState(() => {
+    const saved = localStorage.getItem("terminal-visible");
+    return saved === "true";
+  });
+
+  // Persist terminal visibility to localStorage
+  useEffect(() => {
+    localStorage.setItem("terminal-visible", String(isTerminalVisible));
+  }, [isTerminalVisible]);
+
   if (!analysisResult) {
     return (
-      <GlassCard className="text-center py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-muted/50 flex items-center justify-center">
-            <FileSearch className="h-10 w-10 text-muted-foreground" />
+      <div className="space-y-6">
+        <GlassCard className="text-center py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-muted/50 flex items-center justify-center">
+              <FileSearch className="h-10 w-10 text-muted-foreground" />
+            </div>
+            <h3 className="heading-md text-foreground mb-2">No Analysis Yet</h3>
+            <p className="body-md text-muted-foreground max-w-md mx-auto">
+              Add your paper content in the Input & Configure tab and launch an
+              analysis to see your novelty assessment results here.
+            </p>
+          </motion.div>
+        </GlassCard>
+
+        {/* Terminal Toggle Button */}
+        <GlassCard>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              Monitor analysis logs in real-time
+            </p>
+            <GradientButton
+              variant={isTerminalVisible ? "primary" : "ghost"}
+              size="sm"
+              icon={<TerminalIcon className="h-4 w-4" />}
+              onClick={() => setIsTerminalVisible(!isTerminalVisible)}
+            >
+              {isTerminalVisible ? "Hide" : "Show"} Terminal
+            </GradientButton>
           </div>
-          <h3 className="heading-md text-foreground mb-2">No Analysis Yet</h3>
-          <p className="body-md text-muted-foreground max-w-md mx-auto">
-            Add your paper content in the Input & Configure tab and launch an
-            analysis to see your novelty assessment results here.
-          </p>
-        </motion.div>
-      </GlassCard>
+        </GlassCard>
+
+        {/* Terminal Component */}
+        <Terminal 
+          isVisible={isTerminalVisible} 
+          onClose={() => setIsTerminalVisible(false)} 
+        />
+
+        {/* Agent Wise Analysis */}
+        <ReportViewer
+          title="Agent Wise Analysis"
+          endpoint="/api/outputs/agent-analysis"
+          isAnalyzing={isAnalyzing}
+          hasAnalysisCompleted={hasAnalysisCompleted}
+          type="text"
+          icon={<FileCode className="h-5 w-5 text-secondary" />}
+        />
+
+        {/* Final Report */}
+        <ReportViewer
+          title="Final Report"
+          endpoint="/api/outputs/final-report"
+          isAnalyzing={isAnalyzing}
+          hasAnalysisCompleted={hasAnalysisCompleted}
+          type="markdown"
+          icon={<FileText className="h-5 w-5 text-primary" />}
+        />
+      </div>
     );
   }
 
@@ -189,16 +253,52 @@ export function ResultsTab({ analysisResult, onReset }: ResultsTabProps) {
               Export Markdown
             </GradientButton>
           </div>
-          <GradientButton
-            variant="ghost"
-            size="sm"
-            icon={<RefreshCw className="h-4 w-4" />}
-            onClick={onReset}
-          >
-            Start New Analysis
-          </GradientButton>
+          <div className="flex gap-3">
+            <GradientButton
+              variant={isTerminalVisible ? "primary" : "ghost"}
+              size="sm"
+              icon={<TerminalIcon className="h-4 w-4" />}
+              onClick={() => setIsTerminalVisible(!isTerminalVisible)}
+            >
+              {isTerminalVisible ? "Hide" : "Show"} Terminal
+            </GradientButton>
+            <GradientButton
+              variant="ghost"
+              size="sm"
+              icon={<RefreshCw className="h-4 w-4" />}
+              onClick={onReset}
+            >
+              Start New Analysis
+            </GradientButton>
+          </div>
         </div>
       </GlassCard>
+
+      {/* Terminal Component */}
+      <Terminal 
+        isVisible={isTerminalVisible} 
+        onClose={() => setIsTerminalVisible(false)} 
+      />
+
+      {/* Agent Wise Analysis */}
+      <ReportViewer
+        title="Agent Wise Analysis"
+        endpoint="/api/outputs/agent-analysis"
+        isAnalyzing={isAnalyzing}
+        hasAnalysisCompleted={hasAnalysisCompleted}
+        type="text"
+        icon={<FileCode className="h-5 w-5 text-secondary" />}
+      />
+
+      {/* Final Report */}
+      <ReportViewer
+        title="Final Report"
+        endpoint="/api/outputs/final-report"
+        isAnalyzing={isAnalyzing}
+        hasAnalysisCompleted={hasAnalysisCompleted}
+        type="markdown"
+        icon={<FileText className="h-5 w-5 text-primary" />}
+      />
     </div>
   );
 }

@@ -64,7 +64,8 @@ Domains: {domain_str}
             "   Results: ...\n"
             "   Limitations: ..."
         ),
-        context=[retrieval_task]
+        context=[retrieval_task],
+        async_execution=True # Enable parallel processing for paper analysis
     )
 
     # 3. Cross-Paper Reasoning Task

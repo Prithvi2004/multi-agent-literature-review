@@ -157,6 +157,7 @@ const Index = () => {
                   <ResultsTab
                     analysisResult={state.analysisResult}
                     onReset={handleReset}
+                    isAnalyzing={state.isAnalyzing}
                   />
                 )}
 

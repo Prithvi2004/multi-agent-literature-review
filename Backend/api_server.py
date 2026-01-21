@@ -8,8 +8,10 @@ import os
 import sys
 import json
 import logging
+import queue
+import threading
 from datetime import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import traceback
 
@@ -60,6 +62,89 @@ sys.stderr = _original_stderr
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
+# Global log queue for SSE streaming
+log_queue = queue.Queue(maxsize=5000)
+
+class LogBroadcaster:
+    """Broadcaster for sending logs from global queue to multiple SSE clients."""
+    def __init__(self):
+        self.clients = []
+        self._lock = threading.Lock()
+    
+    def subscribe(self):
+        """Register a new client queue."""
+        q = queue.Queue(maxsize=1000)
+        with self._lock:
+            self.clients.append(q)
+        return q
+    
+    def unsubscribe(self, q):
+        """Remove a client queue."""
+        with self._lock:
+            if q in self.clients:
+                self.clients.remove(q)
+    
+    def broadcast(self, message):
+        """Send message to all registered clients."""
+        with self._lock:
+            # Send to all clients, remove if full (stale)
+            for q in list(self.clients):
+                try:
+                    q.put_nowait(message)
+                except queue.Full:
+                    self.clients.remove(q)
+
+broadcaster = LogBroadcaster()
+
+def log_broadcaster_worker():
+    """Background thread that drains log_queue and broadcasts to clients."""
+    logger.info("Starting log broadcaster worker thread")
+    while True:
+        try:
+            # Block until message is available
+            message = log_queue.get()
+            broadcaster.broadcast(message)
+            log_queue.task_done()
+        except Exception as e:
+            logger.error(f"Error in log broadcaster worker: {e}")
+            time.sleep(0.1)
+
+# Start broadcaster thread as daemon
+broadcaster_thread = threading.Thread(target=log_broadcaster_worker, daemon=True)
+broadcaster_thread.start()
+
+class QueueHandler(logging.Handler):
+    """Custom logging handler that pushes logs to a queue for SSE streaming."""
+    
+    def __init__(self, log_queue):
+        super().__init__()
+        self.log_queue = log_queue
+    
+    def emit(self, record):
+        try:
+            log_entry = self.format(record)
+            timestamp = datetime.now().strftime('%H:%M:%S.%f')[:-3]
+            
+            # Create structured log message
+            log_message = {
+                'timestamp': timestamp,
+                'level': record.levelname,
+                'message': log_entry,
+                'raw': record.getMessage()
+            }
+            
+            # Add to queue (non-blocking)
+            try:
+                self.log_queue.put_nowait(json.dumps(log_message))
+            except queue.Full:
+                try:
+                    self.log_queue.get_nowait()
+                    self.log_queue.put_nowait(json.dumps(log_message))
+                except:
+                    pass
+        except Exception:
+            pass
 
 # Import analysis functions from main
 from main import (
@@ -143,10 +228,16 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
         metrics_file = os.path.join(metrics_folder, 'metrics.json')
         final_report_file = os.path.join(final_report_folder, 'final_research_report.md')
         
-        # Capture terminal output
-        tee = TeeOutput(terminal_output_file, original_stdout)
+        # Capture terminal output and push to SSE queue
+        tee = TeeOutput(terminal_output_file, original_stdout, log_queue=log_queue)
         sys.stdout = tee
         sys.stderr = tee
+        
+        # Attach QueueHandler to root logger for SSE streaming
+        queue_handler = QueueHandler(log_queue)
+        queue_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        root_logger = logging.getLogger()
+        root_logger.addHandler(queue_handler)
         
         logger.info(f"="*80)
         logger.info(f"API Session Output Folders Created")
@@ -332,6 +423,10 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
         logger.info(f"API ANALYSIS COMPLETE")
         logger.info(f"="*80)
         
+        # Remove QueueHandler from root logger
+        root_logger.removeHandler(queue_handler)
+        queue_handler.close()
+        
         # Restore stdout/stderr
         sys.stdout = original_stdout
         sys.stderr = original_stderr
@@ -440,6 +535,109 @@ def analyze():
             "message": f"Internal server error: {str(e)}"
         }), 500
 
+@app.route('/api/logs/stream', methods=['GET'])
+def stream_logs():
+    """Server-Sent Events endpoint for real-time log streaming."""
+    
+    def generate():
+        """Generator function that yields SSE-formatted log messages."""
+        # Create a local queue for this specific client
+        q = broadcaster.subscribe()
+        
+        # Send initial connection message immediately
+        initial_msg = {
+            'timestamp': datetime.now().strftime('%H:%M:%S.%f')[:-3],
+            'level': 'INFO',
+            'message': '=== Terminal Connected ===',
+            'raw': 'Terminal Connected'
+        }
+        yield f"data: {json.dumps(initial_msg)}\n\n"
+        
+        try:
+            while True:
+                try:
+                    # Non-blocking wait for messages with a shorter timeout for heartbeats
+                    try:
+                        # Shorter timeout for faster response to disconnections/heartbeats
+                        log_msg = q.get(timeout=30) 
+                        yield f"data: {log_msg}\n\n"
+                    except queue.Empty:
+                        # Send heartbeat if no message received for 1 second
+                        # Using a comment format for heartbeat which is standard for SSE 
+                        # to keep connection alive without triggering onmessage
+                        yield ": keep-alive\n\n"
+                except GeneratorExit:
+                    # Client naturally disconnected (closed tab/window)
+                    break
+                except Exception as e:
+                    # Other errors (e.g. connection reset)
+                    break
+        finally:
+            # Always ensure the client is unsubscribed
+            broadcaster.unsubscribe(q)
+            # Use a slightly more descriptive log but don't spam stdout
+            # logging.info("SSE client disconnected") # Already logged by broadcaster unsub
+    
+    response = Response(generate(), mimetype='text/event-stream')
+    response.headers['Cache-Control'] = 'no-cache'
+    response.headers['X-Accel-Buffering'] = 'no'
+    response.headers['Connection'] = 'keep-alive'
+    return response
+
+@app.route('/api/outputs/agent-analysis', methods=['GET'])
+def get_agent_analysis():
+    """Get the detailed agent analysis file."""
+    try:
+        file_path = os.path.join('outputs', 'latest_research_session', 'final_report', 'detailed_agent_analysis.txt')
+        
+        if not os.path.exists(file_path):
+            return jsonify({
+                "status": "pending",
+                "message": "Agent analysis not yet available"
+            }), 202  # 202 Accepted (processing)
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        return jsonify({
+            "status": "success",
+            "content": content,
+            "file_path": file_path
+        }), 200
+    except Exception as e:
+        logger.error(f"Error reading agent analysis: {e}")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+@app.route('/api/outputs/final-report', methods=['GET'])
+def get_final_report():
+    """Get the final research report markdown file."""
+    try:
+        file_path = os.path.join('outputs', 'latest_research_session', 'final_report', 'final_research_report.md')
+        
+        if not os.path.exists(file_path):
+            return jsonify({
+                "status": "pending",
+                "message": "Final report not yet available"
+            }), 202  # 202 Accepted (processing)
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        return jsonify({
+            "status": "success",
+            "content": content,
+            "file_path": file_path
+        }), 200
+    except Exception as e:
+        logger.error(f"Error reading final report: {e}")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
 @app.route('/', methods=['GET'])
 def index():
     """Root endpoint with API information"""
@@ -448,7 +646,10 @@ def index():
         "version": "1.0.0",
         "endpoints": {
             "health": "/api/health",
-            "analyze": "/api/analyze (POST)"
+            "analyze": "/api/analyze (POST)",
+            "logs": "/api/logs/stream (GET, SSE)",
+            "agent_analysis": "/api/outputs/agent-analysis (GET)",
+            "final_report": "/api/outputs/final-report (GET)"
         },
         "documentation": "See README.md for API usage details"
     })
