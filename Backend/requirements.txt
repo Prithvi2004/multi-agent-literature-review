@@ -49,6 +49,10 @@ rich  # Beautiful terminal output
 # FAISS is best installed via conda on Windows
 faiss-cpu; platform_system != "Windows"
 
+# Web Framework for API
+Flask>=3.0.0
+Flask-CORS>=4.0.0
+
 # Optional: For production deployments
 # uvicorn
 # fastapi

@@ -167,40 +167,117 @@ Confidence: 92\\%
     return content
 
 def run_analysis():
-    """Run the analysis process"""
+    """Run the analysis process by calling the Flask API backend"""
     st.session_state['analysis_complete'] = False
 
     # Store current inputs
-    st.session_state['research_idea'] = st.session_state.get('research_idea_input', '')
-    st.session_state['selected_fields'] = st.session_state.get('research_fields_select', [])
+    research_idea = st.session_state.get('research_idea_input', '')
+    selected_fields = st.session_state.get('research_fields_select', [])
+    st.session_state['research_idea'] = research_idea
+    st.session_state['selected_fields'] = selected_fields
 
-    # Simulate analysis with optimized timing
-    stages = [
-        ("Retrieving relevant literature...", 20),
-        ("Analyzing paper abstracts...", 40),
-        ("Extracting methodologies...", 60),
-        ("Computing novelty scores...", 80),
-        ("Generating comprehensive report...", 100)
-    ]
+    # Prepare paper data from uploaded fields
+    paper_data = None
+    if st.session_state.get('paper_fields_list'):
+        paper_data = {
+            "paper_sections": st.session_state['paper_fields_list'],
+            "uploaded_papers": []
+        }
 
+    # Progress tracking
     progress_bar = st.progress(0)
     status_text = st.empty()
 
-    for stage, progress in stages:
-        status_text.markdown(f"**{stage}**")
-        progress_bar.progress(progress)
-        time.sleep(0.3)  # Reduced sleep time for smoother experience
-
-    status_text.markdown("**Analysis Complete!**")
-    time.sleep(0.5)
-    progress_bar.empty()
-    status_text.empty()
-
-    st.session_state['analysis_complete'] = True
-    # Trigger automatic switch to results and show completion toast
-    st.session_state['switch_to_results'] = True
-    st.session_state['show_completion_toast'] = True
-    st.rerun()
+    try:
+        # API Configuration
+        API_BASE_URL = "http://localhost:5000"
+        
+        # Prepare request payload
+        payload = {
+            "research_idea": research_idea,
+            "selected_domains": selected_fields,
+            "paper_data": paper_data
+        }
+        
+        # Show initial progress
+        status_text.markdown("**🔄 Connecting to backend...**")
+        progress_bar.progress(10)
+        time.sleep(0.5)
+        
+        status_text.markdown("**📡 Sending analysis request...**")
+        progress_bar.progress(20)
+        
+        # Make API request (with simulated progress updates in background)
+        import requests
+        
+        status_text.markdown("**🔍 Retrieving relevant literature...**")
+        progress_bar.progress(30)
+        
+        # Start the actual API call
+        response = requests.post(
+            f"{API_BASE_URL}/api/analyze",
+            json=payload,
+            headers={"Content-Type": "application/json"},
+            timeout=600  # 10 minute timeout
+        )
+        
+        # Update progress
+        status_text.markdown("**🤖 Multi-agent analysis in progress...**")
+        progress_bar.progress(60)
+        time.sleep(1)
+        
+        status_text.markdown("**📊 Processing results...**")
+        progress_bar.progress(85)
+        time.sleep(0.5)
+        
+        # Check response
+        if response.status_code == 200:
+            result_data = response.json()
+            
+            if result_data.get('status') == 'success':
+                # Store results in session state
+                data = result_data.get('data', {})
+                st.session_state['analysis_results'] = data.get('final_report', '')
+                st.session_state['agent_outputs'] = data.get('agent_outputs', {})
+                st.session_state['papers'] = data.get('papers', [])
+                st.session_state['metrics'] = data.get('metrics', {})
+                
+                status_text.markdown("**✅ Analysis Complete!**")
+                progress_bar.progress(100)
+                time.sleep(0.5)
+                
+                st.session_state['analysis_complete'] = True
+                st.session_state['switch_to_results'] = True
+                st.session_state['show_completion_toast'] = True
+            else:
+                error_msg = result_data.get('message', 'Unknown error occurred')
+                st.error(f"❌ Analysis failed: {error_msg}")
+                st.session_state['analysis_complete'] = False
+        else:
+            st.error(f"❌ API request failed with status code: {response.status_code}")
+            if response.text:
+                st.error(f"Error details: {response.text}")
+            st.session_state['analysis_complete'] = False
+            
+    except requests.exceptions.ConnectionError:
+        st.error("❌ **Connection Error**: Cannot connect to the backend API. Please ensure the Flask server is running on http://localhost:5000")
+        st.info("💡 **Tip**: Run `python api_server.py` in the Backend directory to start the server.")
+        st.session_state['analysis_complete'] = False
+        
+    except requests.exceptions.Timeout:
+        st.error("⏱️ **Timeout Error**: The analysis is taking longer than expected. This could mean the backend is processing a complex request.")
+        st.session_state['analysis_complete'] = False
+        
+    except Exception as e:
+        st.error(f"❌ **Unexpected Error**: {str(e)}")
+        st.session_state['analysis_complete'] = False
+    
+    finally:
+        progress_bar.empty()
+        status_text.empty()
+    
+    if st.session_state.get('analysis_complete'):
+        st.rerun()
 # ----------------------------
 # ADVANCED CUSTOM CSS WITH ANIMATIONS
 # ----------------------------
@@ -1193,33 +1270,46 @@ with tab2:
         st.markdown('<div class="glass-card">', unsafe_allow_html=True)
         st.markdown("### Novelty Assessment Summary")
 
-        research_idea = st.session_state.get('research_idea', '')
-        selected_fields = st.session_state.get('selected_fields', [])
+        # Get data from session state (populated by API response)
+        analysis_results = st.session_state.get('analysis_results', '')
+        agent_outputs = st.session_state.get('agent_outputs', {})
+        papers_list = st.session_state.get('papers', [])
+        metrics = st.session_state.get('metrics', {})
+        
+        # Display the final report from the API
+        if analysis_results:
+            st.markdown("#### Analysis Report")
+            st.markdown(analysis_results)
+        else:
+            # Fallback to mock data if no API results
+            research_idea = st.session_state.get('research_idea', '')
+            selected_fields = st.session_state.get('selected_fields', [])
 
-        st.markdown(f"""
-        #### Overall Assessment
-        Your research demonstrates **high novelty** with significant potential for contribution.
-        The proposed hybrid architecture addresses a critical gap in interpretable medical AI.
+            st.markdown(f"""
+            #### Overall Assessment
+            Your research demonstrates **high novelty** with significant potential for contribution.
+            The proposed hybrid architecture addresses a critical gap in interpretable medical AI.
 
-        #### Key Findings
+            #### Key Findings
 
-        **Novel Aspects:**
-        - Integration of neuro-symbolic reasoning with multimodal transformers
-        - Explicit knowledge graph incorporation for explainability
-        - Novel attention mechanism for symbolic reasoning alignment
+            **Novel Aspects:**
+            - Integration of neuro-symbolic reasoning with multimodal transformers
+            - Explicit knowledge graph incorporation for explainability
+            - Novel attention mechanism for symbolic reasoning alignment
 
-        **Related Prior Work:**
-        1. **Chen et al. (2024)** - *"Multimodal Diagnosis with Vision-Language Models"*
-           - Focus: Pure deep learning without symbolic reasoning
-           - Gap: Limited explainability
+            **Related Prior Work:**
+            1. **Chen et al. (2024)** - *"Multimodal Diagnosis with Vision-Language Models"*
+               - Focus: Pure deep learning without symbolic reasoning
+               - Gap: Limited explainability
 
-        2. **Gupta & Lee (2023)** - *"Neuro-Symbolic AI for Medical Imaging"*
-           - Focus: Symbolic reasoning in radiology
-           - Gap: Single-modality approach
+            2. **Gupta & Lee (2023)** - *"Neuro-Symbolic AI for Medical Imaging"*
+               - Focus: Symbolic reasoning in radiology
+               - Gap: Single-modality approach
 
-        3. **Rodriguez et al. (2024)** - *"Explainable Medical AI: A Survey"*
-           - Focus: Survey of explanation methods
-           - Gap: Lacks concrete hybrid architecture
+            3. **Rodriguez et al. (2024)** - *"Explainable Medical AI: A Survey"*
+               - Focus: Survey of explanation methods
+               - Gap: Lacks concrete hybrid architecture
+
 
         **Identified Research Gaps:**
         1. No existing work combines multimodal transformers with knowledge graphs

@@ -10,6 +10,15 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    proxy: {
+      // Proxy API requests to Flask backend
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path, // Keep the path as is
+      },
+    },
   },
   plugins: [react()].filter(Boolean),
   resolve: {

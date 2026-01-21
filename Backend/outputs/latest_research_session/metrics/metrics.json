@@ -1,57 +1,29 @@
 {
-  "session_id": "20260121_090135",
-  "start_time": "2026-01-21T09:01:35.456597",
+  "session_id": "20260122_010328",
+  "start_time": "2026-01-22T01:03:28.621016",
   "inputs": {
     "research_idea": "Investigate how lightweight transformer models can achieve competitive performance with reduced computational cost.",
-    "domains": [
-      "Natural Language Processing",
-      "Artificial Intelligence"
-    ],
-    "uploaded_paper": true,
     "selected_domains": [
-      "Natural Language Processing",
-      "Artificial Intelligence"
+      "Natural Language Processing"
     ]
   },
   "outputs": {
-    "success": true,
-    "report_length": 9127
+    "success": true
   },
-  "api_calls": [
-    {
-      "source": "Semantic Scholar",
-      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
-      "results_count": 0,
-      "duration_seconds": 2.94,
-      "success": false,
-      "error": "Max retries exceeded",
-      "timestamp": "2026-01-21T09:03:11.961547"
-    },
-    {
-      "source": "arXiv",
-      "query": "Investigate how lightweight transformer models can achieve competitive performance with reduced comp",
-      "results_count": 5,
-      "duration_seconds": 5.01,
-      "success": true,
-      "error": null,
-      "timestamp": "2026-01-21T09:03:14.034689"
-    }
-  ],
+  "api_calls": [],
   "agent_performance": [],
   "rag_operations": [],
   "llm_calls": [],
   "errors": [],
   "timing": {
-    "paper_retrieval_and_indexing": 6.48,
-    "total_analysis": 533.17,
-    "total_session": 533.17
+    "total_analysis": 223.74
   },
-  "end_time": "2026-01-21T09:13:22.783716",
-  "total_duration_seconds": 707.33,
+  "end_time": "2026-01-22T01:07:12.363439",
+  "total_duration_seconds": 223.74,
   "summary": {
-    "total_api_calls": 2,
-    "successful_api_calls": 1,
-    "total_papers_retrieved": 5,
+    "total_api_calls": 0,
+    "successful_api_calls": 0,
+    "total_papers_retrieved": 0,
     "total_agent_tasks": 0,
     "total_rag_operations": 0,
     "total_llm_calls": 0,
