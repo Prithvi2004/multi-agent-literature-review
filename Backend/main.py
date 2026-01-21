@@ -176,7 +176,7 @@ os.makedirs(metrics_folder, exist_ok=True)
 os.makedirs(final_report_folder, exist_ok=True)
 
 print(f"\n{'='*80}")
-print(f"🚀 Multi-Agent Literature Review System - Research Grade (PhD Level)")
+print(f"🚀 Multi-Agent Literature Review System - Research Grade ")
 print(f"{'='*80}")
 print(f"\n📁 SESSION OUTPUTS")
 print(f"{'='*80}")

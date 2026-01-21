@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#grad)"/>
+  
+  <!-- Book/Document icon -->
+  <path d="M20 16 h24 a2 2 0 0 1 2 2 v28 a2 2 0 0 1 -2 2 h-24 a2 2 0 0 1 -2 -2 v-28 a2 2 0 0 1 2 -2 z" 
+        fill="white" opacity="0.95"/>
+  
+  <!-- Pages lines -->
+  <line x1="24" y1="24" x2="40" y2="24" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="24" y1="30" x2="40" y2="30" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="24" y1="36" x2="36" y2="36" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Star/Novelty indicator -->
+  <path d="M32 39 l2.5 5 l5.5 0.8 l-4 3.9 l0.9 5.5 l-4.9-2.6 l-4.9 2.6 l0.9-5.5 l-4-3.9 l5.5-0.8 z" 
+        fill="#fbbf24" stroke="#f59e0b" stroke-width="1"/>
+</svg>
