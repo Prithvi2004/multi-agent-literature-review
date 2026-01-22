@@ -1,0 +1,23 @@
+name: coderabbit-review
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CodeRabbit Review
+        uses: coderabbitai/github-action@v1
+        with:
+          api_key: ${{ secrets.CODERABBIT_TOKEN }}
+          config_path: .coderabbit.yml

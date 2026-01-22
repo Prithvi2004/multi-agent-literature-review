@@ -1,0 +1,23 @@
+version: 1
+review:
+  languages: [python, typescript, javascript]
+  paths:
+    include:
+      - "Backend/**"
+      - "Frontend/**"
+      - "MALRS-Frontend/src/**"
+    exclude:
+      - "**/node_modules/**"
+      - "Backend/outputs/**"
+      - "outputs/**"
+      - "**/__pycache__/**"
+      - "**/.venv/**"
+      - "**/faiss_index/**"
+      - "**/.env"
+      - "**/.env.*"
+      - "**/*.lock*"
+      - "MALRS-Frontend/dist/**"
+      - "MALRS-Frontend/.vade-report/**"
+  max_comments: 25
+  summary: true
+  inline_suggestions: true
