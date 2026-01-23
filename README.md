@@ -4,6 +4,9 @@
 
 This project develops a **Multi-Agent Large Language Model (LLM)** framework to automate literature review and research novelty identification. Specialized AI agents collaboratively retrieve, summarize, compare, and analyze research papers to provide structured insights with reliable citation support.
 
+## ⚠️ IMPORTANT
+**This project is currently in v0 (early development version).**
+
 ## Key Features
 
 - Multi-agent collaboration for literature retrieval, summarization, and comparison
