@@ -643,16 +643,120 @@ def index():
     """Root endpoint with API information"""
     return jsonify({
         "service": "Multi-Agent Literature Review API",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "endpoints": {
             "health": "/api/health",
             "analyze": "/api/analyze (POST)",
             "logs": "/api/logs/stream (GET, SSE)",
             "agent_analysis": "/api/outputs/agent-analysis (GET)",
-            "final_report": "/api/outputs/final-report (GET)"
+            "final_report": "/api/outputs/final-report (GET)",
+            "sessions_save": "/api/sessions/save (POST)",
+            "sessions_list": "/api/sessions/list (GET)",
+            "sessions_get": "/api/sessions/<id> (GET)",
+            "sessions_delete": "/api/sessions/<id> (DELETE)",
+            "export": "/api/export (POST)"
         },
         "documentation": "See README.md for API usage details"
     })
+
+# ==============================================================================
+# SESSION MANAGEMENT ENDPOINTS
+# ==============================================================================
+
+from session_manager import (
+    save_session as db_save_session,
+    list_sessions as db_list_sessions,
+    load_session as db_load_session,
+    delete_session as db_delete_session
+)
+
+@app.route('/api/sessions/save', methods=['POST'])
+def save_session_endpoint():
+    """Save a research session."""
+    try:
+        if not request.is_json:
+            return jsonify({"status": "error", "message": "Content-Type must be application/json"}), 400
+        
+        data = request.get_json()
+        session_id = db_save_session(data)
+        
+        return jsonify({"status": "success", "message": "Session saved successfully", "session_id": session_id}), 200
+    except Exception as e:
+        logger.error(f"Error saving session: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/sessions/list', methods=['GET'])
+def list_sessions_endpoint():
+    """List all saved sessions."""
+    try:
+        sessions = db_list_sessions()
+        return jsonify({"status": "success", "sessions": sessions}), 200
+    except Exception as e:
+        logger.error(f"Error listing sessions: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/sessions/<session_id>', methods=['GET'])
+def get_session_endpoint(session_id):
+    """Load a specific session."""
+    try:
+        session_data = db_load_session(session_id)
+        if not session_data:
+            return jsonify({"status": "error", "message": "Session not found"}), 404
+        return jsonify({"status": "success", "session": session_data}), 200
+    except Exception as e:
+        logger.error(f"Error loading session: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/sessions/<session_id>', methods=['DELETE'])
+def delete_session_endpoint(session_id):
+    """Delete a specific session."""
+    try:
+        deleted = db_delete_session(session_id)
+        if not deleted:
+            return jsonify({"status": "error", "message": "Session not found"}), 404
+        return jsonify({"status": "success", "message": "Session deleted successfully"}), 200
+    except Exception as e:
+        logger.error(f"Error deleting session: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# ==============================================================================
+# EXPORT ENDPOINT
+# ==============================================================================
+
+from export_manager import export_analysis
+
+@app.route('/api/export', methods=['POST'])
+def export_endpoint():
+    """Export analysis results to various formats."""
+    try:
+        if not request.is_json:
+            return jsonify({"status": "error", "message": "Content-Type must be application/json"}), 400
+        
+        data = request.get_json()
+        format = data.get('format', 'markdown').lower()
+        analysis_data = data.get('analysis_data', {})
+        
+        if not analysis_data:
+            return jsonify({"status": "error", "message": "No analysis data provided"}), 400
+        
+        # Generate export
+        content_bytes, filename, mimetype = export_analysis(analysis_data, format)
+        
+        # Return file as download
+        from flask import send_file
+        return send_file(
+            BytesIO(content_bytes),
+            mimetype=mimetype,
+            as_attachment=True,
+            download_name=filename
+        )
+        
+    except ValueError as e:
+        logger.error(f"Export validation error: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 400
+    except Exception as e:
+        logger.error(f"Error exporting analysis: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
     logger.info("="*80)

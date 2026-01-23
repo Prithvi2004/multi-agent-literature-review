@@ -44,13 +44,11 @@ export function Terminal({ isVisible, onClose }: TerminalProps) {
     scrollToBottom();
   }, [logs, isScrollLocked]);
 
-  // Connect to SSE endpoint
+  // Connect to SSE endpoint - keep connection alive always
   useEffect(() => {
-    if (!isVisible) return;
-
     const connectSSE = () => {
       try {
-        const eventSource = new EventSource("/api/logs/stream");
+        const eventSource = new EventSource("http://localhost:5000/api/logs/stream");
         eventSourceRef.current = eventSource;
 
         eventSource.onopen = () => {
@@ -74,9 +72,7 @@ export function Terminal({ isVisible, onClose }: TerminalProps) {
           
           // Attempt reconnection after 3 seconds
           setTimeout(() => {
-            if (isVisible) {
-              connectSSE();
-            }
+            connectSSE();
           }, 3000);
         };
       } catch (error) {
@@ -86,7 +82,7 @@ export function Terminal({ isVisible, onClose }: TerminalProps) {
 
     connectSSE();
 
-    // Cleanup on unmount or when visibility changes
+    // Cleanup only on unmount, NOT on visibility change
     return () => {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
@@ -94,7 +90,7 @@ export function Terminal({ isVisible, onClose }: TerminalProps) {
         setIsConnected(false);
       }
     };
-  }, [isVisible]);
+  }, []); // Empty dependency array - connect once on mount
 
   const handleClear = () => {
     setLogs([]);

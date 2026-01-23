@@ -134,19 +134,55 @@ export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabP
     },
   ];
 
-  const handleExport = (format: string) => {
-    const timestamp = new Date().toISOString().split("T")[0];
-    const filename = `research-novel-report-${timestamp}.${format}`;
-    
-    // Simulate download
-    const content = JSON.stringify(analysisResult, null, 2);
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
+  const handleExport = async (format: string) => {
+    try {
+      // Prepare analysis data for export
+      const exportData = {
+        format: format,
+        analysis_data: {
+          research_idea: analysisResult.fullReport || '',
+          domains: [],
+          final_report: analysisResult.fullReport || '',
+          papers: analysisResult.retrievedPapers || [],
+          metrics: analysisResult.metrics || {},
+          agent_outputs: analysisResult.agentOutputs || {}
+        }
+      };
+
+      // Call export API
+      const response = await fetch('http://localhost:5000/api/export', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(exportData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Export failed');
+      }
+
+      // Download the file
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      
+      // Get filename from Content-Disposition header or generate one
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition
+        ? contentDisposition.split('filename=')[1]?.replace(/"/g, '')
+        : `research-report-${new Date().toISOString().split('T')[0]}.${format}`;
+      
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Export error:', error);
+      alert('Failed to export. Please try again.');
+    }
   };
 
   return (
