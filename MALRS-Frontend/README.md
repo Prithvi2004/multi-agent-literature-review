@@ -2,6 +2,10 @@
 
 This is the frontend for the Multi-Agent Literature Review System (MALRS). It is a React-based application built with Vite and TypeScript, designed to provide an interface for the Agentic AI-powered novelty assessment platform.
 
+
+## ⚠️ IMPORTANT
+**This project is currently in v0 (early development version).**
+
 ## Features
 
 -   **Tabbed Interface**: Easily switch between configuring input, viewing results, and managing your paper library.
