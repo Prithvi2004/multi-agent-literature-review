@@ -180,11 +180,13 @@ const Index = () => {
             <span className="font-serif font-semibold text-primary/90">
               Literature Review System
             </span>{" "}
-            © 2025
+            © 2026
             <span className="mx-3 opacity-40">•</span>
             Multi-Agent Intelligence Platform
             <span className="mx-3 opacity-40">•</span>
-            Crafted by Prithvi
+            <span className="rounded-md border border-primary/40 px-2 py-0.5 text-[11.5px] font-semibold uppercase tracking-wider text-primary/90">
+            Designed & Developed by Prithvi
+            </span>
           </p>
         </footer>
       </div>

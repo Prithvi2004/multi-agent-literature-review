@@ -88,7 +88,7 @@ export function AppSidebar() {
                   Architecture
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <TechBadge icon={Brain} label="GPT-4o" />
+                  <TechBadge icon={Brain} label="Ollama" />
                   <TechBadge icon={Archive} label="RAG" />
                   <TechBadge icon={Sparkles} label="Multi-Agent" />
                 </div>
@@ -128,7 +128,7 @@ export function AppSidebar() {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  <p className="font-medium">GPT-4o + RAG + Multi-Agent</p>
+                  <p className="font-medium">Ollama + RAG + Multi-Agent</p>
                 </TooltipContent>
               </Tooltip>
             </motion.div>

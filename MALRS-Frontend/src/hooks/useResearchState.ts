@@ -67,6 +67,7 @@ const initialState: ResearchState = {
 };
 
 export const SECTION_TYPES = [
+  "Title",
   "Abstract",
   "Introduction",
   "Literature Review",

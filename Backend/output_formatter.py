@@ -164,7 +164,7 @@ Preserve any paper handles like [P1], [P2]. Respond in concise Markdown with hea
         domain_str = " • ".join(domains)
         
         title_page = f"""
-{'='*80}
+
 LITERATURE REVIEW: A COMPREHENSIVE ANALYSIS
 {'='*80}
 
@@ -176,7 +176,7 @@ Research Domains:
 
 Generated: {datetime.now().strftime('%B %d, %Y at %H:%M:%S')}
 
-Academic Level: PhD / Post-Graduate Research
+Academic Level: Research Grade 
 
 {'='*80}
 """
