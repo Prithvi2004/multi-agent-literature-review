@@ -174,64 +174,89 @@ class MetricsTracker:
             json.dump(temp_metrics, f, indent=2, ensure_ascii=False)
         return filename
 
-# Global metrics tracker
+# Global metrics tracker (safe to initialize on import)
 metrics = MetricsTracker()
 
-# Configure logging and output capture with organized folders
-session_folder = os.path.join('outputs', 'latest_research_session')
-timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-backup_folder = os.path.join('outputs', f'backup_session_{timestamp}')
-
-review_folder = os.path.join(session_folder, 'review')
-terminal_folder = os.path.join(session_folder, 'terminal_output')
-metrics_folder = os.path.join(session_folder, 'metrics')
-final_report_folder = os.path.join(session_folder, 'final_report')
-
-os.makedirs(review_folder, exist_ok=True)
-os.makedirs(terminal_folder, exist_ok=True)
-os.makedirs(metrics_folder, exist_ok=True)
-os.makedirs(final_report_folder, exist_ok=True)
-
-print(f"\n{'='*80}")
-print(f"🚀 Multi-Agent Literature Review System - Research Grade ")
-print(f"{'='*80}")
-print(f"\n📁 SESSION OUTPUTS")
-print(f"{'='*80}")
-print(f"📁 Main Session: {session_folder}")
-print(f"   (This folder will be overwritten each run)")
-print(f"   📝 review/literature_review.log")
-print(f"   🖥️  terminal_output/terminal_output.txt")
-print(f"   📊 metrics/metrics.json")
-print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
-print(f"   📄 final_report/final_research_report.md")
-print(f"   📄 final_report/detailed_agent_analysis.txt")
-print(f"{'='*80}\n")
-
-log_filename = os.path.join(review_folder, 'literature_review.log')
-output_filename = os.path.join(terminal_folder, 'terminal_output.txt')
-metrics_filename = os.path.join(metrics_folder, 'metrics.json')
-final_report_filename = os.path.join(final_report_folder, 'final_research_report.md')
-detailed_analysis_filename = os.path.join(final_report_folder, 'detailed_agent_analysis.txt')
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(log_filename, encoding='utf-8')
-    ]
-)
+# Module-level variables (will be set by init_cli_mode() when running as CLI)
+session_folder = None
+review_folder = None
+terminal_folder = None
+metrics_folder = None
+final_report_folder = None
+log_filename = None
+output_filename = None
+metrics_filename = None
+final_report_filename = None
+detailed_analysis_filename = None
 logger = logging.getLogger(__name__)
+tee = None
 
-original_stdout = sys.stdout
-original_stderr = sys.stderr
-sys.stdout = TeeOutput(output_filename, original_stdout)
-sys.stderr = sys.stdout
-
-logger.info(f"=" * 80)
-logger.info(f"Multi-Agent Literature Review System Started (PhD Edition)")
-logger.info(f"Session folder: {session_folder}")
-logger.info(f"Review log: {log_filename}")
-logger.info(f"=" * 80)
+def init_cli_mode():
+    """Initialize CLI mode with logging and output capture.
+    Only call this when running main.py directly, not when importing.
+    """
+    global session_folder, review_folder, terminal_folder, metrics_folder, final_report_folder
+    global log_filename, output_filename, metrics_filename, final_report_filename, detailed_analysis_filename
+    global logger, tee
+    
+    # Configure logging and output capture with organized folders
+    session_folder = os.path.join('outputs', 'latest_research_session')
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    backup_folder = os.path.join('outputs', f'backup_session_{timestamp}')
+    
+    review_folder = os.path.join(session_folder, 'review')
+    terminal_folder = os.path.join(session_folder, 'terminal_output')
+    metrics_folder = os.path.join(session_folder, 'metrics')
+    final_report_folder = os.path.join(session_folder, 'final_report')
+    
+    os.makedirs(review_folder, exist_ok=True)
+    os.makedirs(terminal_folder, exist_ok=True)
+    os.makedirs(metrics_folder, exist_ok=True)
+    os.makedirs(final_report_folder, exist_ok=True)
+    
+    print(f"\n{'='*80}")
+    print(f"🚀 Multi-Agent Literature Review System - Research Grade ")
+    print(f"{'='*80}")
+    print(f"\n📁 SESSION OUTPUTS")
+    print(f"{'='*80}")
+    print(f"📁 Main Session: {session_folder}")
+    print(f"   (This folder will be overwritten each run)")
+    print(f"   📝 review/literature_review.log")
+    print(f"   🖥️  terminal_output/terminal_output.txt")
+    print(f"   📊 metrics/metrics.json")
+    print(f"   🤖 ollama_logs/ollama_api.log  ← Streaming API Calls")
+    print(f"   📄 final_report/final_research_report.md")
+    print(f"   📄 final_report/detailed_agent_analysis.txt")
+    print(f"{'='*80}\n")
+    
+    log_filename = os.path.join(review_folder, 'literature_review.log')
+    output_filename = os.path.join(terminal_folder, 'terminal_output.txt')
+    metrics_filename = os.path.join(metrics_folder, 'metrics.json')
+    final_report_filename = os.path.join(final_report_folder, 'final_research_report.md')
+    detailed_analysis_filename = os.path.join(final_report_folder, 'detailed_agent_analysis.txt')
+    
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_filename, encoding='utf-8')
+        ]
+    )
+    logger = logging.getLogger(__name__)
+    
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+    tee = TeeOutput(output_filename, original_stdout)
+    sys.stdout = tee
+    sys.stderr = tee
+    
+    logger.info(f"=" * 80)
+    logger.info(f"Multi-Agent Literature Review System Started (PhD Edition)")
+    logger.info(f"Session folder: {session_folder}")
+    logger.info(f"Review log: {log_filename}")
+    logger.info(f"=" * 80)
+    
+    return session_folder, log_filename, output_filename, metrics_filename, final_report_filename, detailed_analysis_filename
 
 # Rate limiting configuration
 API_DELAY = 1.5
@@ -635,6 +660,9 @@ def run_analysis(user_idea: str, selected_domains: list):
 
 # CLI Entry supporting JSON inputs for paper data and optional fields
 if __name__ == "__main__":
+    # Initialize CLI mode (logging, output capture, folders)
+    session_folder, log_filename, output_filename, metrics_filename, final_report_filename, detailed_analysis_filename = init_cli_mode()
+    
     logger.info("Starting CLI interface")
     # Built-in defaults (used when user opts in)
     default_paper_json = {

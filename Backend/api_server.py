@@ -69,6 +69,7 @@ CORS(app, resources={
             "http://localhost:5173",  # Local development
             "http://localhost:3000",  # Alternative local port
             "https://malrs.vercel.app",  # Production Vercel frontend
+            "https://*.vercel.app",  # All Vercel preview deployments
             "http://localhost:5000",  # Local backend
         ],
         "methods": ["GET", "POST", "OPTIONS"],
