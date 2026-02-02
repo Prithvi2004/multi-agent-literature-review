@@ -48,7 +48,7 @@ git push -u origin main
 4. Select the repository where you pushed the Backend code
 
 5. **Configure the Service**:
-   - **Name**: `malrs-backend`
+   - **Name**: `multi-agent-literature-review`
    - **Root Directory**: Leave blank (or enter `Backend` if using monorepo)
    - **Runtime**: `Python 3`
    - **Build Command**: `pip install -r requirements.txt`
@@ -68,14 +68,14 @@ git push -u origin main
 
 7. Click **"Create Web Service"**
 8. Wait for deployment to complete (check logs for any errors)
-9. You'll get a URL like: `https://malrs-backend.onrender.com`
+9. Your backend is now live at: `https://multi-agent-literature-review.onrender.com`
 
 ### 4. Verify Deployment
 
 1. **Check Backend Health**:
 
    ```bash
-   curl https://malrs-backend.onrender.com/api/health
+   curl https://multi-agent-literature-review.onrender.com/api/health
    ```
 
 2. **Check Logs in Render Dashboard**:

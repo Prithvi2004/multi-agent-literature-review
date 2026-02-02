@@ -4,6 +4,12 @@
 # the pip requirement conditional so `pip install -r` does not attempt FAISS on
 # Windows.
 
+# Pin critical dependencies to avoid build issues on deployment platforms
+jiter>=0.9.0  # Ensure pre-built wheels are used (avoid Rust compilation)
+instructor<1.12.0,>=1.11.0  # Compatible version with stable dependencies
+openai>=1.40.0,<2.0.0  # Pin openai to avoid jiter version conflicts
+pre-commit>=4.3.0  # Required by instructor
+
 # Core Agent Framework
 crewai>=0.11.0
 crewai-tools
