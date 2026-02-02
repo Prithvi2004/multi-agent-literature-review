@@ -8,6 +8,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from dotenv import load_dotenv
 
+load_dotenv()
+
 logger = logging.getLogger(__name__)
 
 # Setup dedicated Ollama log file
@@ -29,14 +31,22 @@ ollama_logger.addHandler(ollama_handler)
 class OllamaLLM:
     """Optimized Ollama LLM client with connection pooling and retry logic."""
     
-    def __init__(self, model="deepseek-v3.1:671b-cloud", base_url="http://localhost:11434", temperature=0.1): 
-        # Updated default model to something likely to be modern, user said "maintain compatibility" so we allow overrides
-        self.model = model
-        self.base_url = base_url.rstrip("/")
-        self.temperature = temperature
+    def __init__(self, model=None, base_url=None, temperature=None): 
+        # Get configuration from environment variables with fallbacks
+        self.model = model or os.getenv("OLLAMA_MODEL", "deepseek-v3.1:671b-cloud")
+        self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "https://api.ollama.cloud")).rstrip("/")
+        self.temperature = float(temperature or os.getenv("TEMPERATURE", "0.1"))
+        
+        # Get API key if using Ollama Cloud
+        self.api_key = os.getenv("OLLAMA_API_KEY")
         
         # Configure session with connection pooling and retries
         self.session = requests.Session()
+        
+        # Add authorization header if API key exists
+        if self.api_key:
+            self.session.headers.update({"Authorization": f"Bearer {self.api_key}"})
+        
         retry_strategy = Retry(
             total=3,
             backoff_factor=1,
@@ -58,7 +68,7 @@ class OllamaLLM:
     
     def _test_connection(self):
         try:
-            test_resp = self.session.get(f"{self.base_url}/api/tags", timeout=5)
+            test_resp = self.session.get(f"{self.base_url}/api/tags", timeout=10)
             if test_resp.status_code == 200:
                 logger.info(f"✓ Ollama server connection successful")
                 return True
@@ -66,6 +76,7 @@ class OllamaLLM:
             return False
         except Exception as e:
             logger.error(f"❌ Cannot connect to Ollama: {e}")
+            # Don't fail initialization - connection might work when actually generating
             return False
 
     def call(self, messages, **kwargs):

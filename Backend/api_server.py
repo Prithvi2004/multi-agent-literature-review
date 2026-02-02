@@ -61,7 +61,21 @@ sys.stderr = _original_stderr
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+
+# Configure CORS for Vercel frontend
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "http://localhost:5173",  # Local development
+            "http://localhost:3000",  # Alternative local port
+            "https://malrs.vercel.app",  # Production Vercel frontend
+        ],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"],
+        "supports_credentials": True,
+        "max_age": 3600
+    }
+})
 
 # Global log queue for SSE streaming
 log_queue = queue.Queue(maxsize=5000)
