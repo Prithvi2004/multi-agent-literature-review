@@ -1,1 +1,1 @@
-web: gunicorn api_server:app --bind 0.0.0.0:$PORT --timeout 600 --workers 2 --worker-class sync
+web: gunicorn api_server_minimal:app --bind 0.0.0.0:$PORT --timeout 600 --workers 1 --worker-class sync --log-level info --access-logfile - --error-logfile -
