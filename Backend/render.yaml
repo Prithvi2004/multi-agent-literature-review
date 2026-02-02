@@ -1,3 +1,4 @@
+# Updated Render configuration for minimal server
 services:
   - type: web
     name: malrs-backend
@@ -6,14 +7,15 @@ services:
     plan: free
     rootDir: Backend
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn api_server:app --bind 0.0.0.0:$PORT --timeout 600 --workers 2 --worker-class sync --log-level info
+    # Use the minimal server instead
+    startCommand: gunicorn api_server_minimal:app --bind 0.0.0.0:$PORT --timeout 600 --workers 1 --worker-class sync --log-level info --access-logfile - --error-logfile -
     envVars:
       - key: PYTHON_VERSION
         value: 3.13.1
       - key: RENDER
         value: true
       - key: OLLAMA_API_KEY
-        sync: false  # Set this in Render dashboard
+        sync: false
       - key: OLLAMA_BASE_URL
         value: https://ollama.com
     healthCheckPath: /api/health
