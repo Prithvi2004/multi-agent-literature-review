@@ -36,6 +36,7 @@ python-magic-bin; platform_system == "Windows"  # File type detection
 arxiv
 requests
 urllib3
+duckduckgo-search>=6.0.0  # For DuckDuckGo web search tool
 
 # Data Processing & ML
 numpy>=1.24.0
