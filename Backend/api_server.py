@@ -670,18 +670,24 @@ def index():
     })
 
 if __name__ == '__main__':
+    # Get port from environment variable (Render sets this)
+    port = int(os.environ.get('PORT', 5000))
+    
+    # Determine if running in production
+    is_production = os.environ.get('RENDER', False)
     logger.info("="*80)
     logger.info("Starting Flask API Server for Multi-Agent Literature Review")
+    logger.info(f"Environment: {'PRODUCTION' if is_production else 'DEVELOPMENT'}")
     logger.info("="*80)
-    logger.info(f"API will be available at: http://localhost:5000")
-    logger.info(f"Health check: http://localhost:5000/api/health")
-    logger.info(f"Analyze endpoint: http://localhost:5000/api/analyze")
+    logger.info(f"API will be available at: http://0.0.0.0:{port}")
+    logger.info(f"Health check: http://0.0.0.0:{port}/api/health")
+    logger.info(f"Analyze endpoint: http://0.0.0.0:{port}/api/analyze")
     logger.info("="*80)
     
     # Run the Flask app
     app.run(
         host='0.0.0.0',  # Allow external connections
-        port=5000,
-        debug=True,  # Set to False for production
+        port=port,  # Use PORT from environment
+        debug=not is_production,  # Disable debug in production
         threaded=True  # Enable threading for concurrent requests
     )

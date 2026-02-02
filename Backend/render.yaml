@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: malrs-backend
+    env: python
+    region: oregon
+    plan: free
+    rootDir: Backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn api_server:app --bind 0.0.0.0:$PORT --timeout 600 --workers 2 --worker-class sync --log-level info
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.1
+      - key: RENDER
+        value: true
+      - key: OLLAMA_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: OLLAMA_BASE_URL
+        value: https://ollama.com
+    healthCheckPath: /api/health
