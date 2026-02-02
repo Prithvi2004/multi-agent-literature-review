@@ -6,9 +6,10 @@
 
 # Pin critical dependencies to avoid build issues on deployment platforms
 jiter>=0.9.0  # Ensure pre-built wheels are used (avoid Rust compilation)
-instructor<1.12.0,>=1.11.0  # Compatible version with stable dependencies
 openai>=1.40.0,<2.0.0  # Pin openai to avoid jiter version conflicts
-pre-commit>=4.3.0  # Required by instructor
+
+# Ollama Python SDK for cloud API
+ollama>=0.4.0
 
 # Core Agent Framework
 crewai>=0.11.0
@@ -21,8 +22,8 @@ langchain-community
 sentence-transformers>=2.2.0
 
 # Advanced RAG Components
-rank-bm25>=0.2.2  # Sparse retrieval (BM25)
-ragas>=0.1.0  # RAG evaluation metrics
+# rank-bm25>=0.2.2  # Sparse retrieval (BM25)
+# ragas>=0.1.0  # RAG evaluation metrics
 voyageai  # Advanced embeddings (optional)
 
 # Document Processing

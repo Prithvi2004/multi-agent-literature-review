@@ -59,8 +59,8 @@ git push -u origin main
    Click "Add Environment Variable" and add:
 
    ```
-   OLLAMA_MODEL=deepseek-v3.1:671b-cloud
-   OLLAMA_BASE_URL=https://api.ollama.cloud
+   OLLAMA_MODEL=gpt-oss:120b
+   OLLAMA_BASE_URL=https://ollama.com
    OLLAMA_API_KEY=<paste-your-ollama-cloud-api-key-here>
    TEMPERATURE=0.1
    FLASK_ENV=production

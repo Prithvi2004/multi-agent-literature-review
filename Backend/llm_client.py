@@ -1,12 +1,9 @@
-import requests
 import logging
 import time
-import json
 import os
 from datetime import datetime
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 from dotenv import load_dotenv
+from ollama import Client
 
 load_dotenv()
 
@@ -29,35 +26,29 @@ ollama_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(m
 ollama_logger.addHandler(ollama_handler)
 
 class OllamaLLM:
-    """Optimized Ollama LLM client with connection pooling and retry logic."""
+    """Optimized Ollama LLM client using official Ollama Python SDK."""
     
     def __init__(self, model=None, base_url=None, temperature=None): 
         # Get configuration from environment variables with fallbacks
-        self.model = model or os.getenv("OLLAMA_MODEL", "deepseek-v3.1:671b-cloud")
-        self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "https://api.ollama.cloud")).rstrip("/")
+        self.model = model or os.getenv("OLLAMA_MODEL", "gpt-oss:120b")
+        self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "https://ollama.com")).rstrip("/")
         self.temperature = float(temperature or os.getenv("TEMPERATURE", "0.1"))
         
-        # Get API key if using Ollama Cloud
+        # Get API key for Ollama Cloud
         self.api_key = os.getenv("OLLAMA_API_KEY")
         
-        # Configure session with connection pooling and retries
-        self.session = requests.Session()
-        
-        # Add authorization header if API key exists
+        # Initialize Ollama client with authentication
         if self.api_key:
-            self.session.headers.update({"Authorization": f"Bearer {self.api_key}"})
+            self.client = Client(
+                host=self.base_url,
+                headers={'Authorization': f'Bearer {self.api_key}'}
+            )
+            logger.info(f"✓ Ollama client initialized with API key authentication")
+        else:
+            self.client = Client(host=self.base_url)
+            logger.info(f"✓ Ollama client initialized without authentication")
         
-        retry_strategy = Retry(
-            total=3,
-            backoff_factor=1,
-            status_forcelist=[429, 500, 502, 503, 504],
-            allowed_methods=["POST"]
-        )
-        adapter = HTTPAdapter(max_retries=retry_strategy, pool_connections=10, pool_maxsize=20)
-        self.session.mount("http://", adapter)
-        self.session.mount("https://", adapter)
-        
-        logger.info(f"OllamaLLM initialized - Model: {model}, Base URL: {base_url}")
+        logger.info(f"OllamaLLM initialized - Model: {self.model}, Base URL: {self.base_url}")
         self.call_count = 0
         
         # Test connection
@@ -67,15 +58,14 @@ class OllamaLLM:
         return False
     
     def _test_connection(self):
+        """Test connection to Ollama server."""
         try:
-            test_resp = self.session.get(f"{self.base_url}/api/tags", timeout=10)
-            if test_resp.status_code == 200:
-                logger.info(f"✓ Ollama server connection successful")
-                return True
-            logger.warning(f"⚠ Ollama server responded with {test_resp.status_code}")
-            return False
+            # Try to list models as a connection test
+            self.client.list()
+            logger.info(f"✓ Ollama server connection successful")
+            return True
         except Exception as e:
-            logger.error(f"❌ Cannot connect to Ollama: {e}")
+            logger.warning(f"⚠ Cannot connect to Ollama: {e}")
             # Don't fail initialization - connection might work when actually generating
             return False
 
@@ -88,43 +78,33 @@ class OllamaLLM:
         return self.generate(prompt, **kwargs)
 
     def generate(self, prompt: str, timeout: int = 300, max_retries: int = 2, **kwargs):
+        """Generate response using Ollama chat API with streaming."""
         self.call_count += 1
         
         # Truncate very long prompts
         if len(prompt) > 12000:
             prompt = prompt[:12000] + "\n\n[Prompt truncated...]"
         
-        payload = {
-            "model": self.model,
-            "prompt": prompt,
-            "temperature": self.temperature,
-            "stream": True,
-            "options": {
-                "num_predict": 4096,
-                "top_k": 40,
-                "top_p": 0.9,
-                "num_ctx": 8192
-            }
-        }
+        messages = [{'role': 'user', 'content': prompt}]
         
         for attempt in range(max_retries + 1):
             try:
-                resp = self.session.post(
-                    f"{self.base_url}/api/generate", 
-                    json=payload, 
-                    stream=True, 
-                    timeout=timeout
-                )
-                resp.raise_for_status()
-                
                 result = ""
-                for line in resp.iter_lines(decode_unicode=True):
-                    if not line: continue
-                    try:
-                        chunk = json.loads(line)
-                        if 'response' in chunk: result += chunk['response']
-                    except:
-                        pass
+                # Use streaming chat API
+                for part in self.client.chat(
+                    model=self.model,
+                    messages=messages,
+                    stream=True,
+                    options={
+                        'temperature': self.temperature,
+                        'num_predict': 4096,
+                        'top_k': 40,
+                        'top_p': 0.9,
+                        'num_ctx': 8192
+                    }
+                ):
+                    if 'message' in part and 'content' in part['message']:
+                        result += part['message']['content']
                 
                 ollama_logger.info(f"Response generated in attempt {attempt+1}")
                 return result
