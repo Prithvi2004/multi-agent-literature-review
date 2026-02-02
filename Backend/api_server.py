@@ -48,11 +48,13 @@ from main import (
     synthesis_agent,
     quality_control_agent,
     llm,
-    MetricsTracker
+    MetricsTracker,
+    TeeOutput  # Import TeeOutput for terminal logging
 )
 from tasks import create_tasks
 from crewai import Crew, Process
 from research_context import ResearchContext
+from output_formatter import format_and_save_report
 import time
 
 # Restore original stdout/stderr for Flask
@@ -162,36 +164,7 @@ class QueueHandler(logging.Handler):
         except Exception:
             pass
 
-# Import analysis functions from main
-from main import (
-    retrieve_and_index_papers,
-    index_uploaded_paper,
-    rag_pipeline,
-    evidence_store,
-    query_rewriter,
-    rag_tool,
-    rag_tool_instance,
-    citation_verifier_tool,
-    evidence_validator,
-    validate_output_tool,
-    read_context_tool,
-    log_insight_tool,
-    context_tool_wrapper,
-    retrieval_agent,
-    decomposition_agent,
-    reasoning_agent,
-    gap_novelty_agent,
-    synthesis_agent,
-    quality_control_agent,
-    llm,
-    MetricsTracker,
-    TeeOutput  # Import TeeOutput for terminal logging
-)
-from tasks import create_tasks
-from crewai import Crew, Process
-from research_context import ResearchContext
-from output_formatter import format_and_save_report  # Import output formatter
-import time
+
 
 def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = None):
     """
