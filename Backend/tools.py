@@ -172,7 +172,14 @@ def log_insight_tool(insight: str, agent_name: str) -> str:
 
 
 # External tools (fallback, e.g., for metadata lookups beyond local corpus)
-search_tool = DuckDuckGoSearchRun()
+try:
+    search_tool = DuckDuckGoSearchRun()
+except ImportError:
+    # If ddgs not available, create a mock search tool
+    class MockSearchTool:
+        def run(self, query: str) -> str:
+            return f"Search functionality unavailable: {query}"
+    search_tool = MockSearchTool()
 
 # Tool instances wired to the shared RAG wrapper
 rag_tool = RAGTool()
