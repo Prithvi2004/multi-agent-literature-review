@@ -23,6 +23,7 @@ export interface AnalyzeResponse {
   message: string;
   data?: {
     final_report: string;
+    detailed_agent_analysis: string;
     agent_outputs: {
       retrieval: string;
       decomposition: string;

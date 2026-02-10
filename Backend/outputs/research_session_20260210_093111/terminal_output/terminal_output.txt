@@ -1,0 +1,37 @@
+Exception in thread Thread-3 (serve_forever):
+Traceback (most recent call last):
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\site-packages\werkzeug\serving.py", line 819, in serve_forever
+    super().serve_forever(poll_interval=poll_interval)
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\socketserver.py", line 233, in serve_forever
+    ready = selector.select(poll_interval)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\selectors.py", line 323, in select
+    r, w, _ = self._select(self._readers, self._writers, [], timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\selectors.py", line 314, in _select
+    r, w, x = select.select(r, w, w, timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [WinError 10038] An operation was attempted on something that is not a socket
+Exception ignored in: <module 'threading' from 'C:\\Users\\PRITHVI\\anaconda3\\envs\\myenv\\Lib\\threading.py'>
+Traceback (most recent call last):
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\threading.py", line 1560, in _shutdown
+    atexit_call()
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\concurrent\futures\thread.py", line 31, in _python_exit
+    t.join()
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\site-packages\crewai\telemetry\telemetry.py", line 203, in handler
+    crewai_event_bus.emit(self, event_class())
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\site-packages\crewai\events\event_bus.py", line 413, in emit
+    sync_future = self._sync_executor.submit(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PRITHVI\anaconda3\envs\myenv\Lib\concurrent\futures\thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown

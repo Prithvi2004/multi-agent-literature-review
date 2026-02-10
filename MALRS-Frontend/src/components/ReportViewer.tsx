@@ -10,6 +10,7 @@ interface ReportViewerProps {
   hasAnalysisCompleted: boolean; // New prop to track if analysis ever completed
   type: "markdown" | "text";
   icon?: React.ReactNode;
+  preloadedContent?: string;
 }
 
 export function ReportViewer({
@@ -19,6 +20,7 @@ export function ReportViewer({
   hasAnalysisCompleted,
   type,
   icon,
+  preloadedContent,
 }: ReportViewerProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [content, setContent] = useState<string>("");
@@ -33,26 +35,36 @@ export function ReportViewer({
     return "idle";
   };
 
-  // Fetch content only when analysis completes
+  // Fetch content automatically when analysis completes
   useEffect(() => {
-    if (!hasAnalysisCompleted) {
-      setStatus("idle");
-      setContent("");
+    if (preloadedContent) {
+      setContent(preloadedContent);
+      setStatus("success");
       return;
     }
 
-    if (!isExpanded) return;
+    if (!hasAnalysisCompleted) {
+      if (status !== "idle") {
+        setStatus("idle");
+        setContent("");
+      }
+      return;
+    }
+
+    // Don't re-fetch if already successful or currently loading (unless polling)
+    if (status === "success" || status === "loading") return;
 
     const fetchContent = async () => {
       try {
-        setStatus("loading");
+        // Only set loading if initial fetch (not polling) to avoid flickering
+        if (status === "idle") setStatus("loading");
+        
         const response = await fetch(endpoint);
         const data = await response.json();
 
         if (response.status === 202) {
           // Still processing
           setStatus("pending");
-          setContent("");
         } else if (response.ok) {
           setStatus("success");
           setContent(data.content || "");
@@ -66,14 +78,17 @@ export function ReportViewer({
       }
     };
 
-    fetchContent();
+    // Initial fetch
+    if (status === "idle") {
+      fetchContent();
+    }
 
-    // Poll every 3 seconds if still pending
-    if (status === "pending" || status === "loading") {
+    // Poll every 3 seconds if pending
+    if (status === "pending") {
       const interval = setInterval(fetchContent, 3000);
       return () => clearInterval(interval);
     }
-  }, [isExpanded, endpoint, hasAnalysisCompleted, status]);
+  }, [hasAnalysisCompleted, status, endpoint]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);

@@ -185,7 +185,7 @@ const Index = () => {
             Multi-Agent Intelligence Platform
             <span className="mx-3 opacity-40">•</span>
             <span className="rounded-md border border-primary/40 px-2 py-0.5 text-[11.5px] font-semibold uppercase tracking-wider text-primary/90">
-            Designed & Developed by Prithvi
+            Designed & Developed by 15B
             </span>
           </p>
         </footer>

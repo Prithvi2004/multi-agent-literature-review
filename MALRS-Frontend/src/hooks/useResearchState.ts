@@ -23,6 +23,7 @@ export interface AnalysisResult {
   gaps: string[];
   recommendations: string[];
   fullReport?: string;
+  detailedAnalysis?: string;
   agentOutputs?: {
     retrieval: string;
     decomposition: string;
@@ -230,7 +231,7 @@ export function useResearchState() {
 
       if (response.status === "success" && response.data) {
         // Parse the analysis results from the backend
-        const { final_report, agent_outputs, papers, metrics } = response.data;
+        const { final_report, detailed_agent_analysis, agent_outputs, papers, metrics } = response.data;
 
         // Extract novelty information from the report
         // This is a simplified extraction - you might want to enhance this
@@ -271,6 +272,7 @@ export function useResearchState() {
             "See full report for recommendations"
           ],
           fullReport: final_report,
+          detailedAnalysis: detailed_agent_analysis || (agent_outputs ? JSON.stringify(agent_outputs, null, 2) : ""),
           agentOutputs: agent_outputs,
           retrievedPapers: papers,
           metrics

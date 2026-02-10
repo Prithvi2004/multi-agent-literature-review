@@ -90,6 +90,7 @@ export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabP
           hasAnalysisCompleted={hasAnalysisCompleted}
           type="text"
           icon={<FileCode className="h-5 w-5 text-secondary" />}
+          preloadedContent={analysisResult?.detailedAnalysis}
         />
 
         {/* Final Report */}
@@ -100,6 +101,7 @@ export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabP
           hasAnalysisCompleted={hasAnalysisCompleted}
           type="markdown"
           icon={<FileText className="h-5 w-5 text-primary" />}
+          preloadedContent={analysisResult?.fullReport}
         />
       </div>
     );
@@ -288,6 +290,7 @@ export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabP
         hasAnalysisCompleted={hasAnalysisCompleted}
         type="text"
         icon={<FileCode className="h-5 w-5 text-secondary" />}
+        preloadedContent={analysisResult?.detailedAnalysis}
       />
 
       {/* Final Report */}
@@ -298,6 +301,7 @@ export function ResultsTab({ analysisResult, onReset, isAnalyzing }: ResultsTabP
         hasAnalysisCompleted={hasAnalysisCompleted}
         type="markdown"
         icon={<FileText className="h-5 w-5 text-primary" />}
+        preloadedContent={analysisResult?.fullReport}
       />
     </div>
   );

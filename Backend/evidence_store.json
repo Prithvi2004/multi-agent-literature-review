@@ -867,6 +867,246 @@
         }
       ],
       "added_at": "2026-02-10T08:44:48.411197"
+    },
+    "2fb4a678c3a8": {
+      "paper_id": "2fb4a678c3a8",
+      "handle": "P20",
+      "title": "Blockchain-Based Product Traceability in Supply Chain Networks",
+      "authors": [
+        "Unknown"
+      ],
+      "year": 0,
+      "venue": "UserUploaded",
+      "doi_or_arxiv": "",
+      "url": "",
+      "source": "UserUploaded",
+      "abstract": "This project focuses on recording product movement across supply chain stages on a blockchain to improve transparency, traceability, and fraud prevention.",
+      "chunks": [
+        {
+          "chunk_id": "2fb4a678c3a8_chunk_0",
+          "text": "This project focuses on recording product movement across supply chain stages on a blockchain to improve transparency, traceability, and fraud prevention.",
+          "embedding_id": "emb_2fb4a678c3a8_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T09:18:30.243321"
+    },
+    "658dc4b2d946": {
+      "paper_id": "658dc4b2d946",
+      "handle": "P21",
+      "title": "Blockchain for Industry 4.0: A Comprehensive Review",
+      "authors": [
+        "Umesh Bodkhe",
+        "Sudeep Tanwar",
+        "Karan Parekh",
+        "Pimal Khanpara",
+        "Sudhanshu Tyagi",
+        "Neeraj Kumar",
+        "Mamoun Alazab"
+      ],
+      "year": 2020,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1109/access.2020.2988579",
+      "url": "https://doi.org/10.1109/access.2020.2988579",
+      "source": "OpenAlex",
+      "abstract": "Due to the proliferation of ICT during the last few decades, there is an exponential increase in the usage of various smart applications such as smart farming, smart healthcare, supply-chain &amp; logistics, business, tourism and hospitality, energy management etc. However, for all the aforementioned applications, security and privacy are major concerns keeping in view of the usage of the open channel, i.e., Internet for data transfer. Although many security solutions and standards have been proposed over the years to enhance the security levels of aforementioned smart applications, but the existing solutions are either based upon the centralized architecture (having single point of failure) or having high computation and communication costs. Moreover, most of the existing security solutions have focussed only on few aspects and fail to address scalability, robustness, data storage, network latency, auditability, immutability, and traceability. To handle the aforementioned issues, blockchain technology can be one of the solutions. Motivated from these facts, in this paper, we present a systematic review of various blockchain-based solutions and their applicability in various Industry 4.0-based applications. Our contributions in this paper are in four fold. Firstly, we explored the current state-of-the-art solutions in the blockchain technology for the smart applications. Then, we illustrated the reference architecture used for the blockchain applicability in various Industry 4.0 applications. Then, merits and demerits of the traditional security solutions are also discussed in comparison to their countermeasures. Finally, we provided a comparison of existing blockchain-based security solutions using various parameters to provide deep insights to the readers about its applicability in various applications.",
+      "chunks": [
+        {
+          "chunk_id": "658dc4b2d946_chunk_0",
+          "text": "Due to the proliferation of ICT during the last few decades, there is an exponential increase in the usage of various smart applications such as smart farming, smart healthcare, supply-chain &amp; logistics, business, tourism and hospitality, energy management etc. However, for all the aforementione",
+          "embedding_id": "emb_658dc4b2d946_chunk_0"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_1",
+          "text": "d applications, security and privacy are major concerns keeping in view of the usage of the open channel, i.e., Internet for data transfer. Although many security solutions and standards have been proposed over the years to enhance the security levels of aforementioned smart applications, but the ex",
+          "embedding_id": "emb_658dc4b2d946_chunk_1"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_2",
+          "text": "isting solutions are either based upon the centralized architecture (having single point of failure) or having high computation and communication costs. Moreover, most of the existing security solutions have focussed only on few aspects and fail to address scalability, robustness, data storage, netw",
+          "embedding_id": "emb_658dc4b2d946_chunk_2"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_3",
+          "text": "ork latency, auditability, immutability, and traceability. To handle the aforementioned issues, blockchain technology can be one of the solutions. Motivated from these facts, in this paper, we present a systematic review of various blockchain-based solutions and their applicability in various Indust",
+          "embedding_id": "emb_658dc4b2d946_chunk_3"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_4",
+          "text": "ry 4.0-based applications. Our contributions in this paper are in four fold. Firstly, we explored the current state-of-the-art solutions in the blockchain technology for the smart applications. Then, we illustrated the reference architecture used for the blockchain applicability in various Industry ",
+          "embedding_id": "emb_658dc4b2d946_chunk_4"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_5",
+          "text": "4.0 applications. Then, merits and demerits of the traditional security solutions are also discussed in comparison to their countermeasures. Finally, we provided a comparison of existing blockchain-based security solutions using various parameters to provide deep insights to the readers about its ap",
+          "embedding_id": "emb_658dc4b2d946_chunk_5"
+        },
+        {
+          "chunk_id": "658dc4b2d946_chunk_6",
+          "text": "plicability in various applications.",
+          "embedding_id": "emb_658dc4b2d946_chunk_6"
+        }
+      ],
+      "added_at": "2026-02-10T09:37:27.453446"
+    },
+    "7d69ad661bc6": {
+      "paper_id": "7d69ad661bc6",
+      "handle": "P22",
+      "title": "Blockchain Applications for Industry 4.0 and Industrial IoT: A Review",
+      "authors": [
+        "Tejasvi Alladi",
+        "Vinay Chamola",
+        "Reza M. Parizi",
+        "Kim‐Kwang Raymond Choo"
+      ],
+      "year": 2019,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1109/access.2019.2956748",
+      "url": "https://doi.org/10.1109/access.2019.2956748",
+      "source": "OpenAlex",
+      "abstract": "The potential of blockchain has been extensively discussed in the literature and media mainly in finance and payment industry. One relatively recent trend is at the enterprise-level, where blockchain serves as the infrastructure for internet security and immutability. Emerging application domains include Industry 4.0 and Industrial Internet of Things (IIoT). Therefore, in this paper, we comprehensively review existing blockchain applications in Industry 4.0 and IIoT settings. Specifically, we present the current research trends in each of the related industrial sectors, as well as successful commercial implementations of blockchain in these relevant sectors. We also discuss industry-specific challenges for the implementation of blockchain in each sector. Further, we present currently open issues in the adoption of the blockchain technology in Industry 4.0 and discuss newer application areas. We hope that our findings pave the way for empowering and facilitating research in this domain, and assist decision-makers in their blockchain adoption and investment in Industry 4.0 and IIoT space.",
+      "chunks": [
+        {
+          "chunk_id": "7d69ad661bc6_chunk_0",
+          "text": "The potential of blockchain has been extensively discussed in the literature and media mainly in finance and payment industry. One relatively recent trend is at the enterprise-level, where blockchain serves as the infrastructure for internet security and immutability. Emerging application domains in",
+          "embedding_id": "emb_7d69ad661bc6_chunk_0"
+        },
+        {
+          "chunk_id": "7d69ad661bc6_chunk_1",
+          "text": "clude Industry 4.0 and Industrial Internet of Things (IIoT). Therefore, in this paper, we comprehensively review existing blockchain applications in Industry 4.0 and IIoT settings. Specifically, we present the current research trends in each of the related industrial sectors, as well as successful c",
+          "embedding_id": "emb_7d69ad661bc6_chunk_1"
+        },
+        {
+          "chunk_id": "7d69ad661bc6_chunk_2",
+          "text": "ommercial implementations of blockchain in these relevant sectors. We also discuss industry-specific challenges for the implementation of blockchain in each sector. Further, we present currently open issues in the adoption of the blockchain technology in Industry 4.0 and discuss newer application ar",
+          "embedding_id": "emb_7d69ad661bc6_chunk_2"
+        },
+        {
+          "chunk_id": "7d69ad661bc6_chunk_3",
+          "text": "eas. We hope that our findings pave the way for empowering and facilitating research in this domain, and assist decision-makers in their blockchain adoption and investment in Industry 4.0 and IIoT space.",
+          "embedding_id": "emb_7d69ad661bc6_chunk_3"
+        }
+      ],
+      "added_at": "2026-02-10T09:37:27.596046"
+    },
+    "0af7e805da7d": {
+      "paper_id": "0af7e805da7d",
+      "handle": "P23",
+      "title": "Balancing Privacy and Progress: A Review of Privacy Challenges, Systemic Oversight, and Patient Perceptions in AI-Driven Healthcare",
+      "authors": [
+        "S. Williamson",
+        "Victor R. Prybutok"
+      ],
+      "year": 2024,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.3390/app14020675",
+      "url": "https://doi.org/10.3390/app14020675",
+      "source": "OpenAlex",
+      "abstract": "Integrating Artificial Intelligence (AI) in healthcare represents a transformative shift with substantial potential for enhancing patient care. This paper critically examines this integration, confronting significant ethical, legal, and technological challenges, particularly in patient privacy, decision-making autonomy, and data integrity. A structured exploration of these issues focuses on Differential Privacy as a critical method for preserving patient confidentiality in AI-driven healthcare systems. We analyze the balance between privacy preservation and the practical utility of healthcare data, emphasizing the effectiveness of encryption, Differential Privacy, and mixed-model approaches. The paper navigates the complex ethical and legal frameworks essential for AI integration in healthcare. We comprehensively examine patient rights and the nuances of informed consent, along with the challenges of harmonizing advanced technologies like blockchain with the General Data Protection Regulation (GDPR). The issue of algorithmic bias in healthcare is also explored, underscoring the urgent need for effective bias detection and mitigation strategies to build patient trust. The evolving roles of decentralized data sharing, regulatory frameworks, and patient agency are discussed in depth. Advocating for an interdisciplinary, multi-stakeholder approach and responsive governance, the paper aims to align healthcare AI with ethical principles, prioritize patient-centered outcomes, and steer AI towards responsible and equitable enhancements in patient care.",
+      "chunks": [
+        {
+          "chunk_id": "0af7e805da7d_chunk_0",
+          "text": "Integrating Artificial Intelligence (AI) in healthcare represents a transformative shift with substantial potential for enhancing patient care. This paper critically examines this integration, confronting significant ethical, legal, and technological challenges, particularly in patient privacy, deci",
+          "embedding_id": "emb_0af7e805da7d_chunk_0"
+        },
+        {
+          "chunk_id": "0af7e805da7d_chunk_1",
+          "text": "sion-making autonomy, and data integrity. A structured exploration of these issues focuses on Differential Privacy as a critical method for preserving patient confidentiality in AI-driven healthcare systems. We analyze the balance between privacy preservation and the practical utility of healthcare ",
+          "embedding_id": "emb_0af7e805da7d_chunk_1"
+        },
+        {
+          "chunk_id": "0af7e805da7d_chunk_2",
+          "text": "data, emphasizing the effectiveness of encryption, Differential Privacy, and mixed-model approaches. The paper navigates the complex ethical and legal frameworks essential for AI integration in healthcare. We comprehensively examine patient rights and the nuances of informed consent, along with the ",
+          "embedding_id": "emb_0af7e805da7d_chunk_2"
+        },
+        {
+          "chunk_id": "0af7e805da7d_chunk_3",
+          "text": "challenges of harmonizing advanced technologies like blockchain with the General Data Protection Regulation (GDPR). The issue of algorithmic bias in healthcare is also explored, underscoring the urgent need for effective bias detection and mitigation strategies to build patient trust. The evolving r",
+          "embedding_id": "emb_0af7e805da7d_chunk_3"
+        },
+        {
+          "chunk_id": "0af7e805da7d_chunk_4",
+          "text": "oles of decentralized data sharing, regulatory frameworks, and patient agency are discussed in depth. Advocating for an interdisciplinary, multi-stakeholder approach and responsive governance, the paper aims to align healthcare AI with ethical principles, prioritize patient-centered outcomes, and st",
+          "embedding_id": "emb_0af7e805da7d_chunk_4"
+        },
+        {
+          "chunk_id": "0af7e805da7d_chunk_5",
+          "text": "eer AI towards responsible and equitable enhancements in patient care.",
+          "embedding_id": "emb_0af7e805da7d_chunk_5"
+        }
+      ],
+      "added_at": "2026-02-10T09:37:27.671895"
+    },
+    "bfa75dd905bc": {
+      "paper_id": "bfa75dd905bc",
+      "handle": "P24",
+      "title": "Blockchain Technology in the Food Industry: A Review of Potentials, Challenges and Future Research Directions",
+      "authors": [
+        "Abderahman Rejeb",
+        "John G. Keogh",
+        "Suhaiza Zailani",
+        "Horst Treiblmaier",
+        "Karim Rejeb"
+      ],
+      "year": 2020,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.3390/logistics4040027",
+      "url": "https://doi.org/10.3390/logistics4040027",
+      "source": "OpenAlex",
+      "abstract": "Blockchain technology has emerged as a promising technology with far-reaching implications for the food industry. The combination of immutability, enhanced visibility, transparency and data integrity provides numerous benefits that improve trust in extended food supply chains (FSCs). Blockchain can enhance traceability, enable more efficient recall and aids in risk reduction of counterfeits and other forms of illicit trade. Moreover, blockchain can enhance the integrity of credence claims such as sustainably sourced, organic or faith-based claims such as kosher or halal by integrating the authoritative source of the claim (e.g., the certification body or certification owner) into the blockchain to verify the claim integrity and reassure business customers and end consumers. Despite the promises and market hype, a comprehensive overview of the potential benefits and challenges of blockchain in FSCs is still missing. To bridge this knowledge gap, we present the findings from a systematic review and bibliometric analysis of sixty-one (61) journal articles and synthesize existing research. The main benefits of blockchain technology in FCSs are improved food traceability, enhanced collaboration, operational efficiencies and streamlined food trading processes. Potential challenges include technical, organizational and regulatory issues. We discuss the theoretical and practical implications of our research and present several ideas for future research.",
+      "chunks": [
+        {
+          "chunk_id": "bfa75dd905bc_chunk_0",
+          "text": "Blockchain technology has emerged as a promising technology with far-reaching implications for the food industry. The combination of immutability, enhanced visibility, transparency and data integrity provides numerous benefits that improve trust in extended food supply chains (FSCs). Blockchain can ",
+          "embedding_id": "emb_bfa75dd905bc_chunk_0"
+        },
+        {
+          "chunk_id": "bfa75dd905bc_chunk_1",
+          "text": "enhance traceability, enable more efficient recall and aids in risk reduction of counterfeits and other forms of illicit trade. Moreover, blockchain can enhance the integrity of credence claims such as sustainably sourced, organic or faith-based claims such as kosher or halal by integrating the auth",
+          "embedding_id": "emb_bfa75dd905bc_chunk_1"
+        },
+        {
+          "chunk_id": "bfa75dd905bc_chunk_2",
+          "text": "oritative source of the claim (e.g., the certification body or certification owner) into the blockchain to verify the claim integrity and reassure business customers and end consumers. Despite the promises and market hype, a comprehensive overview of the potential benefits and challenges of blockcha",
+          "embedding_id": "emb_bfa75dd905bc_chunk_2"
+        },
+        {
+          "chunk_id": "bfa75dd905bc_chunk_3",
+          "text": "in in FSCs is still missing. To bridge this knowledge gap, we present the findings from a systematic review and bibliometric analysis of sixty-one (61) journal articles and synthesize existing research. The main benefits of blockchain technology in FCSs are improved food traceability, enhanced colla",
+          "embedding_id": "emb_bfa75dd905bc_chunk_3"
+        },
+        {
+          "chunk_id": "bfa75dd905bc_chunk_4",
+          "text": "boration, operational efficiencies and streamlined food trading processes. Potential challenges include technical, organizational and regulatory issues. We discuss the theoretical and practical implications of our research and present several ideas for future research.",
+          "embedding_id": "emb_bfa75dd905bc_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T09:37:27.765009"
+    },
+    "e41a6cebd9b3": {
+      "paper_id": "e41a6cebd9b3",
+      "handle": "P25",
+      "title": "A survey of application research based on blockchain smart contract",
+      "authors": [
+        "Shiyi Lin",
+        "Lei Zhang",
+        "Jing Li",
+        "Li-li Ji",
+        "Yu-E Sun"
+      ],
+      "year": 2022,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1007/s11276-021-02874-x",
+      "url": "https://doi.org/10.1007/s11276-021-02874-x",
+      "source": "OpenAlex",
+      "abstract": "Abstract not available.",
+      "chunks": [
+        {
+          "chunk_id": "e41a6cebd9b3_chunk_0",
+          "text": "Abstract not available.",
+          "embedding_id": "emb_e41a6cebd9b3_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T09:37:27.892289"
     }
   },
   "handle_map": {
@@ -888,13 +1128,19 @@
     "bc8f78fe3c82": "P16",
     "9e10c84faaf5": "P17",
     "0b72587d91d1": "P18",
-    "30366f5bef3a": "P19"
+    "30366f5bef3a": "P19",
+    "2fb4a678c3a8": "P20",
+    "658dc4b2d946": "P21",
+    "7d69ad661bc6": "P22",
+    "0af7e805da7d": "P23",
+    "bfa75dd905bc": "P24",
+    "e41a6cebd9b3": "P25"
   },
-  "next_handle": 20,
+  "next_handle": 26,
   "metadata": {
     "created_at": "2025-12-24T11:18:43.717928",
-    "last_updated": "2026-02-10T08:44:48.411197",
-    "total_papers": 19,
-    "total_chunks": 94
+    "last_updated": "2026-02-10T09:37:27.892289",
+    "total_papers": 25,
+    "total_chunks": 118
   }
 }

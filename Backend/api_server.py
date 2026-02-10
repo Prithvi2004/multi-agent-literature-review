@@ -210,7 +210,7 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
         # 1. Initialize Context and Output Folders
         from datetime import datetime
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        session_folder = os.path.join('outputs', 'latest_research_session')  # Same as CLI
+        session_folder = os.path.join('outputs', f'research_session_{timestamp}')
         
         # Create all output subfolders (same structure as main.py)
         review_folder = os.path.join(session_folder, 'review')
@@ -432,11 +432,27 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
         sys.stderr = original_stderr
         tee.close()
         
+        # Read back the actual file contents to ensure frontend gets exactly what is saved
+        try:
+            with open(final_report_file, 'r', encoding='utf-8') as f:
+                final_report_content = f.read()
+        except Exception as e:
+            logger.error(f"Error reading back final report: {e}")
+            final_report_content = result_str
+
+        try:
+            with open(detailed_analysis_file, 'r', encoding='utf-8') as f:
+                detailed_agent_analysis_content = f.read()
+        except Exception as e:
+            logger.error(f"Error reading back detailed analysis: {e}")
+            detailed_agent_analysis_content = str(agent_outputs)
+
         return {
             "status": "success",
             "message": "Analysis completed successfully",
             "data": {
-                "final_report": result_str,
+                "final_report": final_report_content,
+                "detailed_agent_analysis": detailed_agent_analysis_content,
                 "agent_outputs": agent_outputs,
                 "papers": papers_list,
                 "metrics": {
@@ -588,7 +604,30 @@ def stream_logs():
 def get_agent_analysis():
     """Get the detailed agent analysis file."""
     try:
-        file_path = os.path.join('outputs', 'latest_research_session', 'final_report', 'detailed_agent_analysis.txt')
+        # Find the latest session folder
+        outputs_dir = 'outputs'
+        if not os.path.exists(outputs_dir):
+            return jsonify({
+                "status": "pending",
+                "message": "No output directory found"
+            }), 202
+
+        sessions = []
+        if os.path.exists(outputs_dir):
+            sessions = [
+                os.path.join(outputs_dir, d) for d in os.listdir(outputs_dir) 
+                if (d.startswith('research_session_') or d == 'latest_research_session') and os.path.isdir(os.path.join(outputs_dir, d))
+            ]
+        
+        if not sessions:
+            return jsonify({
+                "status": "pending",
+                "message": "No analysis sessions found"
+            }), 404
+            
+        # Sort by creation time
+        latest_session = max(sessions, key=os.path.getmtime)
+        file_path = os.path.join(latest_session, 'final_report', 'detailed_agent_analysis.txt')
         
         if not os.path.exists(file_path):
             return jsonify({
@@ -615,7 +654,30 @@ def get_agent_analysis():
 def get_final_report():
     """Get the final research report markdown file."""
     try:
-        file_path = os.path.join('outputs', 'latest_research_session', 'final_report', 'final_research_report.md')
+        # Find the latest session folder
+        outputs_dir = 'outputs'
+        if not os.path.exists(outputs_dir):
+            return jsonify({
+                "status": "pending",
+                "message": "No output directory found"
+            }), 202
+
+        sessions = []
+        if os.path.exists(outputs_dir):
+            sessions = [
+                os.path.join(outputs_dir, d) for d in os.listdir(outputs_dir) 
+                if (d.startswith('research_session_') or d == 'latest_research_session') and os.path.isdir(os.path.join(outputs_dir, d))
+            ]
+        
+        if not sessions:
+            return jsonify({
+                "status": "pending",
+                "message": "No analysis sessions found"
+            }), 404
+            
+        # Sort by creation time
+        latest_session = max(sessions, key=os.path.getmtime)
+        file_path = os.path.join(latest_session, 'final_report', 'final_research_report.md')
         
         if not os.path.exists(file_path):
             return jsonify({

@@ -398,6 +398,71 @@ def fetch_pubmed_papers(query: str, max_results=5):
             break
     return []
 
+def fetch_openalex_papers(query: str, max_results=5):
+    """Fetch papers from OpenAlex as a robust backup source."""
+    start_time = time.time()
+    logger.info(f"Fetching papers from OpenAlex with query: '{query}'")
+    url = "https://api.openalex.org/works"
+    params = {
+        "search": query,
+        "per_page": max_results,
+        "filter": "has_fulltext:true"
+    }
+    
+    for attempt in range(MAX_RETRIES):
+        try:
+            time.sleep(API_DELAY)
+            res = requests.get(url, params=params, timeout=15)
+            res.raise_for_status()
+            data = res.json()
+            papers = []
+            for work in data.get("results", []):
+                try:
+                    title = work.get("title", "")
+                    
+                    # Authors
+                    authors_list = work.get("authorships", [])
+                    authors = ", ".join([a.get("author", {}).get("display_name", "") for a in authors_list])
+                    
+                    # Year
+                    year = work.get("publication_year", "")
+                    
+                    # Reconstruct Abstract
+                    abstract = "Abstract not available."
+                    abstract_index = work.get("abstract_inverted_index")
+                    if abstract_index:
+                        length = max([max(pos) for pos in abstract_index.values()]) + 1
+                        words = [""] * length
+                        for word, positions in abstract_index.items():
+                            for pos in positions:
+                                words[pos] = word
+                        abstract = " ".join(words)
+                    
+                    source = "OpenAlex"
+                    url = work.get("doi") or work.get("id")
+                    
+                    papers.append({
+                        "title": title,
+                        "authors": authors,
+                        "year": year,
+                        "abstract": abstract,
+                        "source": source,
+                        "url": url
+                    })
+                except Exception:
+                    continue
+            
+            duration = time.time() - start_time
+            logger.info(f"Retrieved {len(papers)} papers from OpenAlex in {duration:.2f}s")
+            metrics.log_api_call("OpenAlex", query, len(papers), duration, True)
+            return papers
+
+        except Exception as e:
+            logger.error(f"Error fetching from OpenAlex: {e}")
+            break
+            
+    return []
+
 def retrieve_and_index_papers(user_idea: str, domains: list):
     """Retrieve papers from multiple sources in parallel for efficiency."""
     start_time = time.time()
@@ -410,11 +475,12 @@ def retrieve_and_index_papers(user_idea: str, domains: list):
     papers = []
     
     # Parallel fetching with max workers for speed
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = {
             executor.submit(fetch_arxiv_papers, expanded_query, 5): "arXiv",
             executor.submit(fetch_semantic_scholar_papers, expanded_query, 4): "Semantic Scholar",
-            executor.submit(fetch_pubmed_papers, expanded_query, 4): "PubMed"
+            executor.submit(fetch_pubmed_papers, expanded_query, 4): "PubMed",
+            executor.submit(fetch_openalex_papers, expanded_query, 5): "OpenAlex"
         }
         
         for future in as_completed(futures):
