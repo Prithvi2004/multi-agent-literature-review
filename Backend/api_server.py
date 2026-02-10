@@ -568,6 +568,36 @@ def stream_logs():
             'raw': 'Terminal Connected'
         }
         yield f"data: {json.dumps(initial_msg)}\n\n"
+
+        # --- History Replay Logic ---
+        try:
+            outputs_dir = 'outputs'
+            if os.path.exists(outputs_dir):
+                sessions = [
+                    os.path.join(outputs_dir, d) for d in os.listdir(outputs_dir) 
+                    if (d.startswith('research_session_') or d == 'latest_research_session') and os.path.isdir(os.path.join(outputs_dir, d))
+                ]
+                
+                if sessions:
+                    # Find latest session
+                    latest_session = max(sessions, key=os.path.getmtime)
+                    terminal_file = os.path.join(latest_session, 'terminal_output', 'terminal_output.txt')
+                    
+                    if os.path.exists(terminal_file):
+                        with open(terminal_file, 'r', encoding='utf-8') as f:
+                            # Read file and stream lines
+                            for line in f:
+                                if line.strip():
+                                    hist_msg = {
+                                        'timestamp': '', 
+                                        'level': 'HISTORY',
+                                        'message': line.strip(),
+                                        'raw': line.strip()
+                                    }
+                                    yield f"data: {json.dumps(hist_msg)}\n\n"
+        except Exception as e:
+            logger.error(f"Error streaming history: {e}")
+        # -----------------------------
         
         try:
             while True:
@@ -575,12 +605,10 @@ def stream_logs():
                     # Non-blocking wait for messages with a shorter timeout for heartbeats
                     try:
                         # Shorter timeout for faster response to disconnections/heartbeats
-                        log_msg = q.get(timeout=30) 
+                        log_msg = q.get(timeout=10) 
                         yield f"data: {log_msg}\n\n"
                     except queue.Empty:
-                        # Send heartbeat if no message received for 1 second
-                        # Using a comment format for heartbeat which is standard for SSE 
-                        # to keep connection alive without triggering onmessage
+                        # Send heartbeat if no message received for 10 second
                         yield ": keep-alive\n\n"
                 except GeneratorExit:
                     # Client naturally disconnected (closed tab/window)
@@ -591,8 +619,6 @@ def stream_logs():
         finally:
             # Always ensure the client is unsubscribed
             broadcaster.unsubscribe(q)
-            # Use a slightly more descriptive log but don't spam stdout
-            # logging.info("SSE client disconnected") # Already logged by broadcaster unsub
     
     response = Response(generate(), mimetype='text/event-stream')
     response.headers['Cache-Control'] = 'no-cache'

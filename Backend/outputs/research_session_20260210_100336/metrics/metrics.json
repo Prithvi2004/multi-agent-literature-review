@@ -1,0 +1,36 @@
+{
+  "session_id": "20260210_100336",
+  "start_time": "2026-02-10T10:03:36.166046",
+  "inputs": {
+    "research_idea": "Investigate how agentic AI systems can reduce mean time to resolution (MTTR) in cloud operations without increasing system risk or false remediation actions.",
+    "selected_domains": [
+      "Cloud Computing",
+      "Multi-Agent Systems",
+      "Agentic AI"
+    ]
+  },
+  "outputs": {
+    "success": true
+  },
+  "api_calls": [],
+  "agent_performance": [],
+  "rag_operations": [],
+  "llm_calls": [],
+  "errors": [],
+  "timing": {
+    "total_analysis": 474.36
+  },
+  "end_time": "2026-02-10T10:11:30.528794",
+  "total_duration_seconds": 474.36,
+  "summary": {
+    "total_api_calls": 0,
+    "successful_api_calls": 0,
+    "total_papers_retrieved": 0,
+    "total_agent_tasks": 0,
+    "total_rag_operations": 0,
+    "total_llm_calls": 0,
+    "total_estimated_tokens": 0,
+    "rag_cache_hit_rate": 0.0,
+    "total_errors": 0
+  }
+}

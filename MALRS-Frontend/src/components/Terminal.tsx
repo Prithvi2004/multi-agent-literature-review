@@ -11,13 +11,7 @@ import {
   Unlock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface LogEntry {
-  timestamp: string;
-  level: string;
-  message: string;
-  raw: string;
-}
+import { useLogStream } from "@/context/LogStreamContext";
 
 interface TerminalProps {
   isVisible: boolean;
@@ -25,13 +19,11 @@ interface TerminalProps {
 }
 
 export function Terminal({ isVisible, onClose }: TerminalProps) {
-  const [logs, setLogs] = useState<LogEntry[]>([]);
+  const { logs, isConnected, clearLogs } = useLogStream();
   const [isScrollLocked, setIsScrollLocked] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
   const logsEndRef = useRef<HTMLDivElement>(null);
   const logsContainerRef = useRef<HTMLDivElement>(null);
-  const eventSourceRef = useRef<EventSource | null>(null);
 
   // Auto-scroll to bottom when new logs arrive
   const scrollToBottom = () => {
@@ -41,63 +33,13 @@ export function Terminal({ isVisible, onClose }: TerminalProps) {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [logs, isScrollLocked]);
-
-  // Connect to SSE endpoint
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const connectSSE = () => {
-      try {
-        const eventSource = new EventSource("/api/logs/stream");
-        eventSourceRef.current = eventSource;
-
-        eventSource.onopen = () => {
-          console.log("SSE connection opened");
-          setIsConnected(true);
-        };
-
-        eventSource.onmessage = (event) => {
-          try {
-            const logEntry: LogEntry = JSON.parse(event.data);
-            setLogs((prev) => [...prev.slice(-999), logEntry]); // Keep last 1000 logs
-          } catch (err) {
-            console.error("Error parsing log entry:", err);
-          }
-        };
-
-        eventSource.onerror = (error) => {
-          console.error("SSE error:", error);
-          setIsConnected(false);
-          eventSource.close();
-          
-          // Attempt reconnection after 3 seconds
-          setTimeout(() => {
-            if (isVisible) {
-              connectSSE();
-            }
-          }, 3000);
-        };
-      } catch (error) {
-        console.error("Error creating EventSource:", error);
-      }
-    };
-
-    connectSSE();
-
-    // Cleanup on unmount or when visibility changes
-    return () => {
-      if (eventSourceRef.current) {
-        eventSourceRef.current.close();
-        eventSourceRef.current = null;
-        setIsConnected(false);
-      }
-    };
-  }, [isVisible]);
+    if (isVisible) {
+      scrollToBottom();
+    }
+  }, [logs, isScrollLocked, isVisible]);
 
   const handleClear = () => {
-    setLogs([]);
+    clearLogs();
   };
 
   const handleCopy = () => {

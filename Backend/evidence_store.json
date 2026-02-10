@@ -1107,6 +1107,552 @@
         }
       ],
       "added_at": "2026-02-10T09:37:27.892289"
+    },
+    "5eee491c6a58": {
+      "paper_id": "5eee491c6a58",
+      "handle": "P26",
+      "title": "Autonomous Agent-Based Incident Resolution in Cloud Infrastructure Systems",
+      "authors": [
+        "Unknown"
+      ],
+      "year": 0,
+      "venue": "UserUploaded",
+      "doi_or_arxiv": "",
+      "url": "",
+      "source": "UserUploaded",
+      "abstract": "This project explores the use of autonomous AI agents that monitor cloud infrastructure, diagnose service anomalies, and execute corrective actions with minimal human intervention while maintaining auditability and safety constraints.",
+      "chunks": [
+        {
+          "chunk_id": "5eee491c6a58_chunk_0",
+          "text": "This project explores the use of autonomous AI agents that monitor cloud infrastructure, diagnose service anomalies, and execute corrective actions with minimal human intervention while maintaining auditability and safety constraints.",
+          "embedding_id": "emb_5eee491c6a58_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T09:59:12.532548"
+    },
+    "af493969a448": {
+      "paper_id": "af493969a448",
+      "handle": "P27",
+      "title": "Leveraging AI and ML for Automated Incident Resolution in Cloud Infrastructure",
+      "authors": [
+        "Sai Prasad Veluru"
+      ],
+      "year": 2021,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.63282/3050-9262.ijaidsml-v2i2p106",
+      "url": "https://doi.org/10.63282/3050-9262.ijaidsml-v2i2p106",
+      "source": "OpenAlex",
+      "abstract": "Abstract not available.",
+      "chunks": [
+        {
+          "chunk_id": "af493969a448_chunk_0",
+          "text": "Abstract not available.",
+          "embedding_id": "emb_af493969a448_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T10:01:42.111672"
+    },
+    "e6c509857836": {
+      "paper_id": "e6c509857836",
+      "handle": "P28",
+      "title": "Proactive Application Monitoring for Insurance Platforms: How AppDynamics Improved Our Response Times",
+      "authors": [
+        "Lalith Sriram Datla"
+      ],
+      "year": 2023,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.63282/3050-922x.ijeret-v4i1p107",
+      "url": "https://doi.org/10.63282/3050-922x.ijeret-v4i1p107",
+      "source": "OpenAlex",
+      "abstract": "Abstract not available.",
+      "chunks": [
+        {
+          "chunk_id": "e6c509857836_chunk_0",
+          "text": "Abstract not available.",
+          "embedding_id": "emb_e6c509857836_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T10:01:42.120500"
+    },
+    "ba61518f4242": {
+      "paper_id": "ba61518f4242",
+      "handle": "P29",
+      "title": "Autonomous Security Operations Centers (SOC): AI Agents for Threat Triage, Response, and Orchestration",
+      "authors": [
+        "Anitha Mareedu"
+      ],
+      "year": 2025,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.63282/3050-922x.ijeret-v6i2p108",
+      "url": "https://doi.org/10.63282/3050-922x.ijeret-v6i2p108",
+      "source": "OpenAlex",
+      "abstract": "Abstract not available.",
+      "chunks": [
+        {
+          "chunk_id": "ba61518f4242_chunk_0",
+          "text": "Abstract not available.",
+          "embedding_id": "emb_ba61518f4242_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T10:01:42.128026"
+    },
+    "776ad3e3fdbb": {
+      "paper_id": "776ad3e3fdbb",
+      "handle": "P30",
+      "title": "AI-Augmented DevOps: Autonomous Software Delivery with Large Language Models",
+      "authors": [
+        "Balajee Asish Brahmandam",
+        "Vishal Narender Punjabi",
+        "S. Chandramohan"
+      ],
+      "year": 2025,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.37082/ijirmps.v13.i3.232448",
+      "url": "https://doi.org/10.37082/ijirmps.v13.i3.232448",
+      "source": "OpenAlex",
+      "abstract": "The evolution of DevOps has accelerated software delivery through continuous integration, deployment, and infrastructure automation. However, modern systems' scale, dynamism, and complexity have outpaced traditional automation techniques. This paper introduces AI-augmented DevOps: an architectural and operational model that embeds intelligent agents powered by Large Language Models (LLMs) and machine learning into the DevOps lifecycle. We propose a modular five-layer framework consisting of observation, inference, action, feedback, and interaction layers, each designed to support autonomous, traceable, and policy-compliant decision-making. Our implementation leverages GPT-4 and reinforcement learning to enhance tasks such as log summarization, Infrastructure-As-Code (IaC) generation, and real-time incident remediation. A simulated CI/CD environment and real-world case studies demonstrate significant improvements in deployment frequency, MTTR, and change failure rates. The paper provides a blueprint for integrating AI into software delivery pipelines, enabling systems that continuously learn, adapt, and improve while maintaining human oversight and operational governance.",
+      "chunks": [
+        {
+          "chunk_id": "776ad3e3fdbb_chunk_0",
+          "text": "The evolution of DevOps has accelerated software delivery through continuous integration, deployment, and infrastructure automation. However, modern systems' scale, dynamism, and complexity have outpaced traditional automation techniques. This paper introduces AI-augmented DevOps: an architectural a",
+          "embedding_id": "emb_776ad3e3fdbb_chunk_0"
+        },
+        {
+          "chunk_id": "776ad3e3fdbb_chunk_1",
+          "text": "nd operational model that embeds intelligent agents powered by Large Language Models (LLMs) and machine learning into the DevOps lifecycle. We propose a modular five-layer framework consisting of observation, inference, action, feedback, and interaction layers, each designed to support autonomous, t",
+          "embedding_id": "emb_776ad3e3fdbb_chunk_1"
+        },
+        {
+          "chunk_id": "776ad3e3fdbb_chunk_2",
+          "text": "raceable, and policy-compliant decision-making. Our implementation leverages GPT-4 and reinforcement learning to enhance tasks such as log summarization, Infrastructure-As-Code (IaC) generation, and real-time incident remediation. A simulated CI/CD environment and real-world case studies demonstrate",
+          "embedding_id": "emb_776ad3e3fdbb_chunk_2"
+        },
+        {
+          "chunk_id": "776ad3e3fdbb_chunk_3",
+          "text": " significant improvements in deployment frequency, MTTR, and change failure rates. The paper provides a blueprint for integrating AI into software delivery pipelines, enabling systems that continuously learn, adapt, and improve while maintaining human oversight and operational governance.",
+          "embedding_id": "emb_776ad3e3fdbb_chunk_3"
+        }
+      ],
+      "added_at": "2026-02-10T10:01:42.135290"
+    },
+    "d2aca2c9242b": {
+      "paper_id": "d2aca2c9242b",
+      "handle": "P31",
+      "title": "A study of the link between cosmic rays and clouds with a cloud chamber at the CERN PS",
+      "authors": [
+        "The Cloud Collaboration"
+      ],
+      "year": 2001,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/physics/0104048v1",
+      "url": "http://arxiv.org/abs/physics/0104048v1",
+      "source": "arXiv",
+      "abstract": "Recent satellite data have revealed a surprising correlation between galactic cosmic ray (GCR) intensity and the fraction of the Earth covered by clouds. If this correlation were to be established by a causal mechanism, it could provide a crucial step in understanding the long-sought mechanism connecting solar and climate variability. The Earth's climate seems to be remarkably sensitive to solar activity, but variations of the Sun's electromagnetic radiation appear to be too small to account for the observed climate variability. However, since the GCR intensity is strongly modulated by the solar wind, a GCR-cloud link may provide a sufficient amplifying mechanism. Moreover if this connection were to be confirmed, it could have profound consequences for our understanding of the solar contributions to the current global warming. The CLOUD (Cosmics Leaving OUtdoor Droplets) project proposes to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. CLOUD plans to perform detailed laboratory measurements in a particle beam at CERN, where all the parameters can be precisely controlled and measured. The beam will pass through an expansion cloud chamber and a reactor chamber where the atmosphere is to be duplicated by moist air charged with selected aerosols and trace condensable vapours. An array of external detectors and mass spectrometers is used to analyse the physical and chemical characteristics of the aerosols and trace gases during beam exposure. Where beam effects are found, the experiment will seek to evaluate their significance in the atmosphere by incorporating them into aerosol and cloud models.",
+      "chunks": [
+        {
+          "chunk_id": "d2aca2c9242b_chunk_0",
+          "text": "Recent satellite data have revealed a surprising correlation between galactic cosmic ray (GCR) intensity and the fraction of the Earth covered by clouds. If this correlation were to be established by a causal mechanism, it could provide a crucial step in understanding the long-sought mechanism conne",
+          "embedding_id": "emb_d2aca2c9242b_chunk_0"
+        },
+        {
+          "chunk_id": "d2aca2c9242b_chunk_1",
+          "text": "cting solar and climate variability. The Earth's climate seems to be remarkably sensitive to solar activity, but variations of the Sun's electromagnetic radiation appear to be too small to account for the observed climate variability. However, since the GCR intensity is strongly modulated by the sol",
+          "embedding_id": "emb_d2aca2c9242b_chunk_1"
+        },
+        {
+          "chunk_id": "d2aca2c9242b_chunk_2",
+          "text": "ar wind, a GCR-cloud link may provide a sufficient amplifying mechanism. Moreover if this connection were to be confirmed, it could have profound consequences for our understanding of the solar contributions to the current global warming. The CLOUD (Cosmics Leaving OUtdoor Droplets) project proposes",
+          "embedding_id": "emb_d2aca2c9242b_chunk_2"
+        },
+        {
+          "chunk_id": "d2aca2c9242b_chunk_3",
+          "text": " to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. CLOUD plans to perform detailed laboratory measurements in a particle beam at CERN, where all the parameters can be precisely controlled and measured. The beam will pa",
+          "embedding_id": "emb_d2aca2c9242b_chunk_3"
+        },
+        {
+          "chunk_id": "d2aca2c9242b_chunk_4",
+          "text": "ss through an expansion cloud chamber and a reactor chamber where the atmosphere is to be duplicated by moist air charged with selected aerosols and trace condensable vapours. An array of external detectors and mass spectrometers is used to analyse the physical and chemical characteristics of the ae",
+          "embedding_id": "emb_d2aca2c9242b_chunk_4"
+        },
+        {
+          "chunk_id": "d2aca2c9242b_chunk_5",
+          "text": "rosols and trace gases during beam exposure. Where beam effects are found, the experiment will seek to evaluate their significance in the atmosphere by incorporating them into aerosol and cloud models.",
+          "embedding_id": "emb_d2aca2c9242b_chunk_5"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:42.832750"
+    },
+    "c8846b6cb363": {
+      "paper_id": "c8846b6cb363",
+      "handle": "P32",
+      "title": "CLOUD: an atmospheric research facility at CERN",
+      "authors": [
+        "The Cloud Collaboration"
+      ],
+      "year": 2001,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/physics/0104076v1",
+      "url": "http://arxiv.org/abs/physics/0104076v1",
+      "source": "arXiv",
+      "abstract": "This report is the second of two addenda to the CLOUD proposal at CERN (physics/0104048), which aims to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. The document places CLOUD in the framework of a CERN facility for atmospheric research, and provides further details on the particle beam requirements.",
+      "chunks": [
+        {
+          "chunk_id": "c8846b6cb363_chunk_0",
+          "text": "This report is the second of two addenda to the CLOUD proposal at CERN (physics/0104048), which aims to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. The document places CLOUD in the framework of a CERN facility for a",
+          "embedding_id": "emb_c8846b6cb363_chunk_0"
+        },
+        {
+          "chunk_id": "c8846b6cb363_chunk_1",
+          "text": "tmospheric research, and provides further details on the particle beam requirements.",
+          "embedding_id": "emb_c8846b6cb363_chunk_1"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.089897"
+    },
+    "3e1007a42a3f": {
+      "paper_id": "3e1007a42a3f",
+      "handle": "P33",
+      "title": "Addendum to the CLOUD proposal",
+      "authors": [
+        "The Cloud Collaboration"
+      ],
+      "year": 2001,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/physics/0104068v1",
+      "url": "http://arxiv.org/abs/physics/0104068v1",
+      "source": "arXiv",
+      "abstract": "This report is the first of two addenda to the CLOUD proposal at CERN (physics/0104048), which aims to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. The document provides further details on the detector design, scientific motivation and experimental programme.",
+      "chunks": [
+        {
+          "chunk_id": "3e1007a42a3f_chunk_0",
+          "text": "This report is the first of two addenda to the CLOUD proposal at CERN (physics/0104048), which aims to test experimentally the existence a link between cosmic rays and cloud formation, and to understand the microphysical mechanism. The document provides further details on the detector design, scient",
+          "embedding_id": "emb_3e1007a42a3f_chunk_0"
+        },
+        {
+          "chunk_id": "3e1007a42a3f_chunk_1",
+          "text": "ific motivation and experimental programme.",
+          "embedding_id": "emb_3e1007a42a3f_chunk_1"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.149525"
+    },
+    "1d981d54e255": {
+      "paper_id": "1d981d54e255",
+      "handle": "P34",
+      "title": "MTTR-A: Measuring Cognitive Recovery Latency in Multi-Agent Systems",
+      "authors": [
+        "Barak Or"
+      ],
+      "year": 2025,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2511.20663v5",
+      "url": "http://arxiv.org/abs/2511.20663v5",
+      "source": "arXiv",
+      "abstract": "Reliability in multi-agent systems (MAS) built on large language models is increasingly limited by cognitive failures rather than infrastructure faults. Existing observability tools describe failures but do not quantify how quickly distributed reasoning recovers once coherence is lost. We introduce MTTR-A (Mean Time-to-Recovery for Agentic Systems), a runtime reliability metric that measures cognitive recovery latency in MAS. MTTR-A adapts classical dependability theory to agentic orchestration, capturing the time required to detect reasoning drift and restore coherent operation. We further define complementary metrics, including MTBF and a normalized recovery ratio (NRR), and establish theoretical bounds linking recovery latency to long-run cognitive uptime. Using a LangGraph-based benchmark with simulated drift and reflex recovery, we empirically demonstrate measurable recovery behavior across multiple reflex strategies. This work establishes a quantitative foundation for runtime cognitive dependability in distributed agentic systems.",
+      "chunks": [
+        {
+          "chunk_id": "1d981d54e255_chunk_0",
+          "text": "Reliability in multi-agent systems (MAS) built on large language models is increasingly limited by cognitive failures rather than infrastructure faults. Existing observability tools describe failures but do not quantify how quickly distributed reasoning recovers once coherence is lost. We introduce ",
+          "embedding_id": "emb_1d981d54e255_chunk_0"
+        },
+        {
+          "chunk_id": "1d981d54e255_chunk_1",
+          "text": "MTTR-A (Mean Time-to-Recovery for Agentic Systems), a runtime reliability metric that measures cognitive recovery latency in MAS. MTTR-A adapts classical dependability theory to agentic orchestration, capturing the time required to detect reasoning drift and restore coherent operation. We further de",
+          "embedding_id": "emb_1d981d54e255_chunk_1"
+        },
+        {
+          "chunk_id": "1d981d54e255_chunk_2",
+          "text": "fine complementary metrics, including MTBF and a normalized recovery ratio (NRR), and establish theoretical bounds linking recovery latency to long-run cognitive uptime. Using a LangGraph-based benchmark with simulated drift and reflex recovery, we empirically demonstrate measurable recovery behavio",
+          "embedding_id": "emb_1d981d54e255_chunk_2"
+        },
+        {
+          "chunk_id": "1d981d54e255_chunk_3",
+          "text": "r across multiple reflex strategies. This work establishes a quantitative foundation for runtime cognitive dependability in distributed agentic systems.",
+          "embedding_id": "emb_1d981d54e255_chunk_3"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.214548"
+    },
+    "37e3fb3543a9": {
+      "paper_id": "37e3fb3543a9",
+      "handle": "P35",
+      "title": "Mapping AI Risk Mitigations: Evidence Scan and Preliminary AI Risk Mitigation Taxonomy",
+      "authors": [
+        "Alexander K. Saeri",
+        "Sophia Lloyd George",
+        "Jess Graham",
+        "Clelia D. Lacarriere",
+        "Peter Slattery",
+        "Michael Noetel",
+        "Neil Thompson"
+      ],
+      "year": 2025,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2512.11931v1",
+      "url": "http://arxiv.org/abs/2512.11931v1",
+      "source": "arXiv",
+      "abstract": "Organizations and governments that develop, deploy, use, and govern AI must coordinate on effective risk mitigation. However, the landscape of AI risk mitigation frameworks is fragmented, uses inconsistent terminology, and has gaps in coverage. This paper introduces a preliminary AI Risk Mitigation Taxonomy to organize AI risk mitigations and provide a common frame of reference. The Taxonomy was developed through a rapid evidence scan of 13 AI risk mitigation frameworks published between 2023-2025, which were extracted into a living database of 831 AI risk mitigations. The mitigations were iteratively clustered & coded to create the Taxonomy. The preliminary AI Risk Mitigation Taxonomy organizes mitigations into four categories and 23 subcategories: (1) Governance & Oversight: Formal organizational structures and policy frameworks that establish human oversight mechanisms and decision protocols; (2) Technical & Security: Technical, physical, and engineering safeguards that secure AI systems and constrain model behaviors; (3) Operational Process: processes and management frameworks governing AI system deployment, usage, monitoring, incident handling, and validation; and (4) Transparency & Accountability: formal disclosure practices and verification mechanisms that communicate AI system information and enable external scrutiny. The rapid evidence scan and taxonomy construction also revealed several cases where terms like 'risk management' and 'red teaming' are used widely but refer to different responsible actors, actions, and mechanisms of action to reduce risk. This Taxonomy and associated mitigation database, while preliminary, offers a starting point for collation and synthesis of AI risk mitigations. It also offers an accessible, structured way for different actors in the AI ecosystem to discuss and coordinate action to reduce risks from AI.",
+      "chunks": [
+        {
+          "chunk_id": "37e3fb3543a9_chunk_0",
+          "text": "Organizations and governments that develop, deploy, use, and govern AI must coordinate on effective risk mitigation. However, the landscape of AI risk mitigation frameworks is fragmented, uses inconsistent terminology, and has gaps in coverage. This paper introduces a preliminary AI Risk Mitigation ",
+          "embedding_id": "emb_37e3fb3543a9_chunk_0"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_1",
+          "text": "Taxonomy to organize AI risk mitigations and provide a common frame of reference. The Taxonomy was developed through a rapid evidence scan of 13 AI risk mitigation frameworks published between 2023-2025, which were extracted into a living database of 831 AI risk mitigations. The mitigations were ite",
+          "embedding_id": "emb_37e3fb3543a9_chunk_1"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_2",
+          "text": "ratively clustered & coded to create the Taxonomy. The preliminary AI Risk Mitigation Taxonomy organizes mitigations into four categories and 23 subcategories: (1) Governance & Oversight: Formal organizational structures and policy frameworks that establish human oversight mechanisms and decision pr",
+          "embedding_id": "emb_37e3fb3543a9_chunk_2"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_3",
+          "text": "otocols; (2) Technical & Security: Technical, physical, and engineering safeguards that secure AI systems and constrain model behaviors; (3) Operational Process: processes and management frameworks governing AI system deployment, usage, monitoring, incident handling, and validation; and (4) Transpar",
+          "embedding_id": "emb_37e3fb3543a9_chunk_3"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_4",
+          "text": "ency & Accountability: formal disclosure practices and verification mechanisms that communicate AI system information and enable external scrutiny. The rapid evidence scan and taxonomy construction also revealed several cases where terms like 'risk management' and 'red teaming' are used widely but r",
+          "embedding_id": "emb_37e3fb3543a9_chunk_4"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_5",
+          "text": "efer to different responsible actors, actions, and mechanisms of action to reduce risk. This Taxonomy and associated mitigation database, while preliminary, offers a starting point for collation and synthesis of AI risk mitigations. It also offers an accessible, structured way for different actors i",
+          "embedding_id": "emb_37e3fb3543a9_chunk_5"
+        },
+        {
+          "chunk_id": "37e3fb3543a9_chunk_6",
+          "text": "n the AI ecosystem to discuss and coordinate action to reduce risks from AI.",
+          "embedding_id": "emb_37e3fb3543a9_chunk_6"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.303840"
+    },
+    "f60de9afde74": {
+      "paper_id": "f60de9afde74",
+      "handle": "P36",
+      "title": "Beyond ETL: How AI Agents Are Building Self-Healing Data Pipelines",
+      "authors": [
+        "Soumen Chakraborty"
+      ],
+      "year": 2025,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.32996/jcsts.2025.7.3.81",
+      "url": "https://doi.org/10.32996/jcsts.2025.7.3.81",
+      "source": "OpenAlex",
+      "abstract": "This article explores the transformative role of artificial intelligence agents in modernizing traditional Extract, Transform, Load (ETL) processes through the development of self-healing data pipelines. As organizations face increasing data complexity and volume, conventional ETL workflows with their reactive problem-solving approaches, limited scalability, and resource-intensive maintenance requirements are proving inadequate. The article examines how AI-powered agents, operating in a layered architecture of horizontal (cross-pipeline) and vertical (domain-specific) intelligences, revolutionize data management through proactive issue detection, autonomous remediation, and continuous learning capabilities. These intelligent systems can detect subtle anomalies before they become critical failures, implement fixes without human intervention, and continuously improve through feedback loops. The article further investigates how AI simplifies both data and metadata extraction through adaptive connectors, format recognition, and automated metadata management. Drawing on industry case studies and research, the article documents significant operational benefits and strategic advantages realized by organizations implementing these technologies, including reduced downtime, engineering efficiency, data trustworthiness, and regulatory compliance. Finally, the article looks ahead to emerging capabilities like cognitive pipelines, natural language interfaces, cross-organizational intelligence, and predictive infrastructure scaling that will define the future evolution of data management.",
+      "chunks": [
+        {
+          "chunk_id": "f60de9afde74_chunk_0",
+          "text": "This article explores the transformative role of artificial intelligence agents in modernizing traditional Extract, Transform, Load (ETL) processes through the development of self-healing data pipelines. As organizations face increasing data complexity and volume, conventional ETL workflows with the",
+          "embedding_id": "emb_f60de9afde74_chunk_0"
+        },
+        {
+          "chunk_id": "f60de9afde74_chunk_1",
+          "text": "ir reactive problem-solving approaches, limited scalability, and resource-intensive maintenance requirements are proving inadequate. The article examines how AI-powered agents, operating in a layered architecture of horizontal (cross-pipeline) and vertical (domain-specific) intelligences, revolution",
+          "embedding_id": "emb_f60de9afde74_chunk_1"
+        },
+        {
+          "chunk_id": "f60de9afde74_chunk_2",
+          "text": "ize data management through proactive issue detection, autonomous remediation, and continuous learning capabilities. These intelligent systems can detect subtle anomalies before they become critical failures, implement fixes without human intervention, and continuously improve through feedback loops",
+          "embedding_id": "emb_f60de9afde74_chunk_2"
+        },
+        {
+          "chunk_id": "f60de9afde74_chunk_3",
+          "text": ". The article further investigates how AI simplifies both data and metadata extraction through adaptive connectors, format recognition, and automated metadata management. Drawing on industry case studies and research, the article documents significant operational benefits and strategic advantages re",
+          "embedding_id": "emb_f60de9afde74_chunk_3"
+        },
+        {
+          "chunk_id": "f60de9afde74_chunk_4",
+          "text": "alized by organizations implementing these technologies, including reduced downtime, engineering efficiency, data trustworthiness, and regulatory compliance. Finally, the article looks ahead to emerging capabilities like cognitive pipelines, natural language interfaces, cross-organizational intellig",
+          "embedding_id": "emb_f60de9afde74_chunk_4"
+        },
+        {
+          "chunk_id": "f60de9afde74_chunk_5",
+          "text": "ence, and predictive infrastructure scaling that will define the future evolution of data management.",
+          "embedding_id": "emb_f60de9afde74_chunk_5"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.566809"
+    },
+    "e8e4558c1554": {
+      "paper_id": "e8e4558c1554",
+      "handle": "P37",
+      "title": "Evaluation of the Biotic Ligand Model for The Development of Benthic Toxicity Thresholds and Remedial Goals for Metals at Sediment Management Sites.",
+      "authors": [
+        "Gensemer Robert W",
+        "Bjorkman Bjorn",
+        "Santore Robert C",
+        "Redman Aaron D",
+        "Brown Steven S"
+      ],
+      "year": 2025,
+      "venue": "PubMed",
+      "doi_or_arxiv": "https://pubmed.ncbi.nlm.nih.gov/40875561",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40875561",
+      "source": "PubMed",
+      "abstract": "A combined risk assessment and risk management framework is proposed for application of a multimetal Biotic Ligand Model (mBLM) to develop bulk sediment remedial goals for metals in sediments. Sediment chemistry and toxicity data from five freshwater sediment study areas were compiled to illustrate how this framework could be applied. Based on these data, the mBLM accurately predicted Hyalella azteca toxicity in 85.3% of the samples with respect to H. azteca 20% effect concentrations (EC20s), and in 75.1% of the samples with respect to derived final chronic values (FCVs). The sum of porewater toxic units derived using the mBLM were converted to a bulk sediment remedial goal concentration (CBSRG) using empirical partitioning relationships between metals in sediments and porewater. A median of the CBSRG values in samples with mBLM-FCV ∑ toxic units (TU) > 1 was used as a first approximation of an overall bulk sediment remedial action level (RAL) to identify sediments most in need for remedial action based on the presence of bioavailable metals in porewater in each study area. Bulk sediment RALs ultimately reflected the relative bioavailability of metals in porewater. Where metal porewater bioavailability was relatively low, RALs were higher than bulk sediment remedial goals. Conversely, where metal porewater bioavailability was relatively high, RALs were lower than bulk sediment remedial goals. There is more uncertainty where porewater metal bioavailability was not the primary driver of toxicity as evidenced by low mBLM TU, and a high % of false negative toxicity predictions. We conclude that for sediments in which porewater metal bioavailability is the primary contributor to benthic toxicity, porewater-based remedial goals derived using the mBLM can be used to derive bulk sediment remedial goals that are practical for making site remediation decisions yet still reflect metal bioavailability in porewater.",
+      "chunks": [
+        {
+          "chunk_id": "e8e4558c1554_chunk_0",
+          "text": "A combined risk assessment and risk management framework is proposed for application of a multimetal Biotic Ligand Model (mBLM) to develop bulk sediment remedial goals for metals in sediments. Sediment chemistry and toxicity data from five freshwater sediment study areas were compiled to illustrate ",
+          "embedding_id": "emb_e8e4558c1554_chunk_0"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_1",
+          "text": "how this framework could be applied. Based on these data, the mBLM accurately predicted Hyalella azteca toxicity in 85.3% of the samples with respect to H. azteca 20% effect concentrations (EC20s), and in 75.1% of the samples with respect to derived final chronic values (FCVs). The sum of porewater ",
+          "embedding_id": "emb_e8e4558c1554_chunk_1"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_2",
+          "text": "toxic units derived using the mBLM were converted to a bulk sediment remedial goal concentration (CBSRG) using empirical partitioning relationships between metals in sediments and porewater. A median of the CBSRG values in samples with mBLM-FCV ∑ toxic units (TU) > 1 was used as a first approximatio",
+          "embedding_id": "emb_e8e4558c1554_chunk_2"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_3",
+          "text": "n of an overall bulk sediment remedial action level (RAL) to identify sediments most in need for remedial action based on the presence of bioavailable metals in porewater in each study area. Bulk sediment RALs ultimately reflected the relative bioavailability of metals in porewater. Where metal pore",
+          "embedding_id": "emb_e8e4558c1554_chunk_3"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_4",
+          "text": "water bioavailability was relatively low, RALs were higher than bulk sediment remedial goals. Conversely, where metal porewater bioavailability was relatively high, RALs were lower than bulk sediment remedial goals. There is more uncertainty where porewater metal bioavailability was not the primary ",
+          "embedding_id": "emb_e8e4558c1554_chunk_4"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_5",
+          "text": "driver of toxicity as evidenced by low mBLM TU, and a high % of false negative toxicity predictions. We conclude that for sediments in which porewater metal bioavailability is the primary contributor to benthic toxicity, porewater-based remedial goals derived using the mBLM can be used to derive bul",
+          "embedding_id": "emb_e8e4558c1554_chunk_5"
+        },
+        {
+          "chunk_id": "e8e4558c1554_chunk_6",
+          "text": "k sediment remedial goals that are practical for making site remediation decisions yet still reflect metal bioavailability in porewater.",
+          "embedding_id": "emb_e8e4558c1554_chunk_6"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.660689"
+    },
+    "a4e3ab01194a": {
+      "paper_id": "a4e3ab01194a",
+      "handle": "P38",
+      "title": "Estimating accuracy and precision in the bioavailability-adjusted exposure point concentration to support human health risk assessment of lead-contaminated soils.",
+      "authors": [
+        "Nelson Clay M",
+        "Li Kevin",
+        "Diamond Gary L",
+        "Lambert Matthew",
+        "Bradham Karen D"
+      ],
+      "year": 2026,
+      "venue": "PubMed",
+      "doi_or_arxiv": "https://pubmed.ncbi.nlm.nih.gov/40817761",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40817761",
+      "source": "PubMed",
+      "abstract": "Under the United States Environmental Protection Agency's (U.S. EPA) CERCLA program, soils suspected of lead (Pb) contamination are evaluated to assess the impact of soil Pb exposure on blood Pb levels. The decision to remediate relies, in part, on whether the measured soil exposure point concentration (EPC) excee ds an action level. The U.S. EPA established data quality objectives (DQOs) to support data collection used to estimate the EPC and assess confidence in remediation decisions. To support DQO processes at sites where site-specific soil Pb relative bioavailability (RBA) is assessed, a statistical simulation model was developed that estimates false compliance/exceedance decision error probabilities based upon uncertainty in the RBA-adjusted EPC, employing model inputs defining (1) the sampling protocol being evaluated, (2) variability in total and bioavailable soil Pb across the assessed area, and (3) analytical measurement uncertainty. A framework for utilizing the simulation model is presented using a hypothetical site informed by concentration and soil Pb bioavailability distributions from an actual Pb-contaminated site. Pre-sampling, false compliance/exceedance decision error probabilities were predicted for various sampling protocols. A DQO-compliant sampling protocol was then selected, and accuracy and precision in the measured EPC were assessed relative to a specified risk-based action level.",
+      "chunks": [
+        {
+          "chunk_id": "a4e3ab01194a_chunk_0",
+          "text": "Under the United States Environmental Protection Agency's (U.S. EPA) CERCLA program, soils suspected of lead (Pb) contamination are evaluated to assess the impact of soil Pb exposure on blood Pb levels. The decision to remediate relies, in part, on whether the measured soil exposure point concentrat",
+          "embedding_id": "emb_a4e3ab01194a_chunk_0"
+        },
+        {
+          "chunk_id": "a4e3ab01194a_chunk_1",
+          "text": "ion (EPC) excee ds an action level. The U.S. EPA established data quality objectives (DQOs) to support data collection used to estimate the EPC and assess confidence in remediation decisions. To support DQO processes at sites where site-specific soil Pb relative bioavailability (RBA) is assessed, a ",
+          "embedding_id": "emb_a4e3ab01194a_chunk_1"
+        },
+        {
+          "chunk_id": "a4e3ab01194a_chunk_2",
+          "text": "statistical simulation model was developed that estimates false compliance/exceedance decision error probabilities based upon uncertainty in the RBA-adjusted EPC, employing model inputs defining (1) the sampling protocol being evaluated, (2) variability in total and bioavailable soil Pb across the a",
+          "embedding_id": "emb_a4e3ab01194a_chunk_2"
+        },
+        {
+          "chunk_id": "a4e3ab01194a_chunk_3",
+          "text": "ssessed area, and (3) analytical measurement uncertainty. A framework for utilizing the simulation model is presented using a hypothetical site informed by concentration and soil Pb bioavailability distributions from an actual Pb-contaminated site. Pre-sampling, false compliance/exceedance decision ",
+          "embedding_id": "emb_a4e3ab01194a_chunk_3"
+        },
+        {
+          "chunk_id": "a4e3ab01194a_chunk_4",
+          "text": "error probabilities were predicted for various sampling protocols. A DQO-compliant sampling protocol was then selected, and accuracy and precision in the measured EPC were assessed relative to a specified risk-based action level.",
+          "embedding_id": "emb_a4e3ab01194a_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.820493"
+    },
+    "ab247243921e": {
+      "paper_id": "ab247243921e",
+      "handle": "P39",
+      "title": "Harnessing policy to promote inclusive medical product evidence: development of a reference standard and structured audit of clinical trial diversity policies.",
+      "authors": [
+        "Miller Jennifer",
+        "Pelletiers William",
+        "Suttiratana Sakinah",
+        "Mensah Michael Ofosu",
+        "Schwartz Jason",
+        "Ramachandran Reshma",
+        "Gross Cary",
+        "Ross Joseph S"
+      ],
+      "year": 2024,
+      "venue": "PubMed",
+      "doi_or_arxiv": "https://pubmed.ncbi.nlm.nih.gov/39175919",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39175919",
+      "source": "PubMed",
+      "abstract": "To develop a reference standard based on US Food and Drug Administration and stakeholder guidance for pharmaceutical companies' policies on diversity in clinical trials and to assess these policies.",
+      "chunks": [
+        {
+          "chunk_id": "ab247243921e_chunk_0",
+          "text": "To develop a reference standard based on US Food and Drug Administration and stakeholder guidance for pharmaceutical companies' policies on diversity in clinical trials and to assess these policies.",
+          "embedding_id": "emb_ab247243921e_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.978159"
+    },
+    "fc04012f2867": {
+      "paper_id": "fc04012f2867",
+      "handle": "P40",
+      "title": "Bayesian Methods for Quality Tolerance Limit (QTL) Monitoring.",
+      "authors": [
+        "Poythress J C",
+        "Lee Jin Hyung",
+        "Takeda Kentaro",
+        "Liu Jun"
+      ],
+      "year": 2024,
+      "venue": "PubMed",
+      "doi_or_arxiv": "https://pubmed.ncbi.nlm.nih.gov/39119894",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39119894",
+      "source": "PubMed",
+      "abstract": "In alignment with the ICH guideline for Good Clinical Practice [ICH E6(R2)], quality tolerance limit (QTL) monitoring has become a standard component of risk-based monitoring of clinical trials by sponsor companies. Parameters that are candidates for QTL monitoring are critical to participant safety and quality of trial results. Breaching the QTL of a given parameter could indicate systematic issues with the trial that could impact participant safety or compromise the reliability of trial results. Methods for QTL monitoring should detect potential QTL breaches as early as possible while limiting the rate of false alarms. Early detection allows for the implementation of remedial actions that can prevent a QTL breach at the end of the trial. We demonstrate that statistically based methods that account for the expected value and variability of the data generating process outperform simple methods based on fixed thresholds with respect to important operating characteristics. We also propose a Bayesian method for QTL monitoring and an extension that allows for the incorporation of partial information, demonstrating its potential to outperform frequentist methods originating from the statistical process control literature.",
+      "chunks": [
+        {
+          "chunk_id": "fc04012f2867_chunk_0",
+          "text": "In alignment with the ICH guideline for Good Clinical Practice [ICH E6(R2)], quality tolerance limit (QTL) monitoring has become a standard component of risk-based monitoring of clinical trials by sponsor companies. Parameters that are candidates for QTL monitoring are critical to participant safety",
+          "embedding_id": "emb_fc04012f2867_chunk_0"
+        },
+        {
+          "chunk_id": "fc04012f2867_chunk_1",
+          "text": " and quality of trial results. Breaching the QTL of a given parameter could indicate systematic issues with the trial that could impact participant safety or compromise the reliability of trial results. Methods for QTL monitoring should detect potential QTL breaches as early as possible while limiti",
+          "embedding_id": "emb_fc04012f2867_chunk_1"
+        },
+        {
+          "chunk_id": "fc04012f2867_chunk_2",
+          "text": "ng the rate of false alarms. Early detection allows for the implementation of remedial actions that can prevent a QTL breach at the end of the trial. We demonstrate that statistically based methods that account for the expected value and variability of the data generating process outperform simple m",
+          "embedding_id": "emb_fc04012f2867_chunk_2"
+        },
+        {
+          "chunk_id": "fc04012f2867_chunk_3",
+          "text": "ethods based on fixed thresholds with respect to important operating characteristics. We also propose a Bayesian method for QTL monitoring and an extension that allows for the incorporation of partial information, demonstrating its potential to outperform frequentist methods originating from the sta",
+          "embedding_id": "emb_fc04012f2867_chunk_3"
+        },
+        {
+          "chunk_id": "fc04012f2867_chunk_4",
+          "text": "tistical process control literature.",
+          "embedding_id": "emb_fc04012f2867_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T10:03:43.989404"
     }
   },
   "handle_map": {
@@ -1134,13 +1680,28 @@
     "7d69ad661bc6": "P22",
     "0af7e805da7d": "P23",
     "bfa75dd905bc": "P24",
-    "e41a6cebd9b3": "P25"
+    "e41a6cebd9b3": "P25",
+    "5eee491c6a58": "P26",
+    "af493969a448": "P27",
+    "e6c509857836": "P28",
+    "ba61518f4242": "P29",
+    "776ad3e3fdbb": "P30",
+    "d2aca2c9242b": "P31",
+    "c8846b6cb363": "P32",
+    "3e1007a42a3f": "P33",
+    "1d981d54e255": "P34",
+    "37e3fb3543a9": "P35",
+    "f60de9afde74": "P36",
+    "e8e4558c1554": "P37",
+    "a4e3ab01194a": "P38",
+    "ab247243921e": "P39",
+    "fc04012f2867": "P40"
   },
-  "next_handle": 26,
+  "next_handle": 41,
   "metadata": {
     "created_at": "2025-12-24T11:18:43.717928",
-    "last_updated": "2026-02-10T09:37:27.892289",
-    "total_papers": 25,
-    "total_chunks": 118
+    "last_updated": "2026-02-10T10:03:43.989404",
+    "total_papers": 40,
+    "total_chunks": 171
   }
 }
