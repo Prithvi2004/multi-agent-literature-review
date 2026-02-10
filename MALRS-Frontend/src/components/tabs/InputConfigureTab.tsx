@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
   Collapsible,
@@ -71,6 +72,14 @@ export function InputConfigureTab({
     new Set()
   );
   const [jsonPreviewOpen, setJsonPreviewOpen] = useState(false);
+  const [customDomain, setCustomDomain] = useState("");
+
+  const handleAddCustomDomain = () => {
+    if (customDomain.trim()) {
+      onToggleDomain(customDomain.trim());
+      setCustomDomain("");
+    }
+  };
 
   const handleAddSection = () => {
     if (sectionType && sectionContent.trim()) {
@@ -251,7 +260,7 @@ export function InputConfigureTab({
                 </span>
               </h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-3">
               {RESEARCH_DOMAINS.map((domain) => (
                 <motion.button
                   key={domain}
@@ -267,6 +276,38 @@ export function InputConfigureTab({
                   {domain}
                 </motion.button>
               ))}
+              {selectedDomains
+                .filter((d) => !RESEARCH_DOMAINS.includes(d as any))
+                .map((domain) => (
+                  <motion.button
+                    key={domain}
+                    onClick={() => onToggleDomain(domain)}
+                    className="px-3 py-1.5 rounded-full text-xs font-medium transition-all bg-primary text-primary-foreground flex items-center gap-1"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {domain}
+                    <span className="opacity-70 text-[10px] ml-1">✕</span>
+                  </motion.button>
+                ))}
+            </div>
+
+            <div className="flex gap-2">
+              <Input
+                type="text"
+                value={customDomain}
+                onChange={(e) => setCustomDomain(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleAddCustomDomain()}
+                placeholder="Add other domain..."
+                className="flex-1"
+              />
+              <GradientButton
+                onClick={handleAddCustomDomain}
+                disabled={!customDomain.trim()}
+                size="sm"
+                icon={<Plus className="h-4 w-4" />}
+              >
+                Add
+              </GradientButton>
             </div>
           </GlassCard>
 

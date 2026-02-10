@@ -845,6 +845,28 @@
         }
       ],
       "added_at": "2026-01-22T00:13:55.305152"
+    },
+    "30366f5bef3a": {
+      "paper_id": "30366f5bef3a",
+      "handle": "P19",
+      "title": "Automated Transaction Categorization for Retail Banking Systems",
+      "authors": [
+        "Unknown"
+      ],
+      "year": 0,
+      "venue": "UserUploaded",
+      "doi_or_arxiv": "",
+      "url": "",
+      "source": "UserUploaded",
+      "abstract": "This project focuses on classifying bank transaction descriptions into spending categories to support personal finance management and fraud monitoring",
+      "chunks": [
+        {
+          "chunk_id": "30366f5bef3a_chunk_0",
+          "text": "This project focuses on classifying bank transaction descriptions into spending categories to support personal finance management and fraud monitoring",
+          "embedding_id": "emb_30366f5bef3a_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T08:44:48.411197"
     }
   },
   "handle_map": {
@@ -865,13 +887,14 @@
     "17e5c6725a95": "P15",
     "bc8f78fe3c82": "P16",
     "9e10c84faaf5": "P17",
-    "0b72587d91d1": "P18"
+    "0b72587d91d1": "P18",
+    "30366f5bef3a": "P19"
   },
-  "next_handle": 19,
+  "next_handle": 20,
   "metadata": {
     "created_at": "2025-12-24T11:18:43.717928",
-    "last_updated": "2026-01-22T00:13:55.305152",
-    "total_papers": 18,
-    "total_chunks": 93
+    "last_updated": "2026-02-10T08:44:48.411197",
+    "total_papers": 19,
+    "total_chunks": 94
   }
 }
