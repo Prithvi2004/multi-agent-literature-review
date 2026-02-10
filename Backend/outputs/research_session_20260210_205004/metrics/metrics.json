@@ -1,0 +1,35 @@
+{
+  "session_id": "20260210_205004",
+  "start_time": "2026-02-10T20:50:04.910491",
+  "inputs": {
+    "research_idea": "Investigate whether automated phishing detection systems can reduce analyst response time and security fatigue without increasing false positives in enterprise email security workflows.",
+    "selected_domains": [
+      "Cybersecurity",
+      "Enterprise Security"
+    ]
+  },
+  "outputs": {
+    "success": true
+  },
+  "api_calls": [],
+  "agent_performance": [],
+  "rag_operations": [],
+  "llm_calls": [],
+  "errors": [],
+  "timing": {
+    "total_analysis": 739.35
+  },
+  "end_time": "2026-02-10T21:02:24.259897",
+  "total_duration_seconds": 739.35,
+  "summary": {
+    "total_api_calls": 0,
+    "successful_api_calls": 0,
+    "total_papers_retrieved": 0,
+    "total_agent_tasks": 0,
+    "total_rag_operations": 0,
+    "total_llm_calls": 0,
+    "total_estimated_tokens": 0,
+    "rag_cache_hit_rate": 0.0,
+    "total_errors": 0
+  }
+}

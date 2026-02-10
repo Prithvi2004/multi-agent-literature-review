@@ -21,7 +21,7 @@ export interface AnalyzeRequest {
 export interface AnalyzeResponse {
   status: 'success' | 'error';
   message: string;
-  data?: {
+    data?: {
     final_report: string;
     detailed_agent_analysis: string;
     agent_outputs: {
@@ -42,6 +42,12 @@ export interface AnalyzeResponse {
       total_duration_seconds: number;
       total_papers_retrieved: number;
       total_agents: number;
+    };
+    frontend_metrics?: {
+      novelty_score: number;
+      related_papers_count: number;
+      key_gaps_count: number;
+      confidence_score: number;
     };
   };
 }

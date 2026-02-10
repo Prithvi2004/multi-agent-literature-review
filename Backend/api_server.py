@@ -447,6 +447,11 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
             logger.error(f"Error reading back detailed analysis: {e}")
             detailed_agent_analysis_content = str(agent_outputs)
 
+        # 15. Extract detailed metrics for frontend
+        logger.info("Extracting structured metrics for frontend...")
+        frontend_metrics = extract_analysis_metrics(agent_outputs, papers_list)
+        logger.info(f"Extracted metrics: {frontend_metrics}")
+
         return {
             "status": "success",
             "message": "Analysis completed successfully",
@@ -459,7 +464,8 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
                     "total_duration_seconds": analysis_duration,
                     "total_papers_retrieved": len(papers),
                     "total_agents": 6
-                }
+                },
+                "frontend_metrics": frontend_metrics
             }
         }
         
@@ -479,6 +485,71 @@ def run_analysis_api(user_idea: str, selected_domains: list, paper_data: dict = 
             "status": "error",
             "message": f"Analysis failed: {str(e)}",
             "data": None
+        }
+
+def extract_analysis_metrics(agent_outputs, papers):
+    """
+    Extract structured metrics from agent outputs using LLM.
+    Returns:
+        dict: {
+            "novelty_score": int (0-100),
+            "related_papers_count": int,
+            "key_gaps_count": int,
+            "confidence_score": int (0-100)
+        }
+    """
+    try:
+        # Prepare context for LLM
+        context = f"""
+        Analyze the following research outputs to extract key metrics.
+        
+        [PAPERS]
+        Count: {len(papers)}
+        
+        [GAP & NOVELTY ANALYSIS]
+        {agent_outputs.get('gap_novelty', '')[:3000]}
+        
+        [SYNTHESIS]
+        {agent_outputs.get('synthesis', '')[:3000]}
+        
+        Task:
+        1. "novelty_score": Extract the novelty score (0-100) assigned by the Gap & Novelty agent. If not explicitly stated, estimate based on the qualitative assessment (High=80-95, Medium=50-79, Low=0-49).
+        2. "key_gaps_count": Count the number of distinct research gaps identified.
+        3. "confidence_score": Estimate the confidence (0-100) in the results based on the "Quality Control" or general tone. 
+           - High confidence (citation-backed, clear consensus) = 90-100
+           - Medium confidence (some conflicting evidence) = 70-89
+           - Low confidence (insufficient evidence) = 0-69
+        
+        Return JSON ONLY:
+        {{
+            "novelty_score": 0,
+            "key_gaps_count": 0,
+            "confidence_score": 0
+        }}
+        """
+        
+        response = llm.generate(context)
+        
+        # Clean response to ensure valid JSON
+        json_str = response.strip()
+        if "```json" in json_str:
+            json_str = json_str.split("```json")[1].split("```")[0]
+        elif "```" in json_str:
+            json_str = json_str.split("```")[1].split("```")[0]
+            
+        metrics = json.loads(json_str)
+        
+        # Add related papers count from actual data
+        metrics["related_papers_count"] = len(papers)
+        
+        return metrics
+    except Exception as e:
+        logger.error(f"Error extracting metrics: {e}")
+        return {
+            "novelty_score": 0,
+            "related_papers_count": len(papers),
+            "key_gaps_count": 0,
+            "confidence_score": 0
         }
 
 @app.route('/api/health', methods=['GET'])

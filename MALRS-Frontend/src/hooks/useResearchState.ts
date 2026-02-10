@@ -231,14 +231,13 @@ export function useResearchState() {
 
       if (response.status === "success" && response.data) {
         // Parse the analysis results from the backend
-        const { final_report, detailed_agent_analysis, agent_outputs, papers, metrics } = response.data;
+        const { final_report, detailed_agent_analysis, agent_outputs, papers, metrics, frontend_metrics } = response.data;
 
-        // Extract novelty information from the report
-        // This is a simplified extraction - you might want to enhance this
-        const noveltyScore = 87; // Could be extracted from report or added to backend response
-        const relatedPapers = metrics.total_papers_retrieved || papers.length;
-        const keyGaps = 5; // Could be extracted from gap_novelty agent output
-        const confidence = 92; // Could be extracted from report
+        // Extract metrics from the backend response
+        const noveltyScore = frontend_metrics?.novelty_score ?? 85; 
+        const relatedPapers = frontend_metrics?.related_papers_count ?? (metrics.total_papers_retrieved || papers.length);
+        const keyGaps = frontend_metrics?.key_gaps_count ?? 3;
+        const confidence = frontend_metrics?.confidence_score ?? 90;
 
         // Extract novel aspects from synthesis output
         const novelAspects = extractListItems(agent_outputs.synthesis || final_report, "novel");

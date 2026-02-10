@@ -1653,6 +1653,462 @@
         }
       ],
       "added_at": "2026-02-10T10:03:43.989404"
+    },
+    "fee431de1ed6": {
+      "paper_id": "fee431de1ed6",
+      "handle": "P41",
+      "title": "Automated Detection and Prioritization of Phishing Threats in Enterprise Email Systems",
+      "authors": [
+        "Unknown"
+      ],
+      "year": 0,
+      "venue": "UserUploaded",
+      "doi_or_arxiv": "",
+      "url": "",
+      "source": "UserUploaded",
+      "abstract": "This project focuses on identifying, classifying, and prioritizing phishing emails in enterprise environments by analyzing message content, sender behavior, and historical incident patterns to reduce security analyst workload and response time.",
+      "chunks": [
+        {
+          "chunk_id": "fee431de1ed6_chunk_0",
+          "text": "This project focuses on identifying, classifying, and prioritizing phishing emails in enterprise environments by analyzing message content, sender behavior, and historical incident patterns to reduce security analyst workload and response time.",
+          "embedding_id": "emb_fee431de1ed6_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:04.913998"
+    },
+    "ae88d37fee45": {
+      "paper_id": "ae88d37fee45",
+      "handle": "P42",
+      "title": "Securing Automated Insulin Delivery Systems: A Review of Security Threats and Protective Strategies",
+      "authors": [
+        "Yuchen Niu",
+        "Siew-Kei Lam"
+      ],
+      "year": 2025,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2503.14006v2",
+      "url": "http://arxiv.org/abs/2503.14006v2",
+      "source": "arXiv",
+      "abstract": "Automated Insulin Delivery (AID) systems represent a significant advancement in diabetes care and wearable physiological closed-loop control technologies, integrating continuous glucose monitoring, control algorithms, and insulin pumps to improve blood glucose level control and reduce the burden of patient self-management. However, their increasing dependence on wireless communication and automatic control introduces security risks that may compromise patient privacy or result in life-threatening treatment errors. This paper presents a comprehensive survey of the AID system security landscape, covering technical vulnerabilities, regulatory frameworks, and commercial security measures. In addition, we conduct a systematic review of attack vectors and defence mechanisms proposed in the literature, following the PRISMA framework. Our findings highlight critical gaps, including the lack of specific security evaluation frameworks, insufficient protections in real-world deployments, and the need for comprehensive, lightweight, and adaptive defence mechanisms. We further investigate available research resources and outline open research challenges and future directions to guide the development of more secure and reliable AID systems. By focusing on AID systems, this review offers a representative case study for examining and improving the cybersecurity of safety-critical medical wearable systems.",
+      "chunks": [
+        {
+          "chunk_id": "ae88d37fee45_chunk_0",
+          "text": "Automated Insulin Delivery (AID) systems represent a significant advancement in diabetes care and wearable physiological closed-loop control technologies, integrating continuous glucose monitoring, control algorithms, and insulin pumps to improve blood glucose level control and reduce the burden of ",
+          "embedding_id": "emb_ae88d37fee45_chunk_0"
+        },
+        {
+          "chunk_id": "ae88d37fee45_chunk_1",
+          "text": "patient self-management. However, their increasing dependence on wireless communication and automatic control introduces security risks that may compromise patient privacy or result in life-threatening treatment errors. This paper presents a comprehensive survey of the AID system security landscape,",
+          "embedding_id": "emb_ae88d37fee45_chunk_1"
+        },
+        {
+          "chunk_id": "ae88d37fee45_chunk_2",
+          "text": " covering technical vulnerabilities, regulatory frameworks, and commercial security measures. In addition, we conduct a systematic review of attack vectors and defence mechanisms proposed in the literature, following the PRISMA framework. Our findings highlight critical gaps, including the lack of s",
+          "embedding_id": "emb_ae88d37fee45_chunk_2"
+        },
+        {
+          "chunk_id": "ae88d37fee45_chunk_3",
+          "text": "pecific security evaluation frameworks, insufficient protections in real-world deployments, and the need for comprehensive, lightweight, and adaptive defence mechanisms. We further investigate available research resources and outline open research challenges and future directions to guide the develo",
+          "embedding_id": "emb_ae88d37fee45_chunk_3"
+        },
+        {
+          "chunk_id": "ae88d37fee45_chunk_4",
+          "text": "pment of more secure and reliable AID systems. By focusing on AID systems, this review offers a representative case study for examining and improving the cybersecurity of safety-critical medical wearable systems.",
+          "embedding_id": "emb_ae88d37fee45_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:10.863213"
+    },
+    "452bda665c79": {
+      "paper_id": "452bda665c79",
+      "handle": "P43",
+      "title": "Forward Pass: On the Security Implications of Email Forwarding Mechanism and Policy",
+      "authors": [
+        "Enze Liu",
+        "Gautam Akiwate",
+        "Mattijs Jonker",
+        "Ariana Mirian",
+        "Grant Ho",
+        "Geoffrey M. Voelker",
+        "Stefan Savage"
+      ],
+      "year": 2023,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2302.07287v2",
+      "url": "http://arxiv.org/abs/2302.07287v2",
+      "source": "arXiv",
+      "abstract": "The critical role played by email has led to a range of extension protocols (e.g., SPF, DKIM, DMARC) designed to protect against the spoofing of email sender domains. These protocols are complex as is, but are further complicated by automated email forwarding -- used by individual users to manage multiple accounts and by mailing lists to redistribute messages. In this paper, we explore how such email forwarding and its implementations can break the implicit assumptions in widely deployed anti-spoofing protocols. Using large-scale empirical measurements of 20 email forwarding services (16 leading email providers and four popular mailing list services), we identify a range of security issues rooted in forwarding behavior and show how they can be combined to reliably evade existing anti-spoofing controls. We further show how these issues allow attackers to not only deliver spoofed email messages to prominent email providers (e.g., Gmail, Microsoft Outlook, and Zoho), but also reliably spoof email on behalf of tens of thousands of popular domains including sensitive domains used by organizations in government (e.g., state.gov), finance (e.g., transunion.com), law (e.g., perkinscoie.com) and news (e.g., washingtonpost.com) among others.",
+      "chunks": [
+        {
+          "chunk_id": "452bda665c79_chunk_0",
+          "text": "The critical role played by email has led to a range of extension protocols (e.g., SPF, DKIM, DMARC) designed to protect against the spoofing of email sender domains. These protocols are complex as is, but are further complicated by automated email forwarding -- used by individual users to manage mu",
+          "embedding_id": "emb_452bda665c79_chunk_0"
+        },
+        {
+          "chunk_id": "452bda665c79_chunk_1",
+          "text": "ltiple accounts and by mailing lists to redistribute messages. In this paper, we explore how such email forwarding and its implementations can break the implicit assumptions in widely deployed anti-spoofing protocols. Using large-scale empirical measurements of 20 email forwarding services (16 leadi",
+          "embedding_id": "emb_452bda665c79_chunk_1"
+        },
+        {
+          "chunk_id": "452bda665c79_chunk_2",
+          "text": "ng email providers and four popular mailing list services), we identify a range of security issues rooted in forwarding behavior and show how they can be combined to reliably evade existing anti-spoofing controls. We further show how these issues allow attackers to not only deliver spoofed email mes",
+          "embedding_id": "emb_452bda665c79_chunk_2"
+        },
+        {
+          "chunk_id": "452bda665c79_chunk_3",
+          "text": "sages to prominent email providers (e.g., Gmail, Microsoft Outlook, and Zoho), but also reliably spoof email on behalf of tens of thousands of popular domains including sensitive domains used by organizations in government (e.g., state.gov), finance (e.g., transunion.com), law (e.g., perkinscoie.com",
+          "embedding_id": "emb_452bda665c79_chunk_3"
+        },
+        {
+          "chunk_id": "452bda665c79_chunk_4",
+          "text": ") and news (e.g., washingtonpost.com) among others.",
+          "embedding_id": "emb_452bda665c79_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:10.930300"
+    },
+    "9b165c1ebaf5": {
+      "paper_id": "9b165c1ebaf5",
+      "handle": "P44",
+      "title": "Automated Big Text Security Classification",
+      "authors": [
+        "Khudran Alzhrani",
+        "Ethan M. Rudd",
+        "Terrance E. Boult",
+        "C. Edward Chow"
+      ],
+      "year": 2016,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/1610.06856v1",
+      "url": "http://arxiv.org/abs/1610.06856v1",
+      "source": "arXiv",
+      "abstract": "In recent years, traditional cybersecurity safeguards have proven ineffective against insider threats. Famous cases of sensitive information leaks caused by insiders, including the WikiLeaks release of diplomatic cables and the Edward Snowden incident, have greatly harmed the U.S. government's relationship with other governments and with its own citizens. Data Leak Prevention (DLP) is a solution for detecting and preventing information leaks from within an organization's network. However, state-of-art DLP detection models are only able to detect very limited types of sensitive information, and research in the field has been hindered due to the lack of available sensitive texts. Many researchers have focused on document-based detection with artificially labeled \"confidential documents\" for which security labels are assigned to the entire document, when in reality only a portion of the document is sensitive. This type of whole-document based security labeling increases the chances of preventing authorized users from accessing non-sensitive information within sensitive documents. In this paper, we introduce Automated Classification Enabled by Security Similarity (ACESS), a new and innovative detection model that penetrates the complexity of big text security classification/detection. To analyze the ACESS system, we constructed a novel dataset, containing formerly classified paragraphs from diplomatic cables made public by the WikiLeaks organization. To our knowledge this paper is the first to analyze a dataset that contains actual formerly sensitive information annotated at paragraph granularity.",
+      "chunks": [
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_0",
+          "text": "In recent years, traditional cybersecurity safeguards have proven ineffective against insider threats. Famous cases of sensitive information leaks caused by insiders, including the WikiLeaks release of diplomatic cables and the Edward Snowden incident, have greatly harmed the U.S. government's relat",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_0"
+        },
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_1",
+          "text": "ionship with other governments and with its own citizens. Data Leak Prevention (DLP) is a solution for detecting and preventing information leaks from within an organization's network. However, state-of-art DLP detection models are only able to detect very limited types of sensitive information, and",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_1"
+        },
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_2",
+          "text": " research in the field has been hindered due to the lack of available sensitive texts. Many researchers have focused on document-based detection with artificially labeled \"confidential documents\" for which security labels are assigned to the entire document, when in reality only a portion of the doc",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_2"
+        },
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_3",
+          "text": "ument is sensitive. This type of whole-document based security labeling increases the chances of preventing authorized users from accessing non-sensitive information within sensitive documents. In this paper, we introduce Automated Classification Enabled by Security Similarity (ACESS), a new and inn",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_3"
+        },
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_4",
+          "text": "ovative detection model that penetrates the complexity of big text security classification/detection. To analyze the ACESS system, we constructed a novel dataset, containing formerly classified paragraphs from diplomatic cables made public by the WikiLeaks organization. To our knowledge this paper i",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_4"
+        },
+        {
+          "chunk_id": "9b165c1ebaf5_chunk_5",
+          "text": "s the first to analyze a dataset that contains actual formerly sensitive information annotated at paragraph granularity.",
+          "embedding_id": "emb_9b165c1ebaf5_chunk_5"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.005903"
+    },
+    "2d4f64ba689d": {
+      "paper_id": "2d4f64ba689d",
+      "handle": "P45",
+      "title": "The Everyday Security of Living with Conflict",
+      "authors": [
+        "Jessica McClearn",
+        "Reem Talhouk",
+        "Rikke Bjerg Jensen"
+      ],
+      "year": 2025,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2506.09580v1",
+      "url": "http://arxiv.org/abs/2506.09580v1",
+      "source": "arXiv",
+      "abstract": "When `cyber' is used as a prefix, attention is typically drawn to the technological and spectacular aspects of war and conflict -- and, by extension, security. We offer a different approach to engaging with and understanding security in such contexts, by foregrounding the everyday -- mundane -- experiences of security within communities living with and fleeing from war. We do so through three vignettes from our field research in Colombia, Lebanon and Sweden, respectively, and by highlighting the significance of ethnography for security research with communities living in regions afflicted by war. We conclude by setting out a call to action for security researchers and practitioners to consider such lived experiences in the design of security technology that aims to cater to the needs of communities in `global conflict and disaster regions'.",
+      "chunks": [
+        {
+          "chunk_id": "2d4f64ba689d_chunk_0",
+          "text": "When `cyber' is used as a prefix, attention is typically drawn to the technological and spectacular aspects of war and conflict -- and, by extension, security. We offer a different approach to engaging with and understanding security in such contexts, by foregrounding the everyday -- mundane -- expe",
+          "embedding_id": "emb_2d4f64ba689d_chunk_0"
+        },
+        {
+          "chunk_id": "2d4f64ba689d_chunk_1",
+          "text": "riences of security within communities living with and fleeing from war. We do so through three vignettes from our field research in Colombia, Lebanon and Sweden, respectively, and by highlighting the significance of ethnography for security research with communities living in regions afflicted by w",
+          "embedding_id": "emb_2d4f64ba689d_chunk_1"
+        },
+        {
+          "chunk_id": "2d4f64ba689d_chunk_2",
+          "text": "ar. We conclude by setting out a call to action for security researchers and practitioners to consider such lived experiences in the design of security technology that aims to cater to the needs of communities in `global conflict and disaster regions'.",
+          "embedding_id": "emb_2d4f64ba689d_chunk_2"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.073652"
+    },
+    "633cf24e65ea": {
+      "paper_id": "633cf24e65ea",
+      "handle": "P46",
+      "title": "Formal Modelling and Security Analysis of Bitcoin's Payment Protocol",
+      "authors": [
+        "Paolo Modesti",
+        "Siamak F. Shahandashti",
+        "Patrick McCorry",
+        "Feng Hao"
+      ],
+      "year": 2021,
+      "venue": "arXiv",
+      "doi_or_arxiv": "http://arxiv.org/abs/2103.08436v1",
+      "url": "http://arxiv.org/abs/2103.08436v1",
+      "source": "arXiv",
+      "abstract": "The Payment Protocol standard BIP70, specifying how payments in Bitcoin are performed by merchants and customers, is supported by the largest payment processors and most widely-used wallets. The protocol has been shown to be vulnerable to refund attacks due to lack of authentication of the refund addresses. In this paper, we give the first formal model of the protocol and formalise the refund address security goals for the protocol, namely refund address authentication and secrecy. The formal model utilises communication channels as abstractions conveying security goals on which the protocol modeller and verifier can rely. We analyse the Payment Protocol confirming that it is vulnerable to an attack violating the refund address authentication security goal. Moreover, we present a concrete protocol revision proposal supporting the merchant with publicly verifiable evidence that can mitigate the attack. We verify that the revised protocol meets the security goals defined for the refund address. Hence, we demonstrate that the revised protocol is secure, not only against the existing attacks, but also against any further attacks violating the formalised security goals.",
+      "chunks": [
+        {
+          "chunk_id": "633cf24e65ea_chunk_0",
+          "text": "The Payment Protocol standard BIP70, specifying how payments in Bitcoin are performed by merchants and customers, is supported by the largest payment processors and most widely-used wallets. The protocol has been shown to be vulnerable to refund attacks due to lack of authentication of the refund ad",
+          "embedding_id": "emb_633cf24e65ea_chunk_0"
+        },
+        {
+          "chunk_id": "633cf24e65ea_chunk_1",
+          "text": "dresses. In this paper, we give the first formal model of the protocol and formalise the refund address security goals for the protocol, namely refund address authentication and secrecy. The formal model utilises communication channels as abstractions conveying security goals on which the protocol m",
+          "embedding_id": "emb_633cf24e65ea_chunk_1"
+        },
+        {
+          "chunk_id": "633cf24e65ea_chunk_2",
+          "text": "odeller and verifier can rely. We analyse the Payment Protocol confirming that it is vulnerable to an attack violating the refund address authentication security goal. Moreover, we present a concrete protocol revision proposal supporting the merchant with publicly verifiable evidence that can mitiga",
+          "embedding_id": "emb_633cf24e65ea_chunk_2"
+        },
+        {
+          "chunk_id": "633cf24e65ea_chunk_3",
+          "text": "te the attack. We verify that the revised protocol meets the security goals defined for the refund address. Hence, we demonstrate that the revised protocol is secure, not only against the existing attacks, but also against any further attacks violating the formalised security goals.",
+          "embedding_id": "emb_633cf24e65ea_chunk_3"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.123174"
+    },
+    "7825ce063152": {
+      "paper_id": "7825ce063152",
+      "handle": "P47",
+      "title": "Matched and Mismatched SOCs",
+      "authors": [
+        "Faris Bugra Kokulu",
+        "Ananta Soneji",
+        "Tiffany Bao",
+        "Yan Shoshitaishvili",
+        "Ziming Zhao",
+        "Adam Doupé",
+        "Gail‐Joon Ahn"
+      ],
+      "year": 2019,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1145/3319535.3354239",
+      "url": "https://doi.org/10.1145/3319535.3354239",
+      "source": "OpenAlex",
+      "abstract": "Organizations, such as companies and governments, created Security Operations Centers (SOCs) to defend against computer security attacks. SOCs are central defense groups that focus on security incident management with capabilities such as monitoring, preventing, responding, and reporting. They are one of the most critical defense components of a modern organization's defense. Despite their critical importance to organizations, and the high frequency of reported security incidents, only a few research studies focus on problems specific to SOCs. In this study, to understand and identify the issues of SOCs, we conducted 18 semi-structured interviews with SOC analysts and managers who work for organizations from different industry sectors. Through our analysis of the interview data, we identified technical and non-technical issues that exist in SOC. Moreover, we found inherent disagreements between SOC managers and their analysts that, if not addressed, could entail a risk to SOC efficiency and effectiveness. We distill these issues into takeaways that apply both to future academic research and to SOC management. We believe that research should focus on improving the efficiency and effectiveness of SOCs.",
+      "chunks": [
+        {
+          "chunk_id": "7825ce063152_chunk_0",
+          "text": "Organizations, such as companies and governments, created Security Operations Centers (SOCs) to defend against computer security attacks. SOCs are central defense groups that focus on security incident management with capabilities such as monitoring, preventing, responding, and reporting. They are o",
+          "embedding_id": "emb_7825ce063152_chunk_0"
+        },
+        {
+          "chunk_id": "7825ce063152_chunk_1",
+          "text": "ne of the most critical defense components of a modern organization's defense. Despite their critical importance to organizations, and the high frequency of reported security incidents, only a few research studies focus on problems specific to SOCs. In this study, to understand and identify the issu",
+          "embedding_id": "emb_7825ce063152_chunk_1"
+        },
+        {
+          "chunk_id": "7825ce063152_chunk_2",
+          "text": "es of SOCs, we conducted 18 semi-structured interviews with SOC analysts and managers who work for organizations from different industry sectors. Through our analysis of the interview data, we identified technical and non-technical issues that exist in SOC. Moreover, we found inherent disagreements ",
+          "embedding_id": "emb_7825ce063152_chunk_2"
+        },
+        {
+          "chunk_id": "7825ce063152_chunk_3",
+          "text": "between SOC managers and their analysts that, if not addressed, could entail a risk to SOC efficiency and effectiveness. We distill these issues into takeaways that apply both to future academic research and to SOC management. We believe that research should focus on improving the efficiency and eff",
+          "embedding_id": "emb_7825ce063152_chunk_3"
+        },
+        {
+          "chunk_id": "7825ce063152_chunk_4",
+          "text": "ectiveness of SOCs.",
+          "embedding_id": "emb_7825ce063152_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.176616"
+    },
+    "9edf1cda6fc3": {
+      "paper_id": "9edf1cda6fc3",
+      "handle": "P48",
+      "title": "A Review of Recent Advances, Challenges, and Opportunities in Malicious Insider Threat Detection Using Machine Learning Methods",
+      "authors": [
+        "Fatima Alzaabi",
+        "Abid Mehmood"
+      ],
+      "year": 2024,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1109/access.2024.3369906",
+      "url": "https://doi.org/10.1109/access.2024.3369906",
+      "source": "OpenAlex",
+      "abstract": "Insider threat detection has become a paramount concern in modern times where organizations strive to safeguard their sensitive information and critical assets from malicious actions by individuals with privileged access. This survey paper provides a comprehensive overview of insider threat detection, highlighting its significance in the current landscape of cybersecurity. The review encompasses a broad spectrum of methodologies and techniques, with a particular focus on classical machine-learning approaches and their limitations in effectively addressing the intricacies of insider threats. Furthermore, the survey explores the utilization of modern deep learning and natural language processing (NLP) based methods as promising alternatives, shedding light on their advantages over traditional methods. The comprehensive analysis of results from experiments utilizing NLP and large language models to detect malicious insider threats on the CMU CERT dataset reveals promising insights. Studies surveyed in this paper indicate that these advanced techniques demonstrate notable efficacy in identifying suspicious activities and anomalous behaviors associated with insider threats within organizational systems. Additionally, the survey underscores the potential of NLP and large language model-based approaches, which can enhance threat detection by deciphering textual and contextual information. In the conclusion section, the paper offers valuable insights into the future directions of insider threat detection. It advocates for the integration of more sophisticated time-series-based techniques, recognizing the importance of temporal patterns in insider threat behaviors. These recommendations reflect the evolving nature of insider threats and emphasize the need for proactive, data-driven strategies to safeguard organizations against internal security breaches. In conclusion, this survey not only underscores the urgency of addressing insider threats but also provides a roadmap for the adoption of advanced methodologies to enhance detection and mitigation capabilities in contemporary cybersecurity paradigms.",
+      "chunks": [
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_0",
+          "text": "Insider threat detection has become a paramount concern in modern times where organizations strive to safeguard their sensitive information and critical assets from malicious actions by individuals with privileged access. This survey paper provides a comprehensive overview of insider threat detectio",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_0"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_1",
+          "text": "n, highlighting its significance in the current landscape of cybersecurity. The review encompasses a broad spectrum of methodologies and techniques, with a particular focus on classical machine-learning approaches and their limitations in effectively addressing the intricacies of insider threats. Fu",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_1"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_2",
+          "text": "rthermore, the survey explores the utilization of modern deep learning and natural language processing (NLP) based methods as promising alternatives, shedding light on their advantages over traditional methods. The comprehensive analysis of results from experiments utilizing NLP and large language m",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_2"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_3",
+          "text": "odels to detect malicious insider threats on the CMU CERT dataset reveals promising insights. Studies surveyed in this paper indicate that these advanced techniques demonstrate notable efficacy in identifying suspicious activities and anomalous behaviors associated with insider threats within organi",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_3"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_4",
+          "text": "zational systems. Additionally, the survey underscores the potential of NLP and large language model-based approaches, which can enhance threat detection by deciphering textual and contextual information. In the conclusion section, the paper offers valuable insights into the future directions of ins",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_4"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_5",
+          "text": "ider threat detection. It advocates for the integration of more sophisticated time-series-based techniques, recognizing the importance of temporal patterns in insider threat behaviors. These recommendations reflect the evolving nature of insider threats and emphasize the need for proactive, data-dri",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_5"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_6",
+          "text": "ven strategies to safeguard organizations against internal security breaches. In conclusion, this survey not only underscores the urgency of addressing insider threats but also provides a roadmap for the adoption of advanced methodologies to enhance detection and mitigation capabilities in contempor",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_6"
+        },
+        {
+          "chunk_id": "9edf1cda6fc3_chunk_7",
+          "text": "ary cybersecurity paradigms.",
+          "embedding_id": "emb_9edf1cda6fc3_chunk_7"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.241465"
+    },
+    "bdfe234f1418": {
+      "paper_id": "bdfe234f1418",
+      "handle": "P49",
+      "title": "The role of Artificial Intelligence in Cyber Security and Incident Response",
+      "authors": [
+        "Syed Khurram Hassan",
+        "Asif Ibrahim"
+      ],
+      "year": 2023,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.54692/ijeci.2023.0702154",
+      "url": "https://doi.org/10.54692/ijeci.2023.0702154",
+      "source": "OpenAlex",
+      "abstract": "The escalating number and intricacy of cyber attacks have underscored the urgent requirement for innovative solutions to bolster the security of digital infrastructure. Among these solutions, Artificial Intelligence (AI) emerges as a promising technology with the potential to significantly enhance cyber security and incident response. It has the aptitude to improve the speed and accuracy of threat detection, response and mitigation while also reducing the workload on security professionals. This research paper focuses on the role of AI in key areas of cyber security and incident response, specifically vulnerability assessment, intrusion detection and prevention, and digital forensics analysis. It elucidates how AI, with its innate capabilities, can be a game-changer by empowering organizations to detect, respond to, and mitigate threats more effectively. However, AI is not a silver bullet for Cyber Security. Like any technology, it possesses its limitations and potential vulnerabilities. Consequently, this paper also addresses the need for ongoing development in the field of AI to overcome these limitations and challenges. By recognizing the need for continuous advancements, the research paper emphasizes the importance of future research and development efforts to maximize the potential benefits of AI in the realm of cyber security.",
+      "chunks": [
+        {
+          "chunk_id": "bdfe234f1418_chunk_0",
+          "text": "The escalating number and intricacy of cyber attacks have underscored the urgent requirement for innovative solutions to bolster the security of digital infrastructure. Among these solutions, Artificial Intelligence (AI) emerges as a promising technology with the potential to significantly enhance c",
+          "embedding_id": "emb_bdfe234f1418_chunk_0"
+        },
+        {
+          "chunk_id": "bdfe234f1418_chunk_1",
+          "text": "yber security and incident response. It has the aptitude to improve the speed and accuracy of threat detection, response and mitigation while also reducing the workload on security professionals. This research paper focuses on the role of AI in key areas of cyber security and incident response, spec",
+          "embedding_id": "emb_bdfe234f1418_chunk_1"
+        },
+        {
+          "chunk_id": "bdfe234f1418_chunk_2",
+          "text": "ifically vulnerability assessment, intrusion detection and prevention, and digital forensics analysis. It elucidates how AI, with its innate capabilities, can be a game-changer by empowering organizations to detect, respond to, and mitigate threats more effectively. However, AI is not a silver bulle",
+          "embedding_id": "emb_bdfe234f1418_chunk_2"
+        },
+        {
+          "chunk_id": "bdfe234f1418_chunk_3",
+          "text": "t for Cyber Security. Like any technology, it possesses its limitations and potential vulnerabilities. Consequently, this paper also addresses the need for ongoing development in the field of AI to overcome these limitations and challenges. By recognizing the need for continuous advancements, the re",
+          "embedding_id": "emb_bdfe234f1418_chunk_3"
+        },
+        {
+          "chunk_id": "bdfe234f1418_chunk_4",
+          "text": "search paper emphasizes the importance of future research and development efforts to maximize the potential benefits of AI in the realm of cyber security.",
+          "embedding_id": "emb_bdfe234f1418_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.330432"
+    },
+    "ae50140ae108": {
+      "paper_id": "ae50140ae108",
+      "handle": "P50",
+      "title": "AI-Driven Forensic Systems for Real-Time Anomaly Detection and Threat Mitigation in Cybersecurity Infrastructures",
+      "authors": [
+        "Ogochukwu Susan Ndibe"
+      ],
+      "year": 2025,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.55248/gengpi.6.0525.1991",
+      "url": "https://doi.org/10.55248/gengpi.6.0525.1991",
+      "source": "OpenAlex",
+      "abstract": "Abstract not available.",
+      "chunks": [
+        {
+          "chunk_id": "ae50140ae108_chunk_0",
+          "text": "Abstract not available.",
+          "embedding_id": "emb_ae50140ae108_chunk_0"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.388716"
+    },
+    "f5597bc1091d": {
+      "paper_id": "f5597bc1091d",
+      "handle": "P51",
+      "title": "DomainPrio: Prioritizing Domain Name Investigations to Improve SOC Efficiency",
+      "authors": [
+        "Daiki Chiba",
+        "Mitsuaki Akiyama",
+        "Yuto Otsuki",
+        "Hiroki Hada",
+        "Takeshi Yagi",
+        "Tobias Fiebig",
+        "Michel van Eeten"
+      ],
+      "year": 2022,
+      "venue": "OpenAlex",
+      "doi_or_arxiv": "https://doi.org/10.1109/access.2022.3161636",
+      "url": "https://doi.org/10.1109/access.2022.3161636",
+      "source": "OpenAlex",
+      "abstract": "Security Operations Centers (SOCs) are in need of automation for triaging alerts. Current approaches focus on analyzing and enriching individual alerts. We take a different approach and analyze the population of alerts. In an observational study over 24 weeks, we find a surprising pattern: some domains get analyzed again and again by different analysts, without coming to a final evaluation. Overall, 19% of the domains trigger 74% of all investigations. The most time-consuming domains are classified as false positives and 'potentially unwanted programs' - the lowest threat level. To increase SOC efficiency, we design DomainPrio, a tool that prioritizes domains that are likely to be the subject of repeated, incomplete investigations. This enables us to indicate to the first analyst encountering this domain that the investigation should be, if possible, completed on this first attempt, so future investigations on the same domain can be prevented. DomainPrio is able to predict these domains with 89% accuracy and does so with an interpretable and auditable logistic regression model. When evaluating our tool on 100 days of data from a production setting, we find that it can potentially reduce the number of alert investigations by up to 35%, presenting the SOC with very substantial efficiency gains.",
+      "chunks": [
+        {
+          "chunk_id": "f5597bc1091d_chunk_0",
+          "text": "Security Operations Centers (SOCs) are in need of automation for triaging alerts. Current approaches focus on analyzing and enriching individual alerts. We take a different approach and analyze the population of alerts. In an observational study over 24 weeks, we find a surprising pattern: some doma",
+          "embedding_id": "emb_f5597bc1091d_chunk_0"
+        },
+        {
+          "chunk_id": "f5597bc1091d_chunk_1",
+          "text": "ins get analyzed again and again by different analysts, without coming to a final evaluation. Overall, 19% of the domains trigger 74% of all investigations. The most time-consuming domains are classified as false positives and 'potentially unwanted programs' - the lowest threat level. To increase SO",
+          "embedding_id": "emb_f5597bc1091d_chunk_1"
+        },
+        {
+          "chunk_id": "f5597bc1091d_chunk_2",
+          "text": "C efficiency, we design DomainPrio, a tool that prioritizes domains that are likely to be the subject of repeated, incomplete investigations. This enables us to indicate to the first analyst encountering this domain that the investigation should be, if possible, completed on this first attempt, so f",
+          "embedding_id": "emb_f5597bc1091d_chunk_2"
+        },
+        {
+          "chunk_id": "f5597bc1091d_chunk_3",
+          "text": "uture investigations on the same domain can be prevented. DomainPrio is able to predict these domains with 89% accuracy and does so with an interpretable and auditable logistic regression model. When evaluating our tool on 100 days of data from a production setting, we find that it can potentially r",
+          "embedding_id": "emb_f5597bc1091d_chunk_3"
+        },
+        {
+          "chunk_id": "f5597bc1091d_chunk_4",
+          "text": "educe the number of alert investigations by up to 35%, presenting the SOC with very substantial efficiency gains.",
+          "embedding_id": "emb_f5597bc1091d_chunk_4"
+        }
+      ],
+      "added_at": "2026-02-10T20:50:11.397794"
     }
   },
   "handle_map": {
@@ -1695,13 +2151,24 @@
     "e8e4558c1554": "P37",
     "a4e3ab01194a": "P38",
     "ab247243921e": "P39",
-    "fc04012f2867": "P40"
+    "fc04012f2867": "P40",
+    "fee431de1ed6": "P41",
+    "ae88d37fee45": "P42",
+    "452bda665c79": "P43",
+    "9b165c1ebaf5": "P44",
+    "2d4f64ba689d": "P45",
+    "633cf24e65ea": "P46",
+    "7825ce063152": "P47",
+    "9edf1cda6fc3": "P48",
+    "bdfe234f1418": "P49",
+    "ae50140ae108": "P50",
+    "f5597bc1091d": "P51"
   },
-  "next_handle": 41,
+  "next_handle": 52,
   "metadata": {
     "created_at": "2025-12-24T11:18:43.717928",
-    "last_updated": "2026-02-10T10:03:43.989404",
-    "total_papers": 40,
-    "total_chunks": 171
+    "last_updated": "2026-02-10T20:50:11.397794",
+    "total_papers": 51,
+    "total_chunks": 219
   }
 }
